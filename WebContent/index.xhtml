@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.prime.com.tr/ui">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Nome da nossa rede social de caronas</title>
+		
+		<style>
+		#form1 {
+			position: absolute;
+			left: 40%;
+			margin-left: -300px;
+		}
+		</style>
+		
+	</h:head>
+
+	<h:body>
+		<!--p:layout fullPage="true"  id="layoutMain"-->   
+			<h:head>
+				<br />
+				<br />
+				<h1 align="center">
+					<font color="#36648B">Nome da nossa rede social</font>
+				</h1>
+				<br />
+				<br />
+				<p:separator id="separator" />
+			</h:head>
+ 
+		    		  
+	
+			<h:form id="form1">
+				<p:panelGrid columns="3"
+					style="width:876px; border-style: hidden !important;">
+					<font color="#36648B" style="text-align: justify;">
+						
+					<p>Bem vindo a sua Agenda de Contatos, aqui você pode
+						adicionar os seus amigos, vizinhos, familiares. Nessa agenda você
+						tem a possobilidade de adicionar a cada contato vários número de
+						telefones diferentes, pois hoje em dia, várias pessoas têm mais
+						de um telefone. Você também pode adicionar um ou mais emails para
+						cada contato, além de informações pessoais dele, como idade e uma
+						descrição.</p>
+					<p>Aproveite da melhor forma possível as facilidade oferecidas
+							pela sua Agenda!!</p>
+					</font>
+
+					<p:separator id="separator2" style="width:3px;height:344px" />
+
+					<p:panel header="Login">
+						<p:messages id="messages" showDetail="false" autoUpdate="false" />
+
+						<h:panelGrid columns="2" id="loginGrid">
+							<h:outputLabel for="login" value="Usuário: " />
+							<p:inputText id="login" value="#{loginBean.login}"
+								label="Usuario" />
+
+							<h:outputLabel for="senha" value="Senha " />
+							<p:password id="senha" value="#{loginBean.password}"
+								label="Senha" />
+						</h:panelGrid>
+
+						<p:commandButton id="btLogin" value="Login"
+							action="" />
+
+						<p:commandButton id="newUser" value="Criar uma conta"
+							onclick="dlgNewUser.show()" />
+					</p:panel>
+
+				</p:panelGrid>
+			</h:form> 
+		<!-- /p:layout-->  
+	</h:body>
+
+</html>
+
+
+	
+
+	
