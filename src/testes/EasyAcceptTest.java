@@ -6,7 +6,7 @@ import java.util.List;
 import easyaccept.EasyAcceptFacade;
 import facade.easyAccept.OurEasyAcceptFacade;
 
-public class TestEasyAccept {
+public class EasyAcceptTest {
 
 	public static void main(String[] args) {
 		List<String> files = new ArrayList<String>();
