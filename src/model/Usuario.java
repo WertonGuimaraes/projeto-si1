@@ -13,7 +13,7 @@ public class Usuario {
 		if(login == null || nome==null || email ==null || endereco ==null || telefone ==null){
 			throw new InvalidParameterException("parametro(s) nulos");
 		}
-		if(isEmpty(login)|| isEmpty(nome) || isEmpty(email) || isEmpty(telefone) || isEmpty(endereco)){
+		if(Util.isEmpty(login)|| Util.isEmpty(nome) || Util.isEmpty(email) || Util.isEmpty(telefone) || Util.isEmpty(endereco)){
 			throw new InvalidParameterException("parametro(s) vazios");
 		}
 		
@@ -51,9 +51,6 @@ public class Usuario {
 		this.friends = friends;
 	}
 
-	private boolean isEmpty(String s){
-		return s.equals("");
-	}
 	
 	public String getLogin() {
 		return login;
