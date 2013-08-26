@@ -1,6 +1,6 @@
 package facade.easyAccept;
 
-public class EasyAcceptFacade {
+public class OurEasyAcceptFacade {
 	
 //	private final String NOME = "nome";
 //	private final String EMAIL = "email";
