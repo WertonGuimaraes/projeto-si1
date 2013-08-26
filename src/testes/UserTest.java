@@ -13,7 +13,7 @@ public class UserTest {
 	@Before
 	public void init(){
 		user1 = new Usuario("tiaraju","Tiaraju","tiarajums@gmail.com","rua xxx numero 222","88888888");
-		user2 = new Usuario("crafs","Carlos Rafael","crafs@gmail.com","rua yyy numero 333","22222222");
+		user2 = new Usuario("crafards","Carlos Rafael","crafs@gmail.com","rua yyy numero 333","22222222");
 		user3 = new Usuario("jessika","Jessika","reh.nally@gmail.com","rua www numero 123","99999999");
 	}
 

@@ -1,7 +1,5 @@
 package model;
 
-import java.security.InvalidParameterException;
-
 import org.joda.time.DateTime;
 
 public class Carona {
@@ -15,7 +13,7 @@ public class Carona {
 
 	public Carona(String origem, String destino, String data,String horaSaida, int vagas) throws Exception{
 		if(Util.isEmpty(origem) || Util.isEmpty(origem)|| Util.isEmpty(origem) || Util.isEmpty(origem) || vagas<1){
-			throw new InvalidParameterException("Parametros incosistentes");
+			throw new RuntimeException("Parametros incosistentes");
 		}
 		year = Integer.parseInt(data.split("/")[2]);
 		month = Integer.parseInt(data.split("/")[1]);
