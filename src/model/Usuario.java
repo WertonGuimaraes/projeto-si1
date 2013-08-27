@@ -9,11 +9,12 @@ public class Usuario {
 	private String login,nome,email,endereco,telefone;
 	private Set<Usuario> friends;
 	
-	public Usuario(String login, String nome, String email,String endereco, String telefone) throws InvalidParameterException {
-		if(login == null || nome==null || email ==null || endereco ==null || telefone ==null){
+	
+	public Usuario(String login, String nome, String email, String endereco) {
+		if(login == null || nome==null || email ==null || endereco ==null){
 			throw new InvalidParameterException("parametro(s) nulos");
 		}
-		if(Util.isEmpty(login)|| Util.isEmpty(nome) || Util.isEmpty(email) || Util.isEmpty(telefone) || Util.isEmpty(endereco)){
+		if(Util.isEmpty(login) | Util.isEmpty(nome) | Util.isEmpty(email) | Util.isEmpty(endereco)){
 			throw new InvalidParameterException("parametro(s) vazios");
 		}
 		
@@ -21,11 +22,10 @@ public class Usuario {
 		this.nome=nome;
 		this.email=email;
 		this.endereco=endereco;
-		this.telefone=telefone;
+		this.telefone=""; //telefone vazio
 		this.friends= new HashSet<Usuario>();
-		
 	}
-	
+
 	public boolean isFriendOf(Usuario user){
 		return friends.contains(user);
 	}
