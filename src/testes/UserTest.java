@@ -1,8 +1,8 @@
 package testes;
 
+import static org.junit.Assert.*; 
 import model.Usuario;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class UserTest {
 	public void testLoginNull() {
 		try{
 			user3 = new Usuario(null,"Carlos Rafael","crafs@gmail.com","rua yyy numero 333","22222222");
-			Assert.fail();
+			fail();
 		}catch(Exception e){}
 
 	}
@@ -32,15 +32,15 @@ public class UserTest {
 		user2 = new Usuario("crafs","Carlos Rafael","crafs@gmail.com","rua yyy numero 333","22222222");
 		try{
 			user3 = new Usuario("rafael",null,"crafs@gmail.com","rua yyy numero 333","22222222");
-			Assert.fail();
+			fail();
 		}catch(Exception e){}
-
+		
 	}
 
 	@Test
 	public void testAddFriend(){
 		user1.addFriend(user2);
-		Assert.assertTrue(user1.isFriendOf(user2));
+		assertTrue(user1.isFriendOf(user2));
 	}
 	
 	
