@@ -11,11 +11,17 @@ public class EasyAcceptTest {
 	public static void main(String[] args) {
 		List<String> files = new ArrayList<String>();
 		
-		files.add("US01.txt");
-//		files.add("US02.txt");
-//		files.add("US03.txt"); //US da primeira entrega =p
-//		files.add("US04.txt");
-//		files.add("US05.txt");
+		files.add("us/US01.txt");
+//		files.add("us/US02.txt");
+//		files.add("us/US03.txt"); 
+//		files.add("us/US04.txt");
+//		files.add("us/US05.txt"); //ultima US da primeira entrega =p
+//		files.add("us/US06.txt");
+//		files.add("us/US07.txt");
+//		files.add("us/US08.txt");
+//		files.add("us/US09.txt");
+//		files.add("us/US010.txt");
+//		files.add("us/US11.txt");
 	
 		
 		//Instanciate aplication Facade
