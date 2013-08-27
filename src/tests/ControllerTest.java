@@ -12,7 +12,7 @@ public class ControllerTest {
 	
 	@Before
 	public void iniciaSistema(){
-		controlador = new Controller();
+		controlador = Controller.getInstance();
 	}
 	
 	@Test

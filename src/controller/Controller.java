@@ -11,11 +11,11 @@ public class Controller {
 	
 	private static Controller controller; 
 
-	public Controller getInstance() {
+	public static Controller getInstance() {
 		if (controller != null) {
 			return controller;
 		}
-		// controller = deserializa(); TODO implementar persistencia
+		// controller = metodoPersistencia(); TODO implementar persistencia
 
 		if (controller == null) {
 			controller = new Controller();
