@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import easyaccept.EasyAcceptFacade;
-import facade.easyAccept.OurEasyAcceptFacade;
+import facade.easyAccept.MyEasyAcceptFacade;
 
 public class EasyAcceptTest {
 
@@ -19,7 +19,7 @@ public class EasyAcceptTest {
 	
 		
 		//Instanciate aplication Facade
-		OurEasyAcceptFacade yourTestFacade = new OurEasyAcceptFacade(); //TODO deve receber uma instancia do sistema
+		MyEasyAcceptFacade yourTestFacade = new MyEasyAcceptFacade(); //TODO deve receber uma instancia do sistema
 	
 		//Instanciate EasyAcceptFacade
 		EasyAcceptFacade eaFacade = new EasyAcceptFacade(yourTestFacade, files);

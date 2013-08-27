@@ -1,0 +1,1 @@
+Padroes utilizados durante o desenvolvimento do Sistema:
