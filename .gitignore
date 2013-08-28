@@ -1,5 +1,6 @@
 #files that should never be commited
 .classpath
+.project
 /bin
 /build
 /.settings
