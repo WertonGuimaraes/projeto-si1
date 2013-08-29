@@ -1,5 +1,6 @@
 package facade.easyAccept;
 
+import model.Util;
 import controller.Controller;
 
 public class MyEasyAcceptFacade {
@@ -30,7 +31,13 @@ public class MyEasyAcceptFacade {
 	
 
 	public String getAtributoUsuario(String login, String atributo){
-		return atributo;
+		if ( atributo == null || Util.isEmpty(atributo)) throw new RuntimeException("Atributo inválido"); 	
+		
+		else if (atributo.equals("nome")) return controller.searchUsuariobyLogin(login).getNome();
+		else if (atributo.equals("endereco")) return controller.searchUsuariobyLogin(login).getEndereco();
+		
+		
+		throw new RuntimeException("Atributo inexistente");
 	}
 	
 	public void encerrarSistema(){

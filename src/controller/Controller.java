@@ -3,7 +3,9 @@ package controller;
 import java.util.HashSet;
 import java.util.Set;
 
+import model.LoginInvalidoException;
 import model.Usuario;
+import model.Util;
 
 public class Controller {
 
@@ -30,17 +32,24 @@ public class Controller {
 	}
 
 	public void criaConta(String login, String senha, String nome, String email, String endereco) {
+		for (Usuario usuarioExistente : usuarios) {
+			if(usuarioExistente.getEmail().equals(email)) 
+				throw new LoginInvalidoException("Já existe um usuário com este email");
+			else if(usuarioExistente.getLogin().equals(login))
+					throw new LoginInvalidoException("Já existe um usuário com este login");
+		}
 		Usuario usuario = new Usuario(login, senha, nome, email, endereco);
 		usuarios.add(usuario);
 	}
 	
 	public Usuario searchUsuariobyLogin(String login){
+		if(login == null || Util.isEmpty(login)) throw new RuntimeException("Login inválido");
 		for (Usuario usr : usuarios) {
 			if (usr.getLogin().equals(login)) {
 				return usr;
 			}
 		}
-		return null;
+		throw new RuntimeException("Usuário inexistente");
 	}
 	
 	public void zerarSistema(){
