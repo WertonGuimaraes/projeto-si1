@@ -20,12 +20,12 @@ public class MyEasyAcceptFacade {
 		
 	}
 	
-	public void abrirSessao(String login, String senha){
-		
+	public int abrirSessao(String login, String senha){
+		return controller.getSessoes().abrirSessao(login, senha);
 	}
 	
 	public void criarUsuario(String login, String senha, String nome, String endereco, String email){
-		controller.criaConta(login, nome, email, endereco);
+		controller.criaConta(login, senha, nome, email, endereco);
 	}
 	
 
@@ -33,6 +33,9 @@ public class MyEasyAcceptFacade {
 		return atributo;
 	}
 	
+	public void encerrarSistema(){
+		controller.zerarSistema();
+	}
 	
 	
 }

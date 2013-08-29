@@ -8,8 +8,9 @@ import model.Usuario;
 public class Controller {
 
 	private Set<Usuario> usuarios;
+	private SessionController controladorDeSessoes;
 	
-	private static Controller controller; 
+	private static Controller controller; //singleton
 
 	public static Controller getInstance() {
 		if (controller != null) {
@@ -25,18 +26,36 @@ public class Controller {
 
 	private Controller() {
 		usuarios = new HashSet<Usuario>();
+		controladorDeSessoes = SessionController.getInstance();
 	}
 
-	public void criaConta(String login, String nome, String email, String endereco) {
-		Usuario usuario = new Usuario(login, nome, email, endereco);
+	public void criaConta(String login, String senha, String nome, String email, String endereco) {
+		Usuario usuario = new Usuario(login, senha, nome, email, endereco);
 		usuarios.add(usuario);
 	}
-
-	public Set<Usuario> getListaUsuarios() {
+	
+	public Usuario searchUsuariobyLogin(String login){
+		for (Usuario usr : usuarios) {
+			if (usr.getLogin().equals(login)) {
+				return usr;
+			}
+		}
+		return null;
+	}
+	
+	public void zerarSistema(){
+		controladorDeSessoes = null;
+		Controller.getInstance();
+	}
+	
+	public Set<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
-	
+	public SessionController getSessoes() {
+		return controladorDeSessoes;
+	}
+
 	
 	
 }

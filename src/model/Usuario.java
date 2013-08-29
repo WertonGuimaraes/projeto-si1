@@ -6,18 +6,18 @@ import java.util.Set;
 
 public class Usuario {
 	
-	private String login,nome,email,endereco,telefone;
+	private String login,senha,nome,email,endereco,telefone;
 	private Set<Usuario> friends;
 	
 	
-	//TODO criar exceçãologin, passando uma strin de msg e aplicar abaixo
-	public Usuario(String login, String nome, String email, String endereco) {
-		if(login == null || Util.isEmpty(login))      throw new RuntimeException("Login inválido");
-		if(endereco ==null || Util.isEmpty(endereco)) throw new RuntimeException("Endereço invalido");
-		if(nome == null || Util.isEmpty(nome))        throw new RuntimeException("Nome inválido");
-		if(email ==null || Util.isEmpty(email))       throw new RuntimeException("Email inválido");
+	public Usuario(String login, String senha, String nome, String email, String endereco) {
+		if(login == null || Util.isEmpty(login))      throw new LoginInvalidoException("Login inválido");
+		if(endereco ==null || Util.isEmpty(endereco)) throw new LoginInvalidoException("Endereço invalido");
+		if(nome == null || Util.isEmpty(nome))        throw new LoginInvalidoException("Nome inválido");
+		if(email ==null || Util.isEmpty(email))       throw new LoginInvalidoException("Email inválido");
 		
 		this.login=login;
+		this.setSenha(senha);
 		this.nome=nome;
 		this.email=email;
 		this.endereco=endereco;
@@ -32,7 +32,7 @@ public class Usuario {
 	public void addFriend(Usuario user) {
 		friends.add(user);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj){
 		if(!(obj instanceof Usuario)){
@@ -41,6 +41,14 @@ public class Usuario {
 		Usuario user = (Usuario) obj;
 		return (user.getLogin().equals(this.getLogin()));
 	}
+	
+	public boolean autenticateAccount(String senha){
+		if (this.getSenha().equals(senha)) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	public Set<Usuario> getFriends() {
 		return friends;
@@ -98,6 +106,14 @@ public class Usuario {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 
