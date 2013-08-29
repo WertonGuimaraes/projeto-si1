@@ -25,10 +25,10 @@ public class EasyAcceptTest {
 	
 		
 		//Instanciate aplication Facade
-		MyEasyAcceptFacade yourTestFacade = new MyEasyAcceptFacade(); //TODO deve receber uma instancia do sistema
+		MyEasyAcceptFacade myTestFacade = new MyEasyAcceptFacade();
 	
 		//Instanciate EasyAcceptFacade
-		EasyAcceptFacade eaFacade = new EasyAcceptFacade(yourTestFacade, files);
+		EasyAcceptFacade eaFacade = new EasyAcceptFacade(myTestFacade, files);
 		
 		//Execute USs
 		eaFacade.executeTests();

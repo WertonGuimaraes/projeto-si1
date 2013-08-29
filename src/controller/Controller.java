@@ -27,8 +27,7 @@ public class Controller {
 		usuarios = new HashSet<Usuario>();
 	}
 
-	public void criaConta(String login, String nome, String email,
-			String endereco) {
+	public void criaConta(String login, String nome, String email, String endereco) {
 		Usuario usuario = new Usuario(login, nome, email, endereco);
 		usuarios.add(usuario);
 	}

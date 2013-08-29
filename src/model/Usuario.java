@@ -1,8 +1,8 @@
 package model;
 
-import java.security.InvalidParameterException;
 import java.util.HashSet;
 import java.util.Set;
+
 
 public class Usuario {
 	
@@ -10,13 +10,12 @@ public class Usuario {
 	private Set<Usuario> friends;
 	
 	
+	//TODO criar exceçãologin, passando uma strin de msg e aplicar abaixo
 	public Usuario(String login, String nome, String email, String endereco) {
-		if(login == null || nome==null || email ==null || endereco ==null){
-			throw new InvalidParameterException("parametro(s) nulos");
-		}
-		if(Util.isEmpty(login) | Util.isEmpty(nome) | Util.isEmpty(email) | Util.isEmpty(endereco)){
-			throw new InvalidParameterException("parametro(s) vazios");
-		}
+		if(login == null || Util.isEmpty(login))      throw new RuntimeException("Login inválido");
+		if(endereco ==null || Util.isEmpty(endereco)) throw new RuntimeException("Endereço invalido");
+		if(nome == null || Util.isEmpty(nome))        throw new RuntimeException("Nome inválido");
+		if(email ==null || Util.isEmpty(email))       throw new RuntimeException("Email inválido");
 		
 		this.login=login;
 		this.nome=nome;
