@@ -101,7 +101,7 @@ public class Controller {
 				if (idCarona == idCaronaExistente) return usr.getCaronas().get(idCarona);
 			}
 		}
-		return null;
+		throw new RuntimeException("Item inexistente");
 	}
 	
 	public int newCaronaId() {

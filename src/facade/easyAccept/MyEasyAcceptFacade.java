@@ -54,11 +54,15 @@ public class MyEasyAcceptFacade {
 		return idCarona;
 	}
 	
-	public String getAtributoCarona(int idCarona, String atributo){
-		if( atributo.equals("origem")) return Controller.getInstance().buscaCarona(idCarona).getOrigem();
-		if( atributo.equals("destino")) return Controller.getInstance().buscaCarona(idCarona).getDestino();
-		if( atributo.equals("data")) return Controller.getInstance().buscaCarona(idCarona).getDate();
-		if( atributo.equals("vagas")) return ""+Controller.getInstance().buscaCarona(idCarona).getVagas();
+	public String getAtributoCarona(String idCarona, String atributo){
+		if(idCarona == null || Util.isEmpty(idCarona)) throw new RuntimeException("Identificador do carona é inválido");
+		if(atributo == null || Util.isEmpty(atributo)) throw new RuntimeException("Atributo inválido");
+		
+		int id = Integer.parseInt(idCarona);
+		if( atributo.equals("origem")) return Controller.getInstance().buscaCarona(id).getOrigem();
+		if( atributo.equals("destino")) return Controller.getInstance().buscaCarona(id).getDestino();
+		if( atributo.equals("data")) return Controller.getInstance().buscaCarona(id).getDate();
+		if( atributo.equals("vagas")) return ""+Controller.getInstance().buscaCarona(id).getVagas();
 		
 		return atributo;
 	}

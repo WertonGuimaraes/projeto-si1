@@ -20,8 +20,13 @@ public class Carona {
 		year = Integer.parseInt(data.split("/")[2]);
 		month = Integer.parseInt(data.split("/")[1]);
 		day = Integer.parseInt(data.split("/")[0]);
-		hour =Integer.parseInt(horaSaida.split(":")[0]);
-		minute = Integer.parseInt(horaSaida.split(":")[1]);
+		
+		try {
+			hour =Integer.parseInt(horaSaida.split(":")[0]);
+			minute = Integer.parseInt(horaSaida.split(":")[1]);
+		} catch (RuntimeException e) {
+			throw new RuntimeException("Hora inválida");
+		}
 		
 		if(year < 2012) throw new RuntimeException("Data inválida");
 		try {
