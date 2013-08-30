@@ -12,16 +12,22 @@ public class Carona {
 
 
 	public Carona(String origem, String destino, String data,String horaSaida, int vagas) {
-		if(Util.isEmpty(origem) || Util.isEmpty(origem)|| Util.isEmpty(origem) || Util.isEmpty(origem) || vagas < 1){
-			throw new RuntimeException("Parametros incosistentes");
-		}
+		if(origem == null || Util.isEmpty(origem)) throw new RuntimeException("Origem inválida");
+		if(destino == null || Util.isEmpty(destino)) throw new RuntimeException("Destino inválido");
+		if(data == null || Util.isEmpty(data)) throw new RuntimeException("Data inválida");
+		
 		year = Integer.parseInt(data.split("/")[2]);
 		month = Integer.parseInt(data.split("/")[1]);
 		day = Integer.parseInt(data.split("/")[0]);
 		hour =Integer.parseInt(horaSaida.split(":")[0]);
 		minute = Integer.parseInt(horaSaida.split(":")[1]);
-
-		this.dateTime = new DateTime(year, month, day, hour, minute);
+		
+		if(year < 2012) throw new RuntimeException("Data inválida");
+		try {
+			this.dateTime = new DateTime(year, month, day, hour, minute);	
+		} catch (RuntimeException e) {
+			throw new RuntimeException("Data inválida");
+		}
 		this.origem = origem;
 		this.vagas=vagas;
 		this.destino = destino;

@@ -34,8 +34,7 @@ public class Usuario {
 	}
 	
 	public int adicionaCarona(String origem, String destino, String data, String hora, int vagas){
-		if(origem == null || Util.isEmpty(origem)) throw new RuntimeException("Origem inválida");
-		if(destino == null || Util.isEmpty(destino)) throw new RuntimeException("Destino inválido");
+		
 		Carona novaCarona = new Carona(origem, destino, data, hora, vagas);
 		int id = Controller.getInstance().newCaronaId();
 		getCaronas().put(id, novaCarona);
