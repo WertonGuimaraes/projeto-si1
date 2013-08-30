@@ -37,7 +37,7 @@ public class PerfilBean {
 			this.id = ID;
 					
 		}
-		else throw new RuntimeException("Erro no perfil");
+		else throw new RuntimeException("Erro no perfil"); 
 	}
 	
 	public void test(){
