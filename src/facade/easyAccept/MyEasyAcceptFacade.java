@@ -47,7 +47,21 @@ public class MyEasyAcceptFacade {
 	public String localizarCarona(int idSessao, String origem, String destino){
 		Usuario usr = controller.getSessoes().searchSessionById(idSessao);
 		List<Carona> caronas = usr.buscaCarona(origem, destino);
+		
 		return Util.easyAccListParser(caronas);
+	}
+	
+	public int cadastrarCarona(int idSessao, String origem, String destino, String data, String hora, int vagas  ){
+		Usuario usr = Controller.getInstance().getSessoes().searchSessionById(idSessao);
+		int idCarona = usr.adicionaCarona(origem, destino, data, hora, vagas);
+		
+		return idCarona;
+	}
+	
+	public String getAtributoCarona(int idCarona, String atributo){
+
+		
+		return atributo;
 	}
 	
 	public void encerrarSistema(){

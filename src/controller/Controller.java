@@ -11,7 +11,8 @@ import model.Usuario;
 import model.Util;
 
 public class Controller {
-
+	
+	int contadorCaronas;
 	private Set<Usuario> usuarios;
 
 	private SessionController controladorDeSessoes;
@@ -73,7 +74,7 @@ public class Controller {
 	public List<Carona> buscaCarona(String origem, String destino) {
 		List<Carona> caronasExistentes = new LinkedList<Carona>();
 		for (Usuario usr : usuarios) {
-			for (Carona carona : usr.getCaronas()) {
+			for (Carona carona : usr.getCaronas().values()) {
 				if (carona.getOrigem().equals(origem) && carona.getDestino().equals(destino));
 					caronasExistentes.add(carona);
 				}
@@ -81,6 +82,10 @@ public class Controller {
 		return caronasExistentes;
 		}
 	
+	
+	public int newCaronaId() {
+		return contadorCaronas++;
+	}
 
 
 }

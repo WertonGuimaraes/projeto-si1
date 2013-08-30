@@ -1,7 +1,9 @@
 package model;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import controller.Controller;
@@ -11,7 +13,8 @@ public class Usuario {
 	
 	private String login,senha,nome,email,endereco,telefone;
 	private Set<Usuario> friends;
-	private Set<Carona> caronas;
+	
+	private Map<Integer, Carona> caronas;
 	
 	public Usuario(String login, String senha, String nome, String email, String endereco) {
 		if(login == null || Util.isEmpty(login))      throw new LoginInvalidoException("Login inválido");
@@ -25,16 +28,21 @@ public class Usuario {
 		this.email=email;
 		this.endereco=endereco;
 		this.telefone=""; //telefone vazio
-		this.friends= new HashSet<Usuario>();
+		this.friends = new HashSet<Usuario>();
 		
-		caronas = new HashSet<Carona>();
+		caronas = new HashMap<Integer, Carona>();
 	}
 	
-	public void adicionaCarona(String origem, String destino, String data, String hora, int vagas){
+	public int adicionaCarona(String origem, String destino, String data, String hora, int vagas){
 		Carona novaCarona = new Carona(origem, destino, data, hora, vagas);
-		getCaronas().add(novaCarona);
+		int id = Controller.getInstance().newCaronaId();
+		getCaronas().put(id, novaCarona);
+		
+		return id;
 	}
 	
+	
+
 	public List<Carona> buscaCarona(String origem, String destino){
 		return Controller.getInstance().buscaCarona(origem, destino);
 	}
@@ -130,7 +138,7 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Set<Carona> getCaronas() {
+	public Map<Integer, Carona> getCaronas() {
 		return caronas;
 	}
 
