@@ -18,7 +18,7 @@ public class MyEasyAcceptFacade {
 	}
 	
 	public void zerarSistema(){
-		
+		controller.zerarSistema();
 	}
 	
 	public int abrirSessao(String login, String senha){

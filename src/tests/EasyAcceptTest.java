@@ -12,7 +12,7 @@ public class EasyAcceptTest {
 		List<String> files = new ArrayList<String>();
 		
 		files.add("us/US01.txt");
-//		files.add("us/US02.txt");
+		files.add("us/US02.txt");
 //		files.add("us/US03.txt"); 
 //		files.add("us/US04.txt");
 //		files.add("us/US05.txt"); //ultima US da primeira entrega =p

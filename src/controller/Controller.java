@@ -53,8 +53,8 @@ public class Controller {
 	}
 	
 	public void zerarSistema(){
-		controladorDeSessoes = null;
-		Controller.getInstance();
+		usuarios = new HashSet<Usuario>();
+		controladorDeSessoes.zeraSessoes();
 	}
 	
 	public Set<Usuario> getUsuarios() {

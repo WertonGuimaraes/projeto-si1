@@ -63,6 +63,12 @@ public class SessionController {
 	public void setContadorSessoes(int contadorSessoes) {
 		this.contadorSessoes = contadorSessoes;
 	}
+
+	public void zeraSessoes() {
+		contadorSessoes = 0;
+		sessoesAbertas = new HashMap<Integer, Usuario>();
+				
+	}
 	
 	
 }
