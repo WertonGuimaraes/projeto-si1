@@ -2,7 +2,6 @@ package facade.easyAccept;
 
 import java.util.List;
 
-import model.Carona;
 import model.Usuario;
 import model.Util;
 import controller.Controller;
