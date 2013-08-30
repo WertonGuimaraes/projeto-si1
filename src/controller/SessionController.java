@@ -50,9 +50,14 @@ public class SessionController {
 			throw new RuntimeException("Login inválido");
 	}
 	
-	public Usuario searchSessionById(int id){
-		
-		return sessoesAbertas.get(id);
+	public Usuario searchSessionById(String id){
+		int idUsuario;
+		try {
+			idUsuario = Integer.parseInt(id);
+		} catch (RuntimeException e) {
+			throw new RuntimeException("Sessão inexistente");
+		}
+		return sessoesAbertas.get(idUsuario);
 	}
 	
 	

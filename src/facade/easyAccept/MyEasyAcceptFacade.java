@@ -38,14 +38,15 @@ public class MyEasyAcceptFacade {
 		throw new RuntimeException("Atributo inexistente");
 	}
 	
-	public String localizarCarona(int idSessao, String origem, String destino){
+	public String localizarCarona(String idSessao, String origem, String destino){
 		Usuario usr = controller.getSessoes().searchSessionById(idSessao);
 		List<Integer> caronas = usr.buscaCarona(origem, destino);
 		
 		return Util.easyAccListParser(caronas);
 	}
 	
-	public int cadastrarCarona(int idSessao, String origem, String destino, String data, String hora, int vagas ){
+	public int cadastrarCarona(String idSessao, String origem, String destino, String data, String hora, int vagas ){
+		if(idSessao == null || Util.isEmpty(idSessao)) throw new RuntimeException("Sessão inválida"); 
 		Usuario usr = Controller.getInstance().getSessoes().searchSessionById(idSessao);
 		int idCarona = usr.adicionaCarona(origem, destino, data, hora, vagas);
 		

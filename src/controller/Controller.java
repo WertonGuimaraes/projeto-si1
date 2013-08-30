@@ -105,7 +105,7 @@ public class Controller {
 	}
 	
 	public int newCaronaId() {
-		return contadorCaronas++;
+		return ++contadorCaronas;
 	}
 
 
