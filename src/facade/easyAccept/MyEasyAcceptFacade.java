@@ -59,7 +59,8 @@ public class MyEasyAcceptFacade {
 	}
 	
 	public String getAtributoCarona(int idCarona, String atributo){
-
+		if( atributo.equals("origem")) return Controller.getInstance().buscaCarona(idCarona).getOrigem();
+		if( atributo.equals("destino")) return Controller.getInstance().buscaCarona(idCarona).getDestino();
 		
 		return atributo;
 	}

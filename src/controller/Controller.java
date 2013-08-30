@@ -82,10 +82,19 @@ public class Controller {
 		return caronasExistentes;
 		}
 	
+	public Carona buscaCarona(int idCarona) {
+		for (Usuario usr : usuarios) {
+			for (int idCaronaExistente : usr.getCaronas().keySet()) {
+				if (idCarona == idCaronaExistente) return usr.getCaronas().get(idCarona);
+			}
+		}
+		return null;
+	}
 	
 	public int newCaronaId() {
 		return contadorCaronas++;
 	}
+
 
 
 }
