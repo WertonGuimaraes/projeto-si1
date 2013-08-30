@@ -72,16 +72,28 @@ public class Controller {
 	}
 
 	public List<Integer> buscaCarona(String origem, String destino) {
+		boolean condicao;
 		List<Integer> caronasEncontradas = new LinkedList<Integer>();
 		for (Usuario usr : usuarios) {
 			for (int chave: usr.getCaronas().keySet() ){
 				Carona caronaExistente = usr.getCaronas().get(chave);	
-				if(caronaExistente.getDestino().equals(destino) && caronaExistente.getOrigem().equals(origem))
+
+				if (Util.isEmpty(origem) && Util.isEmpty(destino))
+					condicao = true;
+				else if(Util.isEmpty(destino))
+					condicao = caronaExistente.getOrigem().equals(origem);
+				else if (Util.isEmpty(origem))
+					condicao = caronaExistente.getDestino().equals(destino);
+				else
+					condicao = caronaExistente.getDestino().equals(destino)
+							&& caronaExistente.getOrigem().equals(origem);
+				if(condicao)
 					caronasEncontradas.add(chave);
 				}
 			}
 		return caronasEncontradas;
 		}
+	
 	
 	public Carona buscaCarona(int idCarona) {
 		for (Usuario usr : usuarios) {

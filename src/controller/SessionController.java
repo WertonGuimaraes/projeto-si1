@@ -51,6 +51,7 @@ public class SessionController {
 	}
 	
 	public Usuario searchSessionById(int id){
+		
 		return sessoesAbertas.get(id);
 	}
 	
