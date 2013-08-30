@@ -58,12 +58,12 @@ public class SessionController {
 	
 	public int newSessionId(){
 		contadorSessoes++;
-		for (int index = 0; index <= contadorSessoes; index++) {
+		for (int index = 0; index <= contadorSessoes; index++) { //acho q aqui da set of bounds pq vc add + 1 ao contador e tenta procurar elementos, como e set num tem q usar iterator nao?
 			if( !(sessoesAbertas.containsKey(index)) ){
 				return index;
 			}
 		}
-		return contadorSessoes+1;
+		return contadorSessoes+1;//ai ja soma aqui de novo, realmente necessario, eu acho q ele nunca sai do for sem passar pelo if
 	}
 
 	public int getContadorSessoes() {

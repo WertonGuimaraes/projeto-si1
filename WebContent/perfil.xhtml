@@ -5,11 +5,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 	<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Login</title>
-		
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-			<title>Perfil</title>
+		<title>Perfil</title>
 	
 		<style>
 			#form1 {
@@ -22,7 +19,21 @@
 	</h:head>
 	
 	<h:body>
-		
+		<p:layout fullPage="true" style="width:100%;height:100%">
+			
+			<p:layoutUnit position="west" size="400"  resizable="true" minSize="300">
+				<p><font size="4" color="blue">Seja bem vindo "#{perfilBean.usuario.nome}" </font></p>
+				<p:graphicImage url="http://blog.cancaonova.com/cantinho/files/2011/09/box-home-clube-PP.jpg" width="410"/> 
+				
+				<p:commandButton id="newUser" value="Criar uma conta"
+					action="#{perfilBean.test}"  />
+			</p:layoutUnit>
+			
+			<p:layoutUnit position="center" size="800" resizable="true" minSize="300">
+				<h:outputText value="Right Pane" />
+			</p:layoutUnit>
+			
+		</p:layout>
 		
 	</h:body>
 

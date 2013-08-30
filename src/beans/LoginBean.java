@@ -6,6 +6,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import controller.Controller;
+import controller.SessionController;
 
 @SessionScoped
 @ManagedBean(name="loginBean")
@@ -19,8 +20,10 @@ public class LoginBean {
 	
 	
 	public String login(){
-		
-		return "main.hxtml";
+		PerfilBean.ID = SessionController.getInstance().abrirSessao(login, password);	
+		System.out.println(PerfilBean.ID);
+		System.out.println("iai?");
+		return "perfil.xhtml";
 	}
 	
 	public String redirectCreateNewAccount(){
