@@ -73,7 +73,8 @@
 					<p:password id="inSenha" required="true" autocomplete="true" value="#{loginBean.password}" label="Senha" />
 				</p:panelGrid>
 
-				<p:commandButton id="btCreate" value="Criar nova conta" action="#{loginBean.createNewAccount}" />
+				<p:commandButton id="btCreate" value="Criar nova conta" action="#{loginBean.createNewAccount}" update="inName,inLogin,inSenha,
+				inTelefone,inEndereço,inEmail"/>
 				<p:commandButton id="btBack" value="Voltar" action="#{loginBean.redirectIndex}" />
 
 			</p:panel>
