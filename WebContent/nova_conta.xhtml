@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Login</title>
+	<title>Criar nova conta</title>
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 		<title>Nome da nossa rede social de caronas</title>
@@ -50,21 +50,31 @@
 
 			<p:separator id="separator2" style="width:3px;height:344px" />
 
-			<p:panel header="Login">
-				<p:messages id="messages" showDetail="false" autoUpdate="false" />
+			<p:panel header="Nova Conta">
+				<p:messages id="messages" showDetail="false" autoUpdate="true" />
 
-				<h:panelGrid columns="2" id="loginGrid">
-					<h:outputLabel for="login" value="Usuário: " />
-					<p:inputText id="login" value="#{loginBean.login}" label="Usuario" />
+				<p:panelGrid columns="2" id="newAccountGrid">
+					<h:outputLabel id="outName" required="True" value="Nome: " />
+					<p:inputText id="inName" value="#{loginBean.nome}" label="Nome" autoupdate="true" />
+					
+					<h:outputLabel id="outEmail" required="True" value="Email: " />
+					<p:inputText id="inEmail" value="#{loginBean.email}" label="Email" />
+					
+					<h:outputLabel id="outEndereco" required="True" value="Endereço: " />
+					<p:inputText id="inEndereço" value="#{loginBean.endereco}" label="Endereço" />
+					
+					<h:outputLabel id="outTelefone" required="True" value="Telefone: " />
+					<p:inputText id="inTelefone" value="#{loginBean.telefone}" label="Telefone" />
+					
+					<h:outputLabel id="outLogin" required="True" value="Login: " />
+					<p:inputText id="inLogin" value="#{loginBean.login}" label="Login" />
 
-					<h:outputLabel for="senha" value="Senha " />
-					<p:password id="senha" value="#{loginBean.password}" label="Senha" />
-				</h:panelGrid>
+					<h:outputLabel id="outSenha" value="Senha " />
+					<p:password id="inSenha" value="#{loginBean.password}" label="Senha" />
+				</p:panelGrid>
 
-				<p:commandButton id="btLogin" value="Login"  />
+				<p:commandButton id="btLogin" value="Criar nova conta" action="#{loginBean.createNewAccount}" />
 
-				<p:commandButton id="newUser" value="Criar uma conta"
-					action="#{loginBean.redirectCreateNewAccount" />
 			</p:panel>
 
 		</p:panelGrid>
