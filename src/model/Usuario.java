@@ -8,7 +8,7 @@ public class Usuario {
 	
 	private String login,senha,nome,email,endereco,telefone;
 	private Set<Usuario> friends;
-	
+	private Set<Carona> caronas;
 	
 	public Usuario(String login, String senha, String nome, String email, String endereco) {
 		if(login == null || Util.isEmpty(login))      throw new LoginInvalidoException("Login inválido");
@@ -23,8 +23,12 @@ public class Usuario {
 		this.endereco=endereco;
 		this.telefone=""; //telefone vazio
 		this.friends= new HashSet<Usuario>();
+		
+		this.caronas = new HashSet<Carona>();
 	}
-
+	
+//	public void adicionaCarona(
+	
 	public boolean isFriendOf(Usuario user){
 		return friends.contains(user);
 	}

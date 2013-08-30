@@ -29,7 +29,12 @@ public class SessionController {
 		contadorSessoes = 0;
 	}
 	
-	
+	/**
+	 * O método retorna o id correspondente à sessão do usuário(login).
+	 * @param login
+	 * @param senha
+	 * @return
+	 */
 	public int abrirSessao(String login, String senha){
 		if( login == null || Util.isEmpty(login)) throw new LoginInvalidoException("Login inválido");
 		

@@ -40,6 +40,12 @@ public class MyEasyAcceptFacade {
 		throw new RuntimeException("Atributo inexistente");
 	}
 	
+	public String localizarCarona(String idSessao, String origem, String destino){
+//		controller.getSessoes().localizarCarona()
+		
+		return destino;
+	}
+	
 	public void encerrarSistema(){
 		controller.zerarSistema();
 	}
