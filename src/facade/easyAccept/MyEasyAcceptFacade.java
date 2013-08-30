@@ -1,5 +1,6 @@
 package facade.easyAccept;
 
+import model.Usuario;
 import model.Util;
 import controller.Controller;
 
@@ -40,9 +41,9 @@ public class MyEasyAcceptFacade {
 		throw new RuntimeException("Atributo inexistente");
 	}
 	
-	public String localizarCarona(String idSessao, String origem, String destino){
-//		controller.getSessoes().localizarCarona()
-		
+	public String localizarCarona(int idSessao, String origem, String destino){
+		Usuario usr = controller.getSessoes().searchSessionById(idSessao);
+		usr.buscaCarona(origem, destino);
 		return destino;
 	}
 	

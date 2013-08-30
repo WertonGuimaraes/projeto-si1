@@ -1,8 +1,11 @@
 package controller;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
+import model.Carona;
 import model.LoginInvalidoException;
 import model.Usuario;
 import model.Util;
@@ -52,6 +55,8 @@ public class Controller {
 		throw new RuntimeException("Usuário inexistente");
 	}
 	
+	
+	
 	public void zerarSistema(){
 		usuarios = new HashSet<Usuario>();
 		controladorDeSessoes.zeraSessoes();
@@ -65,6 +70,20 @@ public class Controller {
 		return controladorDeSessoes;
 	}
 
+	public List<Carona> buscaCarona(String origem, String destino) {
+		List<Carona> caronasExistentes = new LinkedList<Carona>();
+		for (Usuario usr : usuarios) {
+			for (Carona carona : usr.getCaronas()) {
+				if (carona.getOrigem().equals(origem) && carona.getDestino().equals(destino));
+					caronasExistentes.add(carona);
+				}
+			}
+		return caronasExistentes;
+		}
 	
-	
+
+
 }
+
+	
+	

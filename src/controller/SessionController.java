@@ -29,6 +29,7 @@ public class SessionController {
 		contadorSessoes = 0;
 	}
 	
+	
 	/**
 	 * O método retorna o id correspondente à sessão do usuário(login).
 	 * @param login
@@ -47,6 +48,10 @@ public class SessionController {
 			return newId;
 		}
 			throw new RuntimeException("Login inválido");
+	}
+	
+	public Usuario searchSessionById(int id){
+		return sessoesAbertas.get(id);
 	}
 	
 	

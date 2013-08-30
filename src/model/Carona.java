@@ -11,8 +11,8 @@ public class Carona {
 
 
 
-	public Carona(String origem, String destino, String data,String horaSaida, int vagas) throws Exception{
-		if(Util.isEmpty(origem) || Util.isEmpty(origem)|| Util.isEmpty(origem) || Util.isEmpty(origem) || vagas<1){
+	public Carona(String origem, String destino, String data,String horaSaida, int vagas) {
+		if(Util.isEmpty(origem) || Util.isEmpty(origem)|| Util.isEmpty(origem) || Util.isEmpty(origem) || vagas < 1){
 			throw new RuntimeException("Parametros incosistentes");
 		}
 		year = Integer.parseInt(data.split("/")[2]);
@@ -27,7 +27,18 @@ public class Carona {
 		this.destino = destino;
 	}
 
-
+	@Override
+	public boolean equals(Object obj){
+		if(!(obj instanceof Carona)){
+			return false;
+		}
+		Carona carona = (Carona) obj;
+		return ( carona.getOrigem().equals(this.getOrigem())
+				 && carona.getDestino().equals(this.getDestino())
+				 && carona.getDate().equals(this.getDate())
+				 && carona.getHour().equals(this.getHour()) 
+				 && carona.getVagas() == this.getVagas() );
+	}
 
 	public String getOrigem() {
 		return origem;

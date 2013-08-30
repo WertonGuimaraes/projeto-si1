@@ -1,7 +1,10 @@
 package model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import controller.Controller;
 
 
 public class Usuario {
@@ -24,10 +27,17 @@ public class Usuario {
 		this.telefone=""; //telefone vazio
 		this.friends= new HashSet<Usuario>();
 		
-		this.caronas = new HashSet<Carona>();
+		caronas = new HashSet<Carona>();
 	}
 	
-//	public void adicionaCarona(
+	public void adicionaCarona(String origem, String destino, String data, String hora, int vagas){
+		Carona novaCarona = new Carona(origem, destino, data, hora, vagas);
+		getCaronas().add(novaCarona);
+	}
+	
+	public List<Carona> buscaCarona(String origem, String destino){
+		return Controller.getInstance().buscaCarona(origem, destino);
+	}
 	
 	public boolean isFriendOf(Usuario user){
 		return friends.contains(user);
@@ -118,6 +128,10 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Set<Carona> getCaronas() {
+		return caronas;
 	}
 
 
