@@ -26,8 +26,10 @@
 				<p:graphicImage url="http://blog.cancaonova.com/cantinho/files/2011/09/box-home-clube-PP.jpg" width="410"/> 
 				
 				<br />
-				<p:commandButton id="newUser" value="Cadastrar nova carona"
-					action="#{perfilBean.cadastraNovaCarona}"  />
+				
+				<p:commandButton id="modalDialogButton" value="Cadastrar carona"
+					onclick="dlg2.show()" type="button" />
+				
 			</p:layoutUnit>
 			
 			<p:layoutUnit position="center" size="800" minSize="300">
@@ -73,6 +75,37 @@
 			</p:layoutUnit>
 			
 		</p:layout>
+		
+		<p:dialog id="cadastrarCaronaDialog" header="Cadastrar Carona" closable="false"
+					widgetVar="dlg2" modal="true" height="550" width="700">
+			<p:panel header="Cadastrar carona">
+				<p:messages id="messages" showDetail="false" autoUpdate="true" />
+				<h:form>
+					<p:panelGrid columns="2" id="cadastraCaronaGrid" autoUpdate="true">
+						<h:outputLabel id="outOrigemlb"  value="Origem: " />
+						<p:inputText id="inOrigem"  autocomplete="true" value="#{perfilBean.origem}" label="Nome"/>
+						
+						<h:outputLabel id="outDestinolb"  value="Destino: " />
+						<p:inputText id="inDestino"  autocomplete="true" value="#{perfilBean.destino}" label="Email" />
+						
+						<h:outputLabel id="outDatalb"  value="Data: " />
+						<p:inputText id="inData"  autocomplete="true" value="#{perfilBean.data}" label="Endereço" />
+						
+						<h:outputLabel id="outHoralb" value="Hora: " />
+						<p:inputText id="inHora"  autocomplete="true" value="#{perfilBean.hora}" label="Telefone" />
+						
+						<h:outputLabel id="outVagaslb"  value="Vagas: " />
+						<p:inputText id="inVagas"  autocomplete="true"  value="#{perfilBean.vagas}" label="Login" />
+	
+					</p:panelGrid>
+	
+					<p:commandButton id="btCreate" value="Cadastrar carona" action="#{perfilBean.cadastrarCarona}" update="inOrigem,inDestino,inData,
+					inHora,inVagas"/>
+					<p:commandButton id="btBack" value="Fechar" action="#{perfilBean.redirectIndex}" update="inOrigem,inDestino,inData,
+					inHora,inVagas" />
+				</h:form>
+			</p:panel>
+		</p:dialog>
 		
 	</h:body>
 

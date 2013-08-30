@@ -20,6 +20,9 @@ public class PerfilBean {
 	private String id;
 	String origem;
 	String destino;
+	String data;
+	String hora;
+	String vagas;
 	private  Usuario usuario;	
 	private List<Carona> caronasDisponiveis;
 	
@@ -28,20 +31,11 @@ public class PerfilBean {
 		return usuario;
 	}
 
-	public PerfilBean(){
-		System.out.println("no construtorp");
-		System.out.println(ID);
-	
+	public PerfilBean(){	
 		if(ID != null){
 			this.usuario = SessionController.getInstance().searchSessionById(ID);
-			this.id = ID;
-					
-		}
-		else throw new RuntimeException("Erro no perfil"); 
-	}
-	
-	public void test(){
-		System.out.println("iai?");
+			this.id = ID;					
+		}else throw new RuntimeException("Erro no id do perfil"); 
 	}
 	
 	public String logoffButton(){
@@ -62,8 +56,8 @@ public class PerfilBean {
 		
 	}
 	
-	public void cadastraNovaCarona(){
-		
+	public void cadastrarCarona(){
+		usuario.adicionaCarona(this.origem, this.destino, this.data, this.hora, this.vagas);
 	}
 
 	public String getOrigem() {
@@ -89,6 +83,29 @@ public class PerfilBean {
 	public void setCaronasDisponiveis(List<Carona> caronasDisponiveis) {
 		this.caronasDisponiveis = caronasDisponiveis;
 	}
-	
 
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+
+	public String getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(String vagas) {
+		this.vagas = vagas;
+	}
+	
 }

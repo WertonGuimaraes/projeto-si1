@@ -23,15 +23,15 @@ public class LoginBean {
 		PerfilBean.ID = String.valueOf(SessionController.getInstance().abrirSessao(login, password));	
 		System.out.println(PerfilBean.ID);
 		System.out.println("iai?");
-		return "perfil.xhtml";
+		return "perfil?faces-redirect=true";
 	}
 	
 	public String redirectCreateNewAccount(){
-		return "nova_conta.xhtml";
+		return "nova_conta?faces-redirect=true";
 	}
 	
 	public String redirectIndex(){
-		return "index.xhtml";
+		return "index?faces-redirect=true";
 	}
 
 	public void createNewAccount(){
