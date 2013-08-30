@@ -43,7 +43,7 @@ public class Usuario {
 	
 	
 
-	public List<Carona> buscaCarona(String origem, String destino){
+	public List<Integer> buscaCarona(String origem, String destino){
 		return Controller.getInstance().buscaCarona(origem, destino);
 	}
 	

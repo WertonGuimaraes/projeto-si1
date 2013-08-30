@@ -71,15 +71,16 @@ public class Controller {
 		return controladorDeSessoes;
 	}
 
-	public List<Carona> buscaCarona(String origem, String destino) {
-		List<Carona> caronasExistentes = new LinkedList<Carona>();
+	public List<Integer> buscaCarona(String origem, String destino) {
+		List<Integer> caronasEncontradas = new LinkedList<Integer>();
 		for (Usuario usr : usuarios) {
-			for (Carona carona : usr.getCaronas().values()) {
-				if (carona.getOrigem().equals(origem) && carona.getDestino().equals(destino));
-					caronasExistentes.add(carona);
+			for (int chave: usr.getCaronas().keySet() ){
+				Carona caronaExistente = usr.getCaronas().get(chave);	
+				if(caronaExistente.getDestino().equals(destino) && caronaExistente.getOrigem().equals(origem))
+					caronasEncontradas.add(chave);
 				}
 			}
-		return caronasExistentes;
+		return caronasEncontradas;
 		}
 	
 	public Carona buscaCarona(int idCarona) {
