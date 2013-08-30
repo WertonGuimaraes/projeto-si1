@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Util {
@@ -16,7 +17,10 @@ public class Util {
 	
 	public static String easyAccListParser(List<?> list){
 		String result = list.toString();
-		return "{"+result.substring(1,result.length()-1)+"}";
+		result=result.replaceAll(", ",",");
+		result=result.replace("[","{");
+		result=result.replace("]","}");
+		return result;
 	}
 	
 	
