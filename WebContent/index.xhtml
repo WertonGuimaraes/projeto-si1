@@ -61,7 +61,7 @@
 					<p:password id="senha" value="#{loginBean.password}" label="Senha" />
 				</h:panelGrid>
 
-				<p:commandButton id="btLogin" value="Login"  />
+				<p:commandButton id="btLogin" value="Login" action="#{loginBean.login}" />
 
 				<p:commandButton id="newUser" value="Criar uma conta"
 					action="#{loginBean.redirectCreateNewAccount}" />

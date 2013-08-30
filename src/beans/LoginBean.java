@@ -18,30 +18,36 @@ public class LoginBean {
 	String telefone;
 	
 	
-	public String loginButton(){
+	public String login(){
+		
 		return "main.hxtml";
 	}
 	
 	public String redirectCreateNewAccount(){
 		return "nova_conta.xhtml";
 	}
+	
+	public String redirectIndex(){
+		this.reset();
+		return "index.xhtml";
+	}
 
 	public void createNewAccount(){
 		Controller.getInstance().criaConta(this.login, this.password, this.nome, this.email, this.endereco);
 		Controller.getInstance().searchUsuariobyLogin(this.login).setTelefone(this.telefone);
-		reset();
-		System.out.println("here");
+		this.reset();
 		msg("Usuario criado com sucesso");
+		System.out.println(Controller.getInstance().getUsuarios().size());
 		
 	}
 
 	public void reset(){
-		setNome("");
-		setLogin("");
-		setPassword("");
-		setEmail("");
-		setEndereco("");
-		setTelefone("");
+		this.setNome("");
+		this.setLogin("");
+		this.setPassword("");
+		this.setEmail("");
+		this.setEndereco("");
+		this.setTelefone("");
 	}
 	
 	public void msg(String text){
@@ -97,7 +103,5 @@ public class LoginBean {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	
 
 }

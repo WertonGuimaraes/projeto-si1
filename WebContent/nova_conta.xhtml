@@ -53,27 +53,28 @@
 			<p:panel header="Nova Conta">
 				<p:messages id="messages" showDetail="false" autoUpdate="true" />
 
-				<p:panelGrid columns="2" id="newAccountGrid">
-					<h:outputLabel id="outName" required="True" value="Nome: " />
-					<p:inputText id="inName" value="#{loginBean.nome}" label="Nome" autoupdate="true" />
+				<p:panelGrid columns="2" id="newAccountGrid" autoUpdate="true">
+					<h:outputLabel id="outName" required="true" value="Nome: " />
+					<p:inputText id="inName" required="true" autocomplete="true" value="#{loginBean.nome}" label="Nome"/>
 					
-					<h:outputLabel id="outEmail" required="True" value="Email: " />
-					<p:inputText id="inEmail" value="#{loginBean.email}" label="Email" />
+					<h:outputLabel id="outEmail" required="true" value="Email: " />
+					<p:inputText id="inEmail" required="true" autocomplete="true" value="#{loginBean.email}" label="Email" />
 					
-					<h:outputLabel id="outEndereco" required="True" value="Endereço: " />
-					<p:inputText id="inEndereço" value="#{loginBean.endereco}" label="Endereço" />
+					<h:outputLabel id="outEndereco" required="true" value="Endereço: " />
+					<p:inputText id="inEndereço" required="true" autocomplete="true" value="#{loginBean.endereco}" label="Endereço" />
 					
-					<h:outputLabel id="outTelefone" required="True" value="Telefone: " />
-					<p:inputText id="inTelefone" value="#{loginBean.telefone}" label="Telefone" />
+					<h:outputLabel id="outTelefone" value="Telefone: " />
+					<p:inputText id="inTelefone" required="true" autocomplete="true" value="#{loginBean.telefone}" label="Telefone" />
 					
-					<h:outputLabel id="outLogin" required="True" value="Login: " />
-					<p:inputText id="inLogin" value="#{loginBean.login}" label="Login" />
+					<h:outputLabel id="outLogin"  value="Login: " />
+					<p:inputText id="inLogin" required="true" autocomplete="true"  value="#{loginBean.login}" label="Login" />
 
 					<h:outputLabel id="outSenha" value="Senha " />
-					<p:password id="inSenha" value="#{loginBean.password}" label="Senha" />
+					<p:password id="inSenha" required="true" autocomplete="true" value="#{loginBean.password}" label="Senha" />
 				</p:panelGrid>
 
-				<p:commandButton id="btLogin" value="Criar nova conta" action="#{loginBean.createNewAccount}" />
+				<p:commandButton id="btCreate" value="Criar nova conta" action="#{loginBean.createNewAccount}" />
+				<p:commandButton id="btBack" value="Voltar" action="#{loginBean.redirectIndex}" />
 
 			</p:panel>
 
