@@ -113,10 +113,6 @@ public class Carona {
 		
 	}
 
-public static void main(String[] args) {
-	Carona carona = new Carona("as", "as", "10/10/2013", "6:12", 3);
-	System.out.println(carona.getHour());
-}
 
 
 }
