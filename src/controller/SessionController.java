@@ -77,5 +77,9 @@ public class SessionController {
 				
 	}
 	
+	public void desconectarSessao(int key){
+		sessoesAbertas.remove(key);
+	}
+	
 	
 }
