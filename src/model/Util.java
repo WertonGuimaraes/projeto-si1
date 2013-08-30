@@ -9,10 +9,14 @@ public class Util {
 	 * this class is used for general stuff
 	 */	
 	
-	private static String[] caracteresInvalidos = {"-","(", ")", "!", "?"};
+	private static String[] caracteresInvalidos = {"-","(", ")", "!", "?","."};
 	
 	public static boolean containsInvalidChar(String s){
-		
+		for(String invalid: caracteresInvalidos){
+			if(s.contains(invalid)){
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -28,6 +32,8 @@ public class Util {
 		result=result.replace("]","}");
 		return result;
 	}
+	
+
 	
 	
 }
