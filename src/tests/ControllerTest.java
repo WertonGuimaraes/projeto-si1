@@ -23,7 +23,11 @@ public class ControllerTest {
 		String nome = "Rafael";
 		String email = "crafards@gmail.com";
 		String endereco = "rua do ze";
-		controlador.criaConta(login,senha, nome , email, endereco);
+		try {
+			controlador.criaConta(login,senha, nome , email, endereco);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		assertTrue(controlador.getUsuarios().size() > 0);
 		
 	}
@@ -35,8 +39,13 @@ public class ControllerTest {
 		String nome = "C. Norris";
 		String email = "chucknorris@ccc.ufcg.edu.br";
 		String endereco = "olimpo";
-		Usuario usr = new Usuario(login, senha, nome, email, endereco); 
-		controlador.criaConta(login, senha, nome, email, endereco);
+		Usuario usr=null;
+		try {
+			usr = new Usuario(login, senha, nome, email, endereco); 
+			controlador.criaConta(login, senha, nome, email, endereco);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Usuario newUsr = controlador.searchUsuariobyLogin(login);
 		
 		assertEquals(usr,newUsr);

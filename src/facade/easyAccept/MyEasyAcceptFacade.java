@@ -29,7 +29,7 @@ public class MyEasyAcceptFacade {
 		return controller.getSessoes().abrirSessao(login, senha);
 	}
 	
-	public void criarUsuario(String login, String senha, String nome, String endereco, String email){
+	public void criarUsuario(String login, String senha, String nome, String endereco, String email)throws Exception{
 		controller.criaConta(login, senha, nome, email, endereco);
 	}
 	

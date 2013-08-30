@@ -32,7 +32,11 @@ public class LoginBean {
 	}
 
 	public void createNewAccount(){
-		Controller.getInstance().criaConta(this.login, this.password, this.nome, this.email, this.endereco);
+		try {
+			Controller.getInstance().criaConta(this.login, this.password, this.nome, this.email, this.endereco);
+		} catch (Exception e) {
+			msg(e.getMessage());
+		}
 		Controller.getInstance().searchUsuariobyLogin(this.login).setTelefone(this.telefone);
 		this.reset();
 		msg("Usuario criado com sucesso");

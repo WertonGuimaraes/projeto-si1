@@ -12,9 +12,14 @@ public class UserTest {
 
 	@Before
 	public void init(){
-		user1 = new Usuario("tiaraju","xpto","Tiaraju","tiarajums@gmail.com","rua xxx numero 222");
-		user2 = new Usuario("crafards","xpto","Carlos Rafael","crafs@gmail.com","rua yyy numero 333");
-		user3 = new Usuario("jessika","xpto","Jessika","reh.nally@gmail.com","rua www numero 123");
+		try {
+			user1 = new Usuario("tiaraju","xpto","Tiaraju","tiarajums@gmail.com","rua xxx numero 222");
+			user2 = new Usuario("crafards","xpto","Carlos Rafael","crafs@gmail.com","rua yyy numero 333");
+			user3 = new Usuario("jessika","xpto","Jessika","reh.nally@gmail.com","rua www numero 123");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
@@ -28,8 +33,13 @@ public class UserTest {
 
 	@Test
 	public void testUserNull() {
-		user1 = new Usuario("tiaraju","xpto","Tiaraju","tiarajums@gmail.com","rua xxx numero 222");
-		user2 = new Usuario("crafs","xpto","Carlos Rafael","crafs@gmail.com","rua yyy numero 333");
+		try {
+			user1 = new Usuario("tiaraju","xpto","Tiaraju","tiarajums@gmail.com","rua xxx numero 222");
+			user2 = new Usuario("crafs","xpto","Carlos Rafael","crafs@gmail.com","rua yyy numero 333");
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try{
 			user3 = new Usuario("rafael","xpto",null,"crafs@gmail.com","rua yyy numero 333");
 			fail();

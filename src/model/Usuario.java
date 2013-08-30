@@ -16,7 +16,7 @@ public class Usuario {
 	
 	private Map<Integer, Carona> caronas;
 	
-	public Usuario(String login, String senha, String nome, String email, String endereco) {
+	public Usuario(String login, String senha, String nome, String email, String endereco) throws Exception{
 		if(login == null || Util.isEmpty(login))      throw new LoginInvalidoException("Login inválido");
 		if(endereco ==null || Util.isEmpty(endereco)) throw new LoginInvalidoException("Endereço invalido");
 		if(nome == null || Util.isEmpty(nome))        throw new LoginInvalidoException("Nome inválido");

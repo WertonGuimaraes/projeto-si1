@@ -54,23 +54,23 @@
 				<p:messages id="messages" showDetail="false" autoUpdate="true" />
 
 				<p:panelGrid columns="2" id="newAccountGrid" autoUpdate="true">
-					<h:outputLabel id="outName" required="true" value="Nome: " />
-					<p:inputText id="inName" required="true" autocomplete="true" value="#{loginBean.nome}" label="Nome"/>
+					<h:outputLabel id="outName"  value="Nome: " />
+					<p:inputText id="inName"  autocomplete="true" value="#{loginBean.nome}" label="Nome"/>
 					
-					<h:outputLabel id="outEmail" required="true" value="Email: " />
-					<p:inputText id="inEmail" required="true" autocomplete="true" value="#{loginBean.email}" label="Email" />
+					<h:outputLabel id="outEmail"  value="Email: " />
+					<p:inputText id="inEmail"  autocomplete="true" value="#{loginBean.email}" label="Email" />
 					
-					<h:outputLabel id="outEndereco" required="true" value="Endereço: " />
-					<p:inputText id="inEndereço" required="true" autocomplete="true" value="#{loginBean.endereco}" label="Endereço" />
+					<h:outputLabel id="outEndereco"  value="Endereço: " />
+					<p:inputText id="inEndereço"  autocomplete="true" value="#{loginBean.endereco}" label="Endereço" />
 					
 					<h:outputLabel id="outTelefone" value="Telefone: " />
-					<p:inputText id="inTelefone" required="true" autocomplete="true" value="#{loginBean.telefone}" label="Telefone" />
+					<p:inputText id="inTelefone"  autocomplete="true" value="#{loginBean.telefone}" label="Telefone" />
 					
 					<h:outputLabel id="outLogin"  value="Login: " />
-					<p:inputText id="inLogin" required="true" autocomplete="true"  value="#{loginBean.login}" label="Login" />
+					<p:inputText id="inLogin"  autocomplete="true"  value="#{loginBean.login}" label="Login" />
 
 					<h:outputLabel id="outSenha" value="Senha " />
-					<p:password id="inSenha" required="true" autocomplete="true" value="#{loginBean.password}" label="Senha" />
+					<p:password id="inSenha"  autocomplete="true" value="#{loginBean.password}" label="Senha" />
 				</p:panelGrid>
 
 				<p:commandButton id="btCreate" value="Criar nova conta" action="#{loginBean.createNewAccount}" update="inName,inLogin,inSenha,

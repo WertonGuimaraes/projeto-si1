@@ -35,7 +35,7 @@ public class Controller {
 		controladorDeSessoes = SessionController.getInstance();
 	}
 
-	public void criaConta(String login, String senha, String nome, String email, String endereco) {
+	public void criaConta(String login, String senha, String nome, String email, String endereco) throws Exception{
 		for (Usuario usuarioExistente : usuarios) {
 			if (usuarioExistente.getEmail().equals(email))
 				throw new LoginInvalidoException("Já existe um usuário com este email");
