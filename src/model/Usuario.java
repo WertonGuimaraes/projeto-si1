@@ -33,9 +33,15 @@ public class Usuario {
 		caronas = new HashMap<Integer, Carona>();
 	}
 	
-	public int adicionaCarona(String origem, String destino, String data, String hora, int vagas){
-		
-		Carona novaCarona = new Carona(origem, destino, data, hora, vagas);
+	public int adicionaCarona(String origem, String destino, String data, String hora, String vagas){
+		Integer intVagas;
+		try {
+			if (vagas == null || Util.isEmpty(vagas)) throw new RuntimeException("Vaga inválida");
+			intVagas = Integer.parseInt(vagas);
+		} catch (Exception e) {
+			throw new RuntimeException("Vaga inválida");
+		}
+		Carona novaCarona = new Carona(origem, destino, data, hora, intVagas);
 		int id = Controller.getInstance().newCaronaId();
 		getCaronas().put(id, novaCarona);
 		

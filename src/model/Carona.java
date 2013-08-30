@@ -15,6 +15,7 @@ public class Carona {
 		if(origem == null || Util.isEmpty(origem)) throw new RuntimeException("Origem inválida");
 		if(destino == null || Util.isEmpty(destino)) throw new RuntimeException("Destino inválido");
 		if(data == null || Util.isEmpty(data)) throw new RuntimeException("Data inválida");
+		if(horaSaida == null || Util.isEmpty(horaSaida)) throw new RuntimeException("Hora inválida");
 		
 		year = Integer.parseInt(data.split("/")[2]);
 		month = Integer.parseInt(data.split("/")[1]);

@@ -45,8 +45,9 @@ public class MyEasyAcceptFacade {
 		return Util.easyAccListParser(caronas);
 	}
 	
-	public int cadastrarCarona(String idSessao, String origem, String destino, String data, String hora, int vagas ){
+	public int cadastrarCarona(String idSessao, String origem, String destino, String data, String hora, String vagas ){
 		if(idSessao == null || Util.isEmpty(idSessao)) throw new RuntimeException("Sessão inválida"); 
+		if(hora == null || Util.isEmpty(hora)) throw new RuntimeException("Hora inválida");
 		Usuario usr = Controller.getInstance().getSessoes().searchSessionById(idSessao);
 		int idCarona = usr.adicionaCarona(origem, destino, data, hora, vagas);
 		
