@@ -26,9 +26,8 @@ public class SessionController {
 	
 	private SessionController(){
 		sessoesAbertas = new HashMap<Integer, Usuario>();
-		setContadorSessoes(0);
+		contadorSessoes = 0;
 	}
-	
 	
 	
 	public int abrirSessao(String login, String senha){
@@ -47,9 +46,9 @@ public class SessionController {
 	
 	
 	public int newSessionId(){
-		for (int index = 0; index <= getContadorSessoes(); index++) {
+		contadorSessoes++;
+		for (int index = 0; index <= contadorSessoes; index++) {
 			if( !(sessoesAbertas.containsKey(index)) ){
-				setContadorSessoes(getContadorSessoes() + 1);
 				return index;
 			}
 		}
@@ -60,9 +59,6 @@ public class SessionController {
 		return contadorSessoes;
 	}
 
-	public void setContadorSessoes(int contadorSessoes) {
-		this.contadorSessoes = contadorSessoes;
-	}
 
 	public void zeraSessoes() {
 		contadorSessoes = 0;

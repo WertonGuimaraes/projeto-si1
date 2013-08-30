@@ -10,9 +10,9 @@ import model.Util;
 public class Controller {
 
 	private Set<Usuario> usuarios;
+
 	private SessionController controladorDeSessoes;
-	
-	private static Controller controller; //singleton
+	private static Controller controller; 			//singleton
 
 	public static Controller getInstance() {
 		if (controller != null) {
@@ -33,10 +33,10 @@ public class Controller {
 
 	public void criaConta(String login, String senha, String nome, String email, String endereco) {
 		for (Usuario usuarioExistente : usuarios) {
-			if(usuarioExistente.getEmail().equals(email)) 
+			if (usuarioExistente.getEmail().equals(email))
 				throw new LoginInvalidoException("Já existe um usuário com este email");
-			else if(usuarioExistente.getLogin().equals(login))
-					throw new LoginInvalidoException("Já existe um usuário com este login");
+			else if (usuarioExistente.getLogin().equals(login))
+				throw new LoginInvalidoException("Já existe um usuário com este login");
 		}
 		Usuario usuario = new Usuario(login, senha, nome, email, endereco);
 		usuarios.add(usuario);
