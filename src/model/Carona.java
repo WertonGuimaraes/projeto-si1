@@ -8,14 +8,14 @@ public class Carona {
 	private String destino;
 	private DateTime dateTime;
 	private int vagas,year,month,day,hour,minute;
-
-
-
+	
+	
 	public Carona(String origem, String destino, String data,String horaSaida, int vagas) {
 		if(origem == null || Util.isEmpty(origem)) throw new RuntimeException("Origem inválida");
 		if(destino == null || Util.isEmpty(destino)) throw new RuntimeException("Destino inválido");
 		if(data == null || Util.isEmpty(data)) throw new RuntimeException("Data inválida");
 		if(horaSaida == null || Util.isEmpty(horaSaida)) throw new RuntimeException("Hora inválida");
+//		if ( Util.containsInvalidChar(origem)) throw new RuntimeException("Origem inválida");
 		
 		year = Integer.parseInt(data.split("/")[2]);
 		month = Integer.parseInt(data.split("/")[1]);

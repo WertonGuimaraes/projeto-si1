@@ -73,7 +73,8 @@ public class MyEasyAcceptFacade {
 	}
 	
 	public String getTrajeto(String idCarona){
-		if (Util.isEmpty(idCarona)) throw new RuntimeException("Trajeto Inexistente");
+		if (idCarona == null ) throw new RuntimeException("Trajeto Inválida");
+		else if (Util.isEmpty(idCarona)) throw new RuntimeException("Trajeto Inexistente");
 		int id;
 		try {
 			id = Integer.parseInt(idCarona);
