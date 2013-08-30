@@ -58,21 +58,41 @@ public class MyEasyAcceptFacade {
 		if(idCarona == null || Util.isEmpty(idCarona)) throw new RuntimeException("Identificador do carona é inválido");
 		if(atributo == null || Util.isEmpty(atributo)) throw new RuntimeException("Atributo inválido");
 		
-		int id = Integer.parseInt(idCarona);
+		int id;
+		try {
+			id = Integer.parseInt(idCarona);	
+		} catch (Exception e) {
+			throw new RuntimeException("Item inexistente");
+		}
 		if( atributo.equals("origem")) return Controller.getInstance().buscaCarona(id).getOrigem();
 		if( atributo.equals("destino")) return Controller.getInstance().buscaCarona(id).getDestino();
 		if( atributo.equals("data")) return Controller.getInstance().buscaCarona(id).getDate();
 		if( atributo.equals("vagas")) return ""+Controller.getInstance().buscaCarona(id).getVagas();
 		
-		return atributo;
+		throw new RuntimeException("Atributo inexistente");
 	}
 	
-	public String getTrajeto(int idCarona){
-		return Controller.getInstance().buscaCarona(idCarona).getTrajeto();
+	public String getTrajeto(String idCarona){
+		if (Util.isEmpty(idCarona)) throw new RuntimeException("Trajeto Inexistente");
+		int id;
+		try {
+			id = Integer.parseInt(idCarona);
+		} catch (Exception e) {
+			throw new RuntimeException("Trajeto Inexistente");
+		}
+		return Controller.getInstance().buscaCarona(id).getTrajeto();
 	}
 	
-	public String getCarona(int idCarona){
-		return Controller.getInstance().buscaCarona(idCarona).toString();
+	public String getCarona(String idCarona){
+		if( idCarona == null) throw new RuntimeException("Carona Inválida");
+
+		int id;
+		try {
+			id = Integer.parseInt(idCarona);
+		} catch (Exception e) {
+			throw new RuntimeException("Carona Inexistente");
+		}
+		return Controller.getInstance().buscaCarona(id).toString();
 	}
 	
 	public void encerrarSistema(){
