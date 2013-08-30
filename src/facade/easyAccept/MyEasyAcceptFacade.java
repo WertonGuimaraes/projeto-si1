@@ -100,5 +100,10 @@ public class MyEasyAcceptFacade {
 		controller.zerarSistema();
 	}
 	
+	public void encerrarSessao(String login){
+		int key = Controller.getInstance().getSessoes().searchSessionByLogin(login);
+		Controller.getInstance().getSessoes().desconectarSessao(key);
+	}
+	
 	
 }

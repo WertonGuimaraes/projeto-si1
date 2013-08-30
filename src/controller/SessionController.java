@@ -3,6 +3,8 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.management.RuntimeErrorException;
+
 import model.LoginInvalidoException;
 import model.Usuario;
 import model.Util;
@@ -58,6 +60,16 @@ public class SessionController {
 			throw new RuntimeException("Sessão inexistente");
 		}
 		return sessoesAbertas.get(idUsuario);
+	}
+	
+	public int searchSessionByLogin(String login){
+		for (Integer i: sessoesAbertas.keySet()){
+			if(sessoesAbertas.get(i).getLogin().equals(login)){
+				return i;
+			}
+		}
+		throw new RuntimeException("Sessao inexistente");
+	
 	}
 	
 	

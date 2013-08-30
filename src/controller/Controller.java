@@ -73,8 +73,10 @@ public class Controller {
 
 	public List<Integer> buscaCarona(String origem, String destino) {
 		boolean condicao;
+		
 		if(Util.containsInvalidChar(origem)) throw new RuntimeException("Origem inválida");
 		if(Util.containsInvalidChar(destino)) throw new RuntimeException("Destino inválido");
+		
 		List<Integer> caronasEncontradas = new LinkedList<Integer>();
 		for (Usuario usr : usuarios) {
 			for (int chave: usr.getCaronas().keySet() ){
