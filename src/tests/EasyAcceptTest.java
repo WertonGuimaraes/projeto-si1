@@ -13,8 +13,8 @@ public class EasyAcceptTest {
 		
 		files.add("us/US01.txt");
 		files.add("us/US02.txt");
-//		files.add("us/US03.txt"); 
-//		files.add("us/US04.txt");
+		files.add("us/US03.txt"); 
+		files.add("us/US04.txt");
 //		files.add("us/US05.txt");  //ultima US da primeira entrega =p
 //		files.add("us/US06.txt");
 //		files.add("us/US07.txt");
