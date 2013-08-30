@@ -1,5 +1,8 @@
 package facade.easyAccept;
 
+import java.util.List;
+
+import model.Carona;
 import model.Usuario;
 import model.Util;
 import controller.Controller;
@@ -43,8 +46,8 @@ public class MyEasyAcceptFacade {
 	
 	public String localizarCarona(int idSessao, String origem, String destino){
 		Usuario usr = controller.getSessoes().searchSessionById(idSessao);
-		usr.buscaCarona(origem, destino);
-		return destino;
+		List<Carona> caronas = usr.buscaCarona(origem, destino);
+		return Util.easyAccListParser(caronas);
 	}
 	
 	public void encerrarSistema(){
