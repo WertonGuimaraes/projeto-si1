@@ -8,11 +8,6 @@ import controller.Controller;
 
 public class MyEasyAcceptFacade {
 	
-//	private final String NOME = "nome";
-//	private final String EMAIL = "email";
-
-//	private final String DATACRIACAO = "dataCriacao";
-
 	
 	private Controller controller;
 
@@ -50,7 +45,7 @@ public class MyEasyAcceptFacade {
 		return Util.easyAccListParser(caronas);
 	}
 	
-	public int cadastrarCarona(int idSessao, String origem, String destino, String data, String hora, int vagas  ){
+	public int cadastrarCarona(int idSessao, String origem, String destino, String data, String hora, int vagas ){
 		Usuario usr = Controller.getInstance().getSessoes().searchSessionById(idSessao);
 		int idCarona = usr.adicionaCarona(origem, destino, data, hora, vagas);
 		
