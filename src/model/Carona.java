@@ -105,7 +105,6 @@ public class Carona {
 	public String toString() {
 		return origem +" para "+ destino+", no dia "+getDate()+", as "+getHour();
 		
-		//"João Pessoa para Campina Grande, no dia 25/11/2026, as 06:59"
 	}
 
 public static void main(String[] args) {
