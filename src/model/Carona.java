@@ -6,6 +6,7 @@ public class Carona {
 
 	private String origem;
 	private String destino;
+	private String pontoDeEncontro;
 	private DateTime dateTime;
 	private int vagas,year,month,day,hour,minute;
 	
@@ -119,6 +120,13 @@ public class Carona {
 		
 	}
 
+	public String getPontoDeEncontro() {
+		return pontoDeEncontro;
+	}
+
+	public void setPontoDeEncontro(String pontoDeEncontro) {
+		this.pontoDeEncontro = pontoDeEncontro;
+	}
 
 
 }
