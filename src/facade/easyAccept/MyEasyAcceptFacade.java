@@ -61,8 +61,18 @@ public class MyEasyAcceptFacade {
 	public String getAtributoCarona(int idCarona, String atributo){
 		if( atributo.equals("origem")) return Controller.getInstance().buscaCarona(idCarona).getOrigem();
 		if( atributo.equals("destino")) return Controller.getInstance().buscaCarona(idCarona).getDestino();
+		if( atributo.equals("data")) return Controller.getInstance().buscaCarona(idCarona).getDate();
+		if( atributo.equals("vagas")) return ""+Controller.getInstance().buscaCarona(idCarona).getVagas();
 		
 		return atributo;
+	}
+	
+	public String getTrajeto(int idCarona){
+		return Controller.getInstance().buscaCarona(idCarona).getTrajeto();
+	}
+	
+	public String getCarona(int idCarona){
+		return Controller.getInstance().buscaCarona(idCarona).toString();
 	}
 	
 	public void encerrarSistema(){

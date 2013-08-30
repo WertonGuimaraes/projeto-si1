@@ -39,7 +39,12 @@ public class Carona {
 				 && carona.getHour().equals(this.getHour()) 
 				 && carona.getVagas() == this.getVagas() );
 	}
-
+	
+	public String getTrajeto(){
+		return origem+" - "+destino;
+	}
+	
+	
 	public String getOrigem() {
 		return origem;
 	}
@@ -94,6 +99,13 @@ public class Carona {
 
 	public void setVagas(int vagas) {
 		this.vagas = vagas;
+	}
+
+	@Override
+	public String toString() {
+		return origem +" para "+ destino+", no dia "+getDate()+", as "+getHour();
+		
+		//"João Pessoa para Campina Grande, no dia 25/11/2026, as 06:59"
 	}
 
 
