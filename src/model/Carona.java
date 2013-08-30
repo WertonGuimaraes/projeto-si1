@@ -74,7 +74,7 @@ public class Carona {
 
 
 	public String getHour() {
-		return dateTime.getHourOfDay()+":"+dateTime.getMinuteOfHour();
+		return dateTime.toString("HH:mm");
 	}
 
 	public void setDate(String data) {
@@ -108,7 +108,10 @@ public class Carona {
 		//"João Pessoa para Campina Grande, no dia 25/11/2026, as 06:59"
 	}
 
-
+public static void main(String[] args) {
+	Carona carona = new Carona("as", "as", "10/10/2013", "6:12", 3);
+	System.out.println(carona.getHour());
+}
 
 
 }

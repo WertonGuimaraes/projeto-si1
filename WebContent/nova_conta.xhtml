@@ -75,7 +75,8 @@
 
 				<p:commandButton id="btCreate" value="Criar nova conta" action="#{loginBean.createNewAccount}" update="inName,inLogin,inSenha,
 				inTelefone,inEndereço,inEmail"/>
-				<p:commandButton id="btBack" value="Voltar" action="#{loginBean.redirectIndex}" />
+				<p:commandButton id="btBack" value="Voltar" action="#{loginBean.redirectIndex}" update="inName,inLogin,inSenha,
+				inTelefone,inEndereço,inEmail" />
 
 			</p:panel>
 

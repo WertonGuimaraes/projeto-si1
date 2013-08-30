@@ -28,7 +28,6 @@ public class LoginBean {
 	}
 	
 	public String redirectIndex(){
-		this.reset();
 		return "index.xhtml";
 	}
 
