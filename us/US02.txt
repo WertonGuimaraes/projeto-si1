@@ -19,13 +19,13 @@ expect {} localizarCarona idSessao=${sessaoMark} origem="Rio de Janeiro" destino
 
 #o método cadastrar carona retorna id
 sessaoMark=abrirSessao login="mark" senha="m@rk"
-carona1ID=cadastrarCarona idSessao=${sessaoMark} origem="Campina Grande" destino="João Pessoa" data="23/06/2013" hora="16:00" vagas=3
+carona1ID=cadastrarCarona idSessao=${sessaoMark} origem="Campina Grande" destino="João Pessoa" data="23/12/2014" hora="16:00" vagas=3
 expect "Campina Grande" getAtributoCarona idCarona=${carona1ID} atributo="origem"
 expect "João Pessoa" getAtributoCarona idCarona=${carona1ID} atributo="destino"
 expect "Campina Grande - João Pessoa" getTrajeto idCarona=${carona1ID}
 
-carona2ID=cadastrarCarona idSessao=${sessaoMark} origem="Rio de Janeiro" destino="São Paulo" data="31/05/2013" hora="08:00" vagas=2
-expect "31/05/2013" getAtributoCarona idCarona=${carona2ID} atributo="data"
+carona2ID=cadastrarCarona idSessao=${sessaoMark} origem="Rio de Janeiro" destino="São Paulo" data="30/12/2014" hora="08:00" vagas=2
+expect "30/12/2014" getAtributoCarona idCarona=${carona2ID} atributo="data"
 expect 2 getAtributoCarona idCarona=${carona2ID} atributo="vagas"
 
 carona3ID=cadastrarCarona idSessao=${sessaoMark} origem="João Pessoa" destino="Campina Grande" data="25/11/2026" hora="06:59" vagas=4
