@@ -33,7 +33,7 @@ public class Usuario {
 		caronas = new HashMap<Integer, Carona>();
 	}
 	
-	public int adicionaCarona(String origem, String destino, String data, String hora, String vagas){
+	public int adicionaCarona(String origem, String destino, String data, String hora, String vagas) throws Exception{
 		Integer intVagas;
 		try {
 			if (vagas == null || Util.isEmpty(vagas)) throw new RuntimeException("Vaga inválida");

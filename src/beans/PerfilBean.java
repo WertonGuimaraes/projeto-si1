@@ -88,6 +88,7 @@ public class PerfilBean {
 			usuario.adicionaCarona(this.origem, this.destino, this.data, this.hora, this.vagas);
 		} catch (Exception e) {
 			msg(e.getMessage());
+			return;
 		}
 		msg("Carona cadastrada com sucesso");
 		this.reset();
