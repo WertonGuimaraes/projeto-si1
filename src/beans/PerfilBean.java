@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,14 +24,14 @@ public class PerfilBean {
 	String data;
 	String hora;
 	String vagas;
+	String pontoDeEncontro;
 	int size;
+	private  Usuario usuario;	
+	private List<Carona> caronasDisponiveis;
 
 	public void setSize(int size) {
 		this.size = size;
 	}
-
-	private  Usuario usuario;	
-	private List<Carona> caronasDisponiveis;
 
 
 	public Usuario getUsuario() {
@@ -40,7 +41,8 @@ public class PerfilBean {
 	public PerfilBean(){	
 		if(ID != null){
 			this.usuario = SessionController.getInstance().searchSessionById(ID);
-			this.id = ID;					
+			this.id = ID;
+			this.caronasDisponiveis = new ArrayList<Carona>();
 		}else throw new RuntimeException("Erro no id do perfil"); 
 	}
 
@@ -52,14 +54,20 @@ public class PerfilBean {
 	public String redirectPerfil(){
 		return "perfil.xhtml";
 	}
+	
+	public String cleanAndExit(){
+		this.caronasDisponiveis = new ArrayList<Carona>();
+		return "perfil.xhtml";
+		
+	}
 
 	public Collection<Carona> getCaronas(){
 		return usuario.getCaronas().values();
 	}
 
 	public void localizaCaronasDisponiveis(){
+		this.caronasDisponiveis = new ArrayList<Carona>();
 		List<Integer> idsCaronas = Controller.getInstance().buscaCarona(this.origem, this.destino);
-
 		for(Integer id: idsCaronas){
 			this.caronasDisponiveis.add(Controller.getInstance().buscaCarona(id));
 		}
@@ -74,11 +82,21 @@ public class PerfilBean {
 	}
 
 	public void cadastrarCarona(){
+		System.out.println("here");
 		try {
 			usuario.adicionaCarona(this.origem, this.destino, this.data, this.hora, this.vagas);
+			System.out.println(usuario.getNome());
+			System.out.println(usuario.getCaronas().size());
 		} catch (Exception e) {
+			System.out.println("catch?");
 			msg(e.getMessage());
 		}
+		msg("Carona cadastrada com sucesso");
+	}
+	
+	public void solicitarCarona(){
+		
+		msg("Carona solicitada com sucesso, aguarde aprovação do motorista");
 	}
 
 	public String getOrigem() {
@@ -133,6 +151,16 @@ public class PerfilBean {
 		FacesContext context = FacesContext.getCurrentInstance();  
 		
 		context.addMessage(null, new FacesMessage(text));  
+	}
+
+
+	public String getPontoDeEncontro() {
+		return pontoDeEncontro;
+	}
+
+
+	public void setPontoDeEncontro(String pontoDeEncontro) {
+		this.pontoDeEncontro = pontoDeEncontro;
 	}
 
 }
