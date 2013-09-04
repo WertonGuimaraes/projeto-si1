@@ -73,25 +73,24 @@ public class PerfilBean {
 		}
 
 	}
-	public int getSize(){
-		int size=0;
-		if(caronasDisponiveis != null){
-			size= caronasDisponiveis.size();
-		}
-		return size;
+
+	
+	public void reset(){
+		this.setOrigem("");
+		this.setDestino("");
+		this.setData("");
+		this.setHora("");
+		this.setVagas("");
 	}
 
 	public void cadastrarCarona(){
-		System.out.println("here");
 		try {
 			usuario.adicionaCarona(this.origem, this.destino, this.data, this.hora, this.vagas);
-			System.out.println(usuario.getNome());
-			System.out.println(usuario.getCaronas().size());
 		} catch (Exception e) {
-			System.out.println("catch?");
 			msg(e.getMessage());
 		}
 		msg("Carona cadastrada com sucesso");
+		this.reset();
 		localizaCaronasDisponiveis();
 	}
 	

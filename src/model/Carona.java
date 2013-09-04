@@ -29,10 +29,12 @@ public class Carona {
 			throw new RuntimeException("Hora inválida");
 		}
 		
-		if(year < 2012) throw new RuntimeException("Data inválida");
 		try {
 			this.dateTime = new DateTime(year, month, day, hour, minute);	
 		} catch (RuntimeException e) {
+			throw new RuntimeException("Data inválida");
+		}
+		if(dateTime.compareTo(new DateTime())<0){
 			throw new RuntimeException("Data inválida");
 		}
 		this.origem = origem;

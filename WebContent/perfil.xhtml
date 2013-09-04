@@ -99,7 +99,8 @@
 	
 					</p:panelGrid>
 	
-					<p:commandButton id="btCreate" value="Cadastrar nova carona" action="#{perfilBean.cadastrarCarona}" oncomplete="dlg2.hide() #{perfilBean.caronasDisponiveis}" />
+					<p:commandButton id="btCreate" value="Cadastrar nova carona" action="#{perfilBean.cadastrarCarona}"  oncomplete="dlg2.hide() #{perfilBean.caronasDisponiveis}" update="inOrigem,inDestino,inData,
+					inHora,inVagas" />
 					<p:commandButton id="btBack" value="Fechar"  onclick="dlg2.close()" action="#{perfilBean.redirectPerfil}" update="inOrigem,inDestino,inData,
 					inHora,inVagas" />
 				</h:form>
