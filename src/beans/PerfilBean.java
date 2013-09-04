@@ -1,12 +1,12 @@
 package beans;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import model.Carona;
 import model.Usuario;
@@ -23,9 +23,15 @@ public class PerfilBean {
 	String data;
 	String hora;
 	String vagas;
+	int size;
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
 	private  Usuario usuario;	
 	private List<Carona> caronasDisponiveis;
-	
+
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -37,27 +43,42 @@ public class PerfilBean {
 			this.id = ID;					
 		}else throw new RuntimeException("Erro no id do perfil"); 
 	}
-	
+
 	public String logoffButton(){
 		SessionController.getInstance().desconectarSessao(0); //FIXME o certo e passar id
 		return "index.xhtml";
 	}
-	
+
+	public String redirectPerfil(){
+		return "perfil.xhtml";
+	}
+
 	public Collection<Carona> getCaronas(){
 		return usuario.getCaronas().values();
 	}
-	
+
 	public void localizaCaronasDisponiveis(){
 		List<Integer> idsCaronas = Controller.getInstance().buscaCarona(this.origem, this.destino);
-		
+
 		for(Integer id: idsCaronas){
 			this.caronasDisponiveis.add(Controller.getInstance().buscaCarona(id));
 		}
-		
+
 	}
-	
+	public int getSize(){
+		int size=0;
+		if(caronasDisponiveis != null){
+			size= caronasDisponiveis.size();
+		}
+		return size;
+	}
+
 	public void cadastrarCarona(){
-		usuario.adicionaCarona(this.origem, this.destino, this.data, this.hora, this.vagas);
+		try {
+			usuario.adicionaCarona(this.origem, this.destino, this.data, this.hora, this.vagas);
+		} catch (Exception e) {
+			msg(e.getMessage());
+		}
 	}
 
 	public String getOrigem() {
@@ -75,11 +96,11 @@ public class PerfilBean {
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
-	
+
 	public List<Carona> getCaronasDisponiveis() {
 		return caronasDisponiveis;
 	}
-	
+
 	public void setCaronasDisponiveis(List<Carona> caronasDisponiveis) {
 		this.caronasDisponiveis = caronasDisponiveis;
 	}
@@ -108,4 +129,10 @@ public class PerfilBean {
 		this.vagas = vagas;
 	}
 	
+	public void msg(String text){
+		FacesContext context = FacesContext.getCurrentInstance();  
+		
+		context.addMessage(null, new FacesMessage(text));  
+	}
+
 }

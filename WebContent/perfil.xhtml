@@ -48,7 +48,8 @@
 						action="#{perfilBean.localizaCaronasDisponiveis}" update="dtCaronasDisponiveis"/> 
 					</p:panelGrid>
 				
-					<p:dataTable id="dtCaronasDisponiveis" headerText="Caronas disponíveis" var="carona" value="#{perfilBean.caronasDisponiveis}">
+					<p:dataTable id="dtCaronasDisponiveis" headerText="Caronas disponíveis" var="carona" value="#{perfilBean.caronasDisponiveis}" 
+					autoUpdate="true">
 				        
 				        <p:column  headerText="Origem">  
 				            <h:outputText id="outOrigem" value="#{carona.origem}" />  
@@ -76,32 +77,31 @@
 			
 		</p:layout>
 		
-		<p:dialog id="cadastrarCaronaDialog" header="Cadastrar Carona" closable="false"
+		<p:dialog id="cadastrarCaronaDialog" header="Cadastrar Carona" closable="true"
 					widgetVar="dlg2" modal="true" height="550" width="700">
 			<p:panel header="Cadastrar carona">
 				<p:messages id="messages" showDetail="false" autoUpdate="true" />
 				<h:form>
 					<p:panelGrid columns="2" id="cadastraCaronaGrid" autoUpdate="true">
 						<h:outputLabel id="outOrigemlb"  value="Origem: " />
-						<p:inputText id="inOrigem"  autocomplete="true" value="#{perfilBean.origem}" label="Nome"/>
+						<p:inputText id="inOrigem"  autocomplete="true" value="#{perfilBean.origem}" />
 						
 						<h:outputLabel id="outDestinolb"  value="Destino: " />
-						<p:inputText id="inDestino"  autocomplete="true" value="#{perfilBean.destino}" label="Email" />
+						<p:inputText id="inDestino"  autocomplete="true" value="#{perfilBean.destino}"  />
 						
 						<h:outputLabel id="outDatalb"  value="Data: " />
-						<p:inputText id="inData"  autocomplete="true" value="#{perfilBean.data}" label="Endereço" />
+						<p:inputText id="inData"  autocomplete="true" value="#{perfilBean.data}"  />
 						
 						<h:outputLabel id="outHoralb" value="Hora: " />
-						<p:inputText id="inHora"  autocomplete="true" value="#{perfilBean.hora}" label="Telefone" />
+						<p:inputText id="inHora"  autocomplete="true" value="#{perfilBean.hora}"  />
 						
 						<h:outputLabel id="outVagaslb"  value="Vagas: " />
-						<p:inputText id="inVagas"  autocomplete="true"  value="#{perfilBean.vagas}" label="Login" />
+						<p:inputText id="inVagas"  autocomplete="true"  value="#{perfilBean.vagas}" />
 	
 					</p:panelGrid>
 	
-					<p:commandButton id="btCreate" value="Cadastrar carona" action="#{perfilBean.cadastrarCarona}" update="inOrigem,inDestino,inData,
-					inHora,inVagas"/>
-					<p:commandButton id="btBack" value="Fechar" action="#{perfilBean.redirectIndex}" update="inOrigem,inDestino,inData,
+					<p:commandButton id="btCreate" value="Cadastrar nova carona" action="#{perfilBean.cadastrarCarona}" onsuccess="dlg2.close()"/>
+					<p:commandButton id="btBack" value="Fechar"  onclick="dlg2.close()" action="#{perfilBean.redirectPerfil}" update="inOrigem,inDestino,inData,
 					inHora,inVagas" />
 				</h:form>
 			</p:panel>
