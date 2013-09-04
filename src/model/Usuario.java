@@ -43,7 +43,7 @@ public class Usuario {
 		}
 		Carona novaCarona = new Carona(origem, destino, data, hora, intVagas);
 		int id = Controller.getInstance().newCaronaId();
-		getCaronas().put(id, novaCarona);
+		this.getCaronas().put(id, novaCarona);
 		
 		return id;
 	}

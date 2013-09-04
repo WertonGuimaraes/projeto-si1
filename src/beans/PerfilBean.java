@@ -66,7 +66,7 @@ public class PerfilBean {
 	}
 
 	public void localizaCaronasDisponiveis(){
-		this.caronasDisponiveis = new ArrayList<Carona>();
+		this.setCaronasDisponiveis( new ArrayList<Carona>());
 		List<Integer> idsCaronas = Controller.getInstance().buscaCarona(this.origem, this.destino);
 		for(Integer id: idsCaronas){
 			this.caronasDisponiveis.add(Controller.getInstance().buscaCarona(id));
@@ -92,11 +92,12 @@ public class PerfilBean {
 			msg(e.getMessage());
 		}
 		msg("Carona cadastrada com sucesso");
+		localizaCaronasDisponiveis();
 	}
 	
 	public void solicitarCarona(){
 		
-		msg("Carona solicitada com sucesso, aguarde aprovação do motorista");
+		msg("Carona solicitada com sucesso, aguarde aprovaÃ§Ã£o do motorista");
 	}
 
 	public String getOrigem() {
@@ -116,7 +117,7 @@ public class PerfilBean {
 	}
 
 	public List<Carona> getCaronasDisponiveis() {
-		return caronasDisponiveis;
+		return this.caronasDisponiveis;
 	}
 
 	public void setCaronasDisponiveis(List<Carona> caronasDisponiveis) {

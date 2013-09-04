@@ -26,7 +26,7 @@
 	<!-- - - - - - - - - - - - - - - - - - target: init - - - - - - - - - - 
 		- - - - - - - -->
 	<target name="init">
-		<echo>Criando diretorio de biuld e dist.</echo>
+		<echo>Criando diretorio de build e dist.</echo>
 		<mkdir dir="${build}" />
 		<mkdir dir="${dist}" />
 		<mkdir dir="${doc}" />
@@ -51,7 +51,7 @@
 	</target>
 
 	<!-- ================================= target: war ================================= -->
-	<target name="war" depends="compila" description="Criar war do projeto.">
+	<target name="war" description="Criar war do projeto.">
 		<echo>Criando War do projeto.</echo>
 		<war destfile="${warFile}" webxml="${webXML}">
 			<classes dir="${build}" />
@@ -92,7 +92,7 @@
 	</target>
 
 	<!-- ================================= target: start ================================= -->
-	<target name="start" depends="stop,limpa,deploy">
+	<target name="start" >
 		<exec dir="${CATALINA_HOME}/bin" executable="./startup.sh">
 			<arg line="-C ${CATALINA_HOME}/bin/startup.sh">
 			</arg>

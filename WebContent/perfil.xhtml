@@ -22,7 +22,7 @@
 			</p:layoutUnit>
 			
 			<p:layoutUnit position="west" size="400"  minSize="300">
-				<h2 align="center"><font size="4" color="#36648B">Seja bem vindo "#{perfilBean.usuario.nome}" </font></h2>
+				<h2 align="center"><font size="4" color="#36648B">Seja bem vindo #{perfilBean.usuario.nome} </font></h2>
 				<p:graphicImage url="http://blog.cancaonova.com/cantinho/files/2011/09/box-home-clube-PP.jpg" width="410"/> 
 				
 				<br />
@@ -48,8 +48,7 @@
 						action="#{perfilBean.localizaCaronasDisponiveis}" update="dtCaronasDisponiveis"/> 
 					</p:panelGrid>
 				
-					<p:dataTable id="dtCaronasDisponiveis" headerText="Caronas disponíveis" var="carona" value="#{perfilBean.caronasDisponiveis}" 
-					autoUpdate="true">
+					<p:dataTable id="dtCaronasDisponiveis" headerText="Caronas disponíveis" var="carona" value="#{perfilBean.caronasDisponiveis}" >
 				        
 				        <p:column  headerText="Origem">  
 				            <h:outputText id="outOrigem" value="#{carona.origem}" />  
@@ -100,7 +99,7 @@
 	
 					</p:panelGrid>
 	
-					<p:commandButton id="btCreate" value="Cadastrar nova carona" action="#{perfilBean.cadastrarCarona}" onsuccess="dlg2.close()"/>
+					<p:commandButton id="btCreate" value="Cadastrar nova carona" action="#{perfilBean.cadastrarCarona}" oncomplete="dlg2.hide() #{perfilBean.caronasDisponiveis}" />
 					<p:commandButton id="btBack" value="Fechar"  onclick="dlg2.close()" action="#{perfilBean.redirectPerfil}" update="inOrigem,inDestino,inData,
 					inHora,inVagas" />
 				</h:form>
