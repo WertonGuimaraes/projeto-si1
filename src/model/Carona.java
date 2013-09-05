@@ -1,5 +1,8 @@
 package model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.joda.time.DateTime;
 
 public class Carona {
@@ -8,27 +11,28 @@ public class Carona {
 	private String destino;
 	private String pontoDeEncontro;
 	private DateTime dateTime;
-	private int vagas,year,month,day,hour,minute;
-	
-	
+	private int vagas,year,month,day,hour,minute,vagasOcupadas;
+	private Usuario motorista;
+	private Set<Usuario> caroneiros;
+
 	public Carona(String origem, String destino, String data,String horaSaida, int vagas) throws Exception{
 		if(origem == null || Util.isEmpty(origem)) throw new RuntimeException("Origem inválida");
 		if(Util.containsInvalidChar(origem)) throw new RuntimeException("Origem inválida");
 		if(destino == null || Util.isEmpty(destino)) throw new RuntimeException("Destino inválido");
 		if(data == null || Util.isEmpty(data)) throw new RuntimeException("Data inválida");
 		if(horaSaida == null || Util.isEmpty(horaSaida)) throw new RuntimeException("Hora inválida");
-		
+
 		year = Integer.parseInt(data.split("/")[2]);
 		month = Integer.parseInt(data.split("/")[1]);
 		day = Integer.parseInt(data.split("/")[0]);
-		
+
 		try {
 			hour =Integer.parseInt(horaSaida.split(":")[0]);
 			minute = Integer.parseInt(horaSaida.split(":")[1]);
 		} catch (RuntimeException e) {
 			throw new RuntimeException("Hora inválida");
 		}
-		
+
 		try {
 			this.dateTime = new DateTime(year, month, day, hour, minute);	
 		} catch (RuntimeException e) {
@@ -40,6 +44,8 @@ public class Carona {
 		this.origem = origem;
 		this.vagas=vagas;
 		this.destino = destino;
+		this.caroneiros= new HashSet<Usuario>();
+		this.vagasOcupadas=caroneiros.size();
 	}
 
 	@Override
@@ -49,17 +55,26 @@ public class Carona {
 		}
 		Carona carona = (Carona) obj;
 		return ( carona.getOrigem().equals(this.getOrigem())
-				 && carona.getDestino().equals(this.getDestino())
-				 && carona.getDate().equals(this.getDate())
-				 && carona.getHour().equals(this.getHour()) 
-				 && carona.getVagas() == this.getVagas() );
+				&& carona.getDestino().equals(this.getDestino())
+				&& carona.getDate().equals(this.getDate())
+				&& carona.getHour().equals(this.getHour()) 
+				&& carona.getVagas() == this.getVagas() );
 	}
-	
+
+
+	public void addCaroneiro(Usuario user){
+		if(vagasOcupadas<vagas){
+			caroneiros.add(user);
+			vagasOcupadas= caroneiros.size();
+		}
+
+	}
+
 	public String getTrajeto(){
 		return origem+" - "+destino;
 	}
-	
-	
+
+
 	public String getOrigem() {
 		return origem;
 	}
@@ -119,7 +134,7 @@ public class Carona {
 	@Override
 	public String toString() {
 		return origem +" para "+ destino+", no dia "+getDate()+", as "+getHour();
-		
+
 	}
 
 	public String getPontoDeEncontro() {

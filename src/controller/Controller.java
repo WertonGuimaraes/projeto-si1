@@ -14,7 +14,6 @@ public class Controller {
 	
 	int contadorCaronas;
 	private Set<Usuario> usuarios;
-
 	private SessionController controladorDeSessoes;
 	private static Controller controller; 			//singleton
 
