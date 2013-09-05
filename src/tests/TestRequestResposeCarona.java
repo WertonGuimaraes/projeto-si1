@@ -40,6 +40,15 @@ public class TestRequestResposeCarona {
 	}
 
 	public void solicitaCaronaTest1(){
-		controller.sugerirPontoDeEncontro();
+		int idSessaoInteressado = controller.getSessoes().searchSessionByLogin("j2");
+		Usuario user1 = controller.searchUsuariobyLogin("j");
+		int idCarona = 1;
+		
+		//TODO Implementado no controller
+		int idSugestao = controller.sugerirPontoDeEncontro(idSessaoInteressado, idCarona, "Acude Velho; Hiper Bompreco");
+		
+		
+		
+		
 	}
 }
