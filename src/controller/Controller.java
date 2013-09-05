@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import model.Carona;
+import model.CaronaSolicitada;
 import model.LoginInvalidoException;
 import model.Usuario;
 import model.Util;
@@ -109,6 +110,11 @@ public class Controller {
 	
 	public int newCaronaId() {
 		return ++contadorCaronas;
+	}
+	
+	public void sugerirPontoDeEncontro(){
+		CaronaSolicitada caronaSolicitada = new CaronaSolicitada(idCarona, pontosDeEncontro);
+		//tem que ter um id pra solicitacao de carona, veja no easyaccept
 	}
 
 
