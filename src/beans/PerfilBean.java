@@ -43,6 +43,7 @@ public class PerfilBean {
 			this.usuario = SessionController.getInstance().searchSessionById(ID);
 			this.id = ID;
 			this.caronasDisponiveis = new ArrayList<Carona>();
+			localizaCaronasDisponiveis();
 		}else throw new RuntimeException("Erro no id do perfil"); 
 	}
 

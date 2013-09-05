@@ -9,43 +9,45 @@ import org.junit.Test;
 public class CaronaTest {
 
 	Carona c;
-	
+
 	@Before
-	public void init(){
+	public void init() {
 		try {
-			c = new Carona("casa","trabalho","12/12/2013","12:30",3);
-		} catch (Exception e) {}
+			c = new Carona("casa", "trabalho", "12/12/2013", "12:30", 3);
+		} catch (Exception e) {
+		}
 	}
-	
-	
+
 	@Test
-	public void testCriaCaronaValida(){
+	public void testCriaCaronaValida() {
 		try {
-			c = new Carona("casa","trabalho","12/12/2013","12:30",3);
-		} catch (Exception e) {}
-		
-		assertEquals(c.getHour(),"12:30");
-		assertEquals(c.getOrigem(),"casa");
-		
+			c = new Carona("casa", "trabalho", "12/12/2013", "12:30", 3);
+		} catch (Exception e) {
+		}
+
+		assertEquals(c.getHour(), "12:30");
+		assertEquals(c.getOrigem(), "casa");
+
 	}
-	
+
 	@Test
-	public void testHoraValida(){
+	public void testHoraValida() {
 		assertTrue(c.getHour().equals("12:30"));
 		c.setHour("12:36");
 		assertTrue(c.getHour().equals("12:36"));
-		try{
+		try {
 			c.setHour("33:33");
 			fail();
-		}catch(Exception e){}
+		} catch (Exception e) {
+		}
 	}
-	
+
 	@Test
-	public void testSetData(){
-		assertEquals(c.getDate(),"12/12/2013");
+	public void testSetData() {
+		assertEquals(c.getDate(), "12/12/2013");
 		c.setDate("24/12/2015");
-		assertEquals(c.getDate(),"24/12/2015");
-		
+		assertEquals(c.getDate(), "24/12/2015");
+
 	}
 
 }
