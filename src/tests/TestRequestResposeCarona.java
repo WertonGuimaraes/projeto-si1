@@ -32,7 +32,14 @@ public class TestRequestResposeCarona {
 		
 		Usuario user1 = controller.searchUsuariobyLogin("j");
 		
-		user1.adicionaCarona("a", "a", "12/12/2013", "12:23", 4);
+		try {
+			user1.adicionaCarona("a", "a", "12/12/2013", "12:23", "4");
+		} catch (Exception e) {
+			Assert.fail();
+		}
 	}
 
+	public void solicitaCaronaTest1(){
+		controller.sugerirPontoDeEncontro();
+	}
 }

@@ -25,13 +25,13 @@ public class CaronaSolicitada {
 	
 	public void responderSugestaoPontoDeEncontro(List<String> pontosConvenientes, String idSessao, String idSugestao, int idCarona){
 		state.responderSugestaoPontoDeEncontro(this, pontosConvenientes, idSessao, idSugestao, idCarona);
-
 	}
 	
 	public void requisitarVagaNaCarona(int idCarona, String idSessao, String ponto){
 		state.requisitarVagaNaCarona(this, idCarona, idSessao, ponto);
 	}
 
+	
 	
 	public List<String> returnPontos(String pontos){
 		List<String> listPontos = new ArrayList<String>();
