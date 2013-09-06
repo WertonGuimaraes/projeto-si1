@@ -58,8 +58,13 @@ public class Usuario {
 		return id;
 	}
 	
-	public int adicionaRequest(CaronaSolicitada carona, int id) {
-		this.getRequests().put(id,carona);
+
+	
+	public int solicitaVaga(Carona carona){
+		int id = Controller.getInstance().newRequestID();
+		CaronaSolicitada solicitacao = new CaronaSolicitada(carona, this);
+		solicitacao.setId(id);
+		Controller.getInstance().adicionaRequest(solicitacao,id);
 		return id;
 	}
 	

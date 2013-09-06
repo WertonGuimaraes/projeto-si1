@@ -116,11 +116,8 @@ public class Controller {
 		return ++contadorRequisicao;
 	}
  
-	public int solicitaVaga(Usuario caroneiro,Carona carona){
-		int id = this.newRequestID();
-		CaronaSolicitada solicitacao = new CaronaSolicitada(carona, caroneiro);
-		solicitacao.setId(id);
-		carona.getMotorista().adicionaRequest(solicitacao,id);
+	public int adicionaRequest(CaronaSolicitada carona, int id) {
+		carona.getMotorista().getRequests().put(id,carona);
 		return id;
 	}
 	

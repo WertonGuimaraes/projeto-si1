@@ -39,7 +39,7 @@ public class SolicitaCaronaTest {
 			
 			assertTrue(c.getVagas()==3);
 			
-			int idVaga=controller.solicitaVaga(user2, c);
+			int idVaga=user2.solicitaVaga(c);
 			
 			assertTrue(user1.getRequests().size() != 0);
 			
@@ -69,7 +69,7 @@ public class SolicitaCaronaTest {
 		try {
 			idCarona = user1.adicionaCarona("cg", "jp", "27/10/2013", "12:12", "3");
 			Carona c = controller.buscaCarona(idCarona);
-			int idVaga=controller.solicitaVaga(user2, c);
+			int idVaga=user2.solicitaVaga(c);
 			
 			assertTrue(user1.getRequests().size() != 0);
 			user1.aceitaRequest(idVaga);
