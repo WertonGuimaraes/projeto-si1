@@ -119,6 +119,7 @@ public class Controller {
 	public int adicionaRequest(CaronaSolicitada carona, int id) {
 		carona.getMotorista().getRequests().put(id,carona);
 		return id;
+		//TODO ajeitar isso
 	}
 
 	public CaronaSolicitada buscaCaronaSolicitada(int idCaronaSolicitada){
