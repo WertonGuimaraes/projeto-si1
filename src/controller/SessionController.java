@@ -17,9 +17,6 @@ public class SessionController {
 	private static SessionController sessoes; //singleton
 	
 	public static SessionController getInstance() {
-		if (sessoes != null) {
-			return sessoes;
-		}
 		if (sessoes == null) {
 			sessoes = new SessionController(); //verificar consistencia
 		}

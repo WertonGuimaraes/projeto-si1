@@ -15,68 +15,75 @@ import controller.Controller;
 import controller.SessionController;
 
 @ViewScoped
-@ManagedBean(name="perfilBean")
+@ManagedBean(name = "perfilBean")
 public class PerfilBean {
+	
 	public static String ID;
 	private String id;
-	String origem;
-	String destino;
-	String data;
-	String hora;
-	String vagas;
-	String pontoDeEncontro;
+	private String origem;
+	private String destino;
+	private String data;
+	private String hora;
+	private String vagas;
+	private String pontoDeEncontro;
+	private Carona carona;
 	int size;
-	private  Usuario usuario;	
+	private Usuario usuario;
 	private List<Carona> caronasDisponiveis;
 
+	public PerfilBean() {
+		if (ID != null) {
+			this.usuario = SessionController.getInstance()
+					.searchSessionById(ID);
+			this.id = ID;
+			this.caronasDisponiveis = new ArrayList<Carona>();
+			localizaCaronasDisponiveis();
+		} else
+			throw new RuntimeException("Erro no id do perfil");
+	}
+	
+	public String logoffButton() {
+		SessionController.getInstance().desconectarSessao(0); // FIXME o certo e
+		// passar id
+		return "index.xhtml";
+	}
+	
+	
 	public void setSize(int size) {
 		this.size = size;
 	}
-
 
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public PerfilBean(){	
-		if(ID != null){
-			this.usuario = SessionController.getInstance().searchSessionById(ID);
-			this.id = ID;
-			this.caronasDisponiveis = new ArrayList<Carona>();
-			localizaCaronasDisponiveis();
-		}else throw new RuntimeException("Erro no id do perfil"); 
-	}
 
-	public String logoffButton(){
-		SessionController.getInstance().desconectarSessao(0); //FIXME o certo e passar id
-		return "index.xhtml";
-	}
-
-	public String redirectPerfil(){
+	public String redirectPerfil() {
 		return "perfil.xhtml";
 	}
-	
-	public String cleanAndExit(){
+
+	public String cleanAndExit() {
 		this.caronasDisponiveis = new ArrayList<Carona>();
 		return "perfil.xhtml";
-		
+
 	}
 
-	public Collection<Carona> getCaronas(){
+	public Collection<Carona> getCaronas() {
 		return usuario.getCaronas().values();
 	}
 
-	public void localizaCaronasDisponiveis(){
-		this.setCaronasDisponiveis( new ArrayList<Carona>());
-		List<Integer> idsCaronas = Controller.getInstance().buscaCarona(this.origem, this.destino);
-		for(Integer id: idsCaronas){
-			this.caronasDisponiveis.add(Controller.getInstance().buscaCarona(id));
+	public void localizaCaronasDisponiveis() {
+		this.setCaronasDisponiveis(new ArrayList<Carona>());
+		List<Integer> idsCaronas = Controller.getInstance().buscaCarona(
+				this.origem, this.destino);
+		for (Integer id : idsCaronas) {
+			this.caronasDisponiveis.add(Controller.getInstance()
+					.buscaCarona(id));
 		}
 
 	}
 
-	
-	public void reset(){
+	public void reset() {
 		this.setOrigem("");
 		this.setDestino("");
 		this.setData("");
@@ -84,9 +91,10 @@ public class PerfilBean {
 		this.setVagas("");
 	}
 
-	public void cadastrarCarona(){
+	public void cadastrarCarona() {
 		try {
-			usuario.adicionaCarona(this.origem, this.destino, this.data, this.hora, this.vagas);
+			usuario.adicionaCarona(this.origem, this.destino, this.data,
+					this.hora, this.vagas);
 		} catch (Exception e) {
 			msg(e.getMessage());
 			return;
@@ -95,10 +103,9 @@ public class PerfilBean {
 		this.reset();
 		localizaCaronasDisponiveis();
 	}
-	
-	public void solicitarCarona(){
-		
-		msg("Carona solicitada com sucesso, aguarde aprovação do motorista");
+
+	public void solicitarCarona() {
+		Controller.getInstance().solicitaVaga(usuario, carona);
 	}
 
 	public String getOrigem() {
@@ -148,21 +155,27 @@ public class PerfilBean {
 	public void setVagas(String vagas) {
 		this.vagas = vagas;
 	}
-	
-	public void msg(String text){
-		FacesContext context = FacesContext.getCurrentInstance();  
-		
-		context.addMessage(null, new FacesMessage(text));  
-	}
 
+	public void msg(String text) {
+		FacesContext context = FacesContext.getCurrentInstance();
+
+		context.addMessage(null, new FacesMessage(text));
+	}
 
 	public String getPontoDeEncontro() {
 		return pontoDeEncontro;
 	}
 
-
 	public void setPontoDeEncontro(String pontoDeEncontro) {
 		this.pontoDeEncontro = pontoDeEncontro;
+	}
+	
+	public Carona getCarona() {
+		return carona;
+	}
+
+	public void setCarona(Carona carona) {
+		this.carona = carona;
 	}
 
 }

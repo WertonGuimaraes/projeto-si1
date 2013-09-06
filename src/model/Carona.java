@@ -128,8 +128,15 @@ public class Carona {
 	public int getVagas() {
 		return vagas;
 	}
+	
+	public int getVagasLivres() {
+		return vagas-getVagasOcupadas();
+	}
 
 
+	private int getVagasOcupadas() {
+		return vagasOcupadas;
+	}
 
 	public void setVagas(int vagas) {
 		this.vagas = vagas;

@@ -15,7 +15,16 @@ public class Usuario {
 	private Set<Usuario> friends;
 	
 	private Map<Integer, Carona> caronas;
+	private Map<Integer,CaronaSolicitada> requests;
 	
+	public Map<Integer,CaronaSolicitada> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(Map<Integer,CaronaSolicitada>  requests) {
+		this.requests = requests;
+	}
+
 	public Usuario(String login, String senha, String nome, String email, String endereco) throws Exception{
 		if(login == null || Util.isEmpty(login))      throw new LoginInvalidoException("Login inválido");
 		if(endereco ==null || Util.isEmpty(endereco)) throw new LoginInvalidoException("Endereço invalido");
@@ -29,8 +38,8 @@ public class Usuario {
 		this.endereco=endereco;
 		this.telefone=""; //telefone vazio
 		this.friends = new HashSet<Usuario>();
-		
-		caronas = new HashMap<Integer, Carona>();
+		this.requests = new HashMap<Integer, CaronaSolicitada>();
+		this.caronas = new HashMap<Integer, Carona>();
 	}
 	
 	public int adicionaCarona(String origem, String destino, String data, String hora, String vagas) throws Exception{
@@ -42,12 +51,30 @@ public class Usuario {
 			throw new RuntimeException("Vaga inválida");
 		}
 		Carona novaCarona = new Carona(origem, destino, data, hora, intVagas);
+		novaCarona.setMotorista(this);
 		int id = Controller.getInstance().newCaronaId();
 		this.getCaronas().put(id, novaCarona);
 		
 		return id;
 	}
 	
+	public int adicionaRequest(CaronaSolicitada carona, int id) {
+		this.getRequests().put(id,carona);
+		return id;
+	}
+	
+	public void aceitaRequest(int id){
+		for(int i: this.getRequests().keySet()){
+			if(this.getRequests().get(i).getId() == id){
+				Usuario caroneiro = this.getRequests().get(i).getCaroneiro();
+				this.getRequests().get(i).getCarona().addCaroneiro(caroneiro);
+				this.getRequests().remove(i);
+				//return;
+			}
+		}
+	}
+	
+	public void rejeitarRequest(int id){}
 	
 
 	public List<Integer> buscaCarona(String origem, String destino){

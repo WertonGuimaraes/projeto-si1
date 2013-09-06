@@ -14,14 +14,12 @@ import model.Util;
 public class Controller {
 	
 	int contadorCaronas;
+	int contadorRequisicao;
 	private Set<Usuario> usuarios;
 	private SessionController controladorDeSessoes;
 	private static Controller controller; 			//singleton
 
 	public static Controller getInstance() {
-		if (controller != null) {
-			return controller;
-		}
 		// controller = metodoPersistencia(); TODO implementar persistencia
 
 		if (controller == null) {
@@ -31,6 +29,8 @@ public class Controller {
 	}
 
 	private Controller() {
+		this.contadorCaronas=0;
+		this.contadorRequisicao=0;
 		usuarios = new HashSet<Usuario>();
 		controladorDeSessoes = SessionController.getInstance();
 	}
@@ -112,7 +112,19 @@ public class Controller {
 		return ++contadorCaronas;
 	}
 	
-
+	public int newRequestID(){
+		return ++contadorRequisicao;
+	}
+ 
+	public int solicitaVaga(Usuario caroneiro,Carona carona){
+		int id = this.newRequestID();
+		CaronaSolicitada solicitacao = new CaronaSolicitada(carona, caroneiro);
+		solicitacao.setId(id);
+		carona.getMotorista().adicionaRequest(solicitacao,id);
+		return id;
+	}
+	
+	
 
 
 }

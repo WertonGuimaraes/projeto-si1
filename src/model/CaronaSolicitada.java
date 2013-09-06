@@ -1,71 +1,73 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import controller.Controller;
 
 public class CaronaSolicitada {
+	
 	private Carona carona;
-	private int idCarona;
-	private List<String> pontosDeEncontro;
-	private String idSessao;
+	private Usuario caroneiro;
+	private Usuario motorista;
+	private int id;
+	private String origem;
+	private String destino;
 	
-	public CaronaSolicitada(int idCarona, String pontoDeEncontro, String idSessao){
-		this.setCarona(Controller.getInstance().buscaCarona(idCarona));
-		this.setIdCarona(idCarona);
-		this.setIdSessao(idSessao);
-		this.setPontosDeEncontro(returnPontos(pontoDeEncontro));
+	public CaronaSolicitada(Carona carona, Usuario caroneiro){
+		this.carona=carona;
+		this.caroneiro=caroneiro;
+		this.motorista=carona.getMotorista();
+		this.origem=carona.getOrigem();
+		this.destino=carona.getDestino();
 	}
-	
-	
-	public List<String> returnPontos(String pontos){
-		List<String> listPontos = new ArrayList<String>();
-		
-		for(String ponto: pontos.split(";")){
-			listPontos.add(ponto);
-		}
-		
-		return listPontos;
-	}
-
 
 	public Carona getCarona() {
 		return carona;
 	}
 
-
 	public void setCarona(Carona carona) {
 		this.carona = carona;
 	}
 
-
-	public int getIdCarona() {
-		return idCarona;
+	public Usuario getCaroneiro() {
+		return caroneiro;
 	}
 
-
-	public void setIdCarona(int idCarona) {
-		this.idCarona = idCarona;
+	public void setCaroneiro(Usuario caroneiro) {
+		this.caroneiro = caroneiro;
 	}
 
-
-	public List<String> getPontosDeEncontro() {
-		return pontosDeEncontro;
+	public Usuario getMotorista() {
+		return motorista;
 	}
 
-
-	public void setPontosDeEncontro(List<String> pontosDeEncontro) {
-		this.pontosDeEncontro = pontosDeEncontro;
+	public void setMotorista(Usuario motorista) {
+		this.motorista = motorista;
 	}
 
-
-	public String getIdSessao() {
-		return idSessao;
+	public int getId() {
+		return id;
 	}
 
-
-	public void setIdSessao(String idSessao) {
-		this.idSessao = idSessao;
+	public void setId(int id) {
+		this.id = id;
 	}
+
+	public String getOrigem() {
+		return origem;
+	}
+
+	public void setOrigem(String origem) {
+		this.origem = origem;
+	}
+
+	public String getDestino() {
+		return destino;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
+	}
+	
+	
+	
+	
+	
 }
