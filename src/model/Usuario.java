@@ -69,9 +69,11 @@ public class Usuario {
 				Usuario caroneiro = this.getRequests().get(i).getCaroneiro();
 				this.getRequests().get(i).getCarona().addCaroneiro(caroneiro);
 				this.getRequests().remove(i);
-				//return;
+				return;
 			}
 		}
+		
+		throw new RuntimeException("Solicitação inexistente");	
 	}
 	
 	public void rejeitarRequest(int id){}
