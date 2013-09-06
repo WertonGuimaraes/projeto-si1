@@ -81,7 +81,17 @@ public class Usuario {
 		throw new RuntimeException("Solicitação inexistente");	
 	}
 	
-	public void rejeitarRequest(int id){}
+	public void rejeitarRequest(int id){
+		for(int i: this.getRequests().keySet()){
+			if(this.getRequests().get(i).getId() == id){
+				this.getRequests().remove(i);
+				return;
+			}
+		}
+		
+		throw new RuntimeException("Solicitação inexistente");	
+		
+	}
 	
 
 	public List<Integer> buscaCarona(String origem, String destino){

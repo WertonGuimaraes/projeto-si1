@@ -12,7 +12,7 @@ import model.Usuario;
 import model.Util;
 
 public class Controller {
-	
+
 	int contadorCaronas;
 	int contadorRequisicao;
 	private Set<Usuario> usuarios;
@@ -45,7 +45,7 @@ public class Controller {
 		Usuario usuario = new Usuario(login, senha, nome, email, endereco);
 		usuarios.add(usuario);
 	}
-	
+
 	public Usuario searchUsuariobyLogin(String login){
 		if(login == null || Util.isEmpty(login)) throw new RuntimeException("Login inválido");
 		for (Usuario usr : usuarios) {
@@ -55,14 +55,14 @@ public class Controller {
 		}
 		throw new RuntimeException("Usuário inexistente");
 	}
-	
-	
-	
+
+
+
 	public void zerarSistema(){
 		usuarios = new HashSet<Usuario>();
 		controladorDeSessoes.zeraSessoes();
 	}
-	
+
 	public Set<Usuario> getUsuarios() {
 		return usuarios;
 	}
@@ -73,10 +73,10 @@ public class Controller {
 
 	public List<Integer> buscaCarona(String origem, String destino) {
 		boolean condicao;
-		
+
 		if(Util.containsInvalidChar(origem)) throw new RuntimeException("Origem inválida");
 		if(Util.containsInvalidChar(destino)) throw new RuntimeException("Destino inválido");
-		
+
 		List<Integer> caronasEncontradas = new LinkedList<Integer>();
 		for (Usuario usr : usuarios) {
 			for (int chave: usr.getCaronas().keySet() ){
@@ -90,15 +90,15 @@ public class Controller {
 					condicao = caronaExistente.getDestino().equals(destino);
 				else
 					condicao = caronaExistente.getDestino().equals(destino)
-							&& caronaExistente.getOrigem().equals(origem);
+					&& caronaExistente.getOrigem().equals(origem);
 				if(condicao)
 					caronasEncontradas.add(chave);
-				}
 			}
-		return caronasEncontradas;
 		}
-	
-	
+		return caronasEncontradas;
+	}
+
+
 	public Carona buscaCarona(int idCarona) {
 		for (Usuario usr : usuarios) {
 			for (int idCaronaExistente : usr.getCaronas().keySet()) {
@@ -107,24 +107,34 @@ public class Controller {
 		}
 		throw new RuntimeException("Item inexistente");
 	}
-	
+
 	public int newCaronaId() {
 		return ++contadorCaronas;
 	}
-	
+
 	public int newRequestID(){
 		return ++contadorRequisicao;
 	}
- 
+
 	public int adicionaRequest(CaronaSolicitada carona, int id) {
 		carona.getMotorista().getRequests().put(id,carona);
 		return id;
 	}
-	
-	
+
+	public CaronaSolicitada buscaCaronaSolicitada(int idCaronaSolicitada){
+		for (Usuario usr : usuarios) {
+			for (int idCaronaExistente : usr.getRequests().keySet()) {
+				if (idCaronaSolicitada == idCaronaExistente) return usr.getRequests().get(idCaronaExistente);
+			}
+		}
+		throw new RuntimeException("Item inexistente");
+	}
+
+
+
 
 
 }
 
-	
-	
+
+
