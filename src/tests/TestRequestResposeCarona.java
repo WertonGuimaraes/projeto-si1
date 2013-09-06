@@ -45,7 +45,7 @@ public class TestRequestResposeCarona {
 		int idCarona = 1;
 		
 		//TODO Implementado no controller
-		int idSugestao = controller.sugerirPontoDeEncontro(idSessaoInteressado, idCarona, "Acude Velho; Hiper Bompreco");
+		//int idSugestao = controller.sugerirPontoDeEncontro(idSessaoInteressado, idCarona, "Acude Velho; Hiper Bompreco");
 		
 		
 		

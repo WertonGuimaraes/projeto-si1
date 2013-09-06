@@ -112,11 +112,6 @@ public class Controller {
 		return ++contadorCaronas;
 	}
 	
-	public void sugerirPontoDeEncontro(String idSessao, int idCarona, String pontosDeEncontro){
-		
-		CaronaSolicitada caronaSolicitada = new CaronaSolicitada(idCarona, pontosDeEncontro);
-		//tem que ter um id pra solicitacao de carona, veja no easyaccept
-	}
 
 
 

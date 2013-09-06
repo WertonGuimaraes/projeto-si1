@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.joda.time.DateTime;
@@ -9,11 +10,12 @@ public class Carona {
 
 	private String origem;
 	private String destino;
-	private String pontoDeEncontro;
 	private DateTime dateTime;
 	private int vagas,year,month,day,hour,minute,vagasOcupadas;
 	private Usuario motorista;
 	private Set<Usuario> caroneiros;
+	private Set<String> pontosDeEncontro;
+	private Set<Request> requisicoes;
 
 	public Carona(String origem, String destino, String data,String horaSaida, int vagas) throws Exception{
 		if(origem == null || Util.isEmpty(origem)) throw new RuntimeException("Origem inválida");
@@ -46,6 +48,8 @@ public class Carona {
 		this.destino = destino;
 		this.caroneiros= new HashSet<Usuario>();
 		this.vagasOcupadas=caroneiros.size();
+		this.pontosDeEncontro=new HashSet<String>();
+		this.requisicoes= new HashSet<Request>();
 	}
 
 	@Override
@@ -137,12 +141,29 @@ public class Carona {
 
 	}
 
-	public String getPontoDeEncontro() {
-		return pontoDeEncontro;
+
+	public Usuario getMotorista() {
+		return motorista;
 	}
 
-	public void setPontoDeEncontro(String pontoDeEncontro) {
-		this.pontoDeEncontro = pontoDeEncontro;
+	public void setMotorista(Usuario motorista) {
+		this.motorista = motorista;
+	}
+
+	public Set<String> getPontosDeEncontro() {
+		return pontosDeEncontro;
+	}
+
+	public void setPontosDeEncontro(Set<String> pontosDeEncontro) {
+		this.pontosDeEncontro = pontosDeEncontro;
+	}
+
+	public Set<Request> getRequisicoes() {
+		return requisicoes;
+	}
+
+	public void setRequisicoes(Set<Request> requisicoes) {
+		this.requisicoes = requisicoes;
 	}
 
 
