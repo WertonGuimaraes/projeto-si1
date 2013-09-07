@@ -68,6 +68,11 @@ public class RequestMeetingPoint {
 	public void setState(StateChangeRequest state) {
 		this.state = state;
 	}
+
+	public void motoristaAprovou(String pontos) {
+		state.motoristaAprovou(this, pontos);
+		
+	}
 	
 	
 

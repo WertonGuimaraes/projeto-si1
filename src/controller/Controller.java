@@ -179,6 +179,8 @@ public class Controller {
 		SolicitacaoPontoEncontro solicitacao = controladorPontosEncontro.getSolicitacao(idSugestao);
 		Usuario motorista = solicitacao.getMotorista();
 		Usuario caroneiro = solicitacao.getCaroneiro();
+		
+		controladorPontosEncontro.respondeSolicitacaoMeetingPoint(idSessao, idCarona, idSugestao, pontos);
 	
 	}
 

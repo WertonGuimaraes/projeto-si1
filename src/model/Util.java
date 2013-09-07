@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Util {
@@ -33,6 +34,15 @@ public class Util {
 		return result;
 	}
 	
+	public static List<String> extractListPoints(String pontosDeEncontro) {
+		List<String> result = new ArrayList<String>();
+		
+		for(String ponto: pontosDeEncontro.split(";")){
+			result.add(ponto);
+		}
+		
+		return result;
+	}
 
 	
 	

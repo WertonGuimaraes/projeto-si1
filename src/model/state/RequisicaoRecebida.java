@@ -12,7 +12,13 @@ public class RequisicaoRecebida implements StateChangeResponse {
 	
 	@Override
 	public String toString(){
-		return "Solicitação recebida, esperando aprovação";
+		return "Solicitação recebida";
+	}
+
+	@Override
+	public void aceitaSolicitacao(ResponseMeetingPoint responseMeetingPoint,
+			String pontos) {
+		responseMeetingPoint.setState(new SolicitacaoAceita(responseMeetingPoint, pontos));
 	}
 
 	

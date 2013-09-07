@@ -97,15 +97,13 @@ public class ControllerTest {
 		
 		//Preciso implementar os estados de request e response
 		Assert.assertEquals(usr2.getRequisicaoPoint(idSugestao).getState().toString(), "Aguardando aprovação");
-		Assert.assertEquals(usr.getResponsePoint(idSugestao).getState().toString(), "Solicitação recebida, esperando aprovação");
+		Assert.assertEquals(usr.getResponsePoint(idSugestao).getState().toString(), "Solicitação recebida");
 	
-		
-		/***
 		controlador.respondeSolicitacaoMeetingPoint(idSessao1,  idCarona, idSugestao, "shopping;extra");
 		
-		Assert.assertEquals(usr.getResponsesPontosPendentes().getResponse(idSugestao).getState().toString(), "Solicitação aprovada, envio de ponto de encontro feito");
-		Assert.assertEquals(usr2.getRequisicoesPontosPendentes().getResponse(idSugestao).getState().toString(), "Aguardando aprovação");
-		***/
+		Assert.assertEquals(usr.getResponsePoint(idSugestao).getState().toString(), "Solicitação aprovada");
+		Assert.assertEquals(usr2.getRequisicaoPoint(idSugestao).getState().toString(), "Motorista aprovou");
+		
 		
 	}
 

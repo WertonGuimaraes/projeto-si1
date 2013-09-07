@@ -56,13 +56,19 @@ public class MeetingPointController {
 		
 	}
 
-	private void addResponsesPendentes(Usuario user,
-			ResponseMeetingPoint response) {
-		user.addResponse(response);
-	}
-
-	private void addRequisicoesPendentes(Usuario user, RequestMeetingPoint request){
-		user.addRequest(request);
+	public void respondeSolicitacaoMeetingPoint(int idSessao, int idCarona,
+			int idSugestao, String pontos) {
+		SolicitacaoPontoEncontro solicitacao = getSolicitacao(idSugestao);
+				
+		Usuario caroneiro = solicitacao.getCaroneiro();
+		Usuario motorista = solicitacao.getMotorista();
+		
+		motorista.getResponsePoint(idSugestao).aceitaSolicitacao(pontos);
+		caroneiro.getRequisicaoPoint(idSugestao).motoristaAprovou(pontos);
+		
+		//update em response os pontos do motorista
+		//update em request os pontos do motorista
+		
 	}
 
 	public SolicitacaoPontoEncontro getSolicitacao(int idSugestao) {
@@ -73,5 +79,14 @@ public class MeetingPointController {
 		throw new RuntimeException("Não existe nenhuma solicitacao com esse id de sugestão");
 	}
 
+
+	private void addResponsesPendentes(Usuario user,
+			ResponseMeetingPoint response) {
+		user.addResponse(response);
+	}
+	
+	private void addRequisicoesPendentes(Usuario user, RequestMeetingPoint request){
+		user.addRequest(request);
+	}
 
 }

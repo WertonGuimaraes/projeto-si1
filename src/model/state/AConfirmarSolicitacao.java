@@ -1,44 +1,48 @@
 package model.state;
 
+import java.util.List;
+
 import model.RequestMeetingPoint;
 import model.TalkAboutMeetingPoint;
+import model.Util;
 
-public class AguardandoAceitacao implements StateChangeRequest {
-	RequestMeetingPoint request;
+public class AConfirmarSolicitacao implements StateChangeRequest {
+	private List<String> pontosDoMotorista;
 	
-	public AguardandoAceitacao(RequestMeetingPoint request) {
-		this.request = request;
+	public AConfirmarSolicitacao(AguardandoAceitacao aguardandoAceitacao,
+			String pontos) {
+		this.pontosDoMotorista = Util.extractListPoints(pontos);
 	}
 
 	@Override
 	public void respondeSugestao(TalkAboutMeetingPoint talk, int idSugestao,
 			String pontosDeEcontro) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void rejeitarPonto(TalkAboutMeetingPoint talk, int idSugestao) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void aceitaPonto(TalkAboutMeetingPoint talk, int idSugestao,
 			String ponto) {
 		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public String toString() {
-		return "Aguardando aprovação";
+
 	}
 
 	@Override
 	public void motoristaAprovou(RequestMeetingPoint requestMeetingPoint,
 			String pontos) {
-		requestMeetingPoint.setState(new AConfirmarSolicitacao(this, pontos));
+		throw new OperacaoInvalidaParaOEstadoException("Operação não permitida para esse estado");
+	}
+	
+	@Override
+	public String toString() {
+		return "Motorista aprovou";
 	}
 
 }

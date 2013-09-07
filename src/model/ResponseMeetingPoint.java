@@ -21,19 +21,10 @@ public class ResponseMeetingPoint{
 			String pontosDeEncontro) {
 		this.idCarona = idCarona;
 		this.idSessaoCaroneiro = idSessaoCaroneiro;
-		this.pontosCaroneiro = extractListPoints(pontosDeEncontro);
+		this.pontosCaroneiro = Util.extractListPoints(pontosDeEncontro);
 		this.state = new RequisicaoRecebida(this);
 	}
 	
-	private List<String> extractListPoints(String pontosDeEncontro) {
-		List<String> result = new ArrayList<String>();
-		
-		for(String ponto: pontosDeEncontro.split(";")){
-			result.add(ponto);
-		}
-		
-		return result;
-	}
 	
 	/**
 	 * Método acessador para o idSugestao
@@ -79,6 +70,10 @@ public class ResponseMeetingPoint{
 
 	public void setState(StateChangeResponse state) {
 		this.state = state;
+	}
+
+	public void aceitaSolicitacao(String pontos) {
+		this.state.aceitaSolicitacao(this, pontos);
 	}
 	
 	
