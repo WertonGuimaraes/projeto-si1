@@ -141,6 +141,17 @@ public class MyEasyAcceptFacade {
 		Controller.getInstance().respondeSolicitacaoMeetingPoint(Integer.parseInt(idSessao), Integer.parseInt(idCarona), Integer.parseInt(idSugestao), pontos);
 		
 	}
+	
+	public int solicitarVagaPontoEncontro(String idSessao, String idCarona, String ponto){
+		if (idSessao == null || Util.isEmpty(idSessao))
+			throw new RuntimeException("Solicitação inexistente");
+		Usuario usr = Controller.getInstance().getSessoes()
+				.searchSessionById(idSessao);
+		int idCar = Integer.parseInt(idCarona);
+		Carona c = Controller.getInstance().buscaCarona(idCar);
+		int idSolicitacao = usr.solicitaVaga(c);
+		return idSolicitacao;
+	}
 
 	// US5
 
