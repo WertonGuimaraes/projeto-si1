@@ -13,44 +13,48 @@ import controller.Controller;
 public class SolicitaCaronaTest {
 
 	private Controller controller;
-	private Usuario user1,user2;
+	private Usuario user1, user2;
 
 	@Before
 	public void startUp() {
 		try {
-			controller=Controller.getInstance();
-			controller.criaConta("xpto", "xpto", "xpto", "xpto@gmail.com", "xpto street");
-			controller.criaConta("joao", "joao", "joao", "joao@gmail.com", "casa muito engracada");
-			this.user1=controller.searchUsuariobyLogin("xpto");
-			this.user2=controller.searchUsuariobyLogin("joao");
+			controller = Controller.getInstance();
+			controller.criaConta("xpto", "xpto", "xpto", "xpto@gmail.com",
+					"xpto street");
+			controller.criaConta("joao", "joao", "joao", "joao@gmail.com",
+					"casa muito engracada");
+			this.user1 = controller.searchUsuariobyLogin("xpto");
+			this.user2 = controller.searchUsuariobyLogin("joao");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void testSolicitarVaga(){
+	public void testSolicitarVaga() {
 		try {
 			controller.getSessoes().abrirSessao("xpto", "xpto");
 			controller.getSessoes().abrirSessao("joao", "joao");
-			
-			int idCarona=user1.adicionaCarona("cg", "jp", "27/10/2013", "12:12", "3");
+
+			int idCarona = user1.adicionaCarona("cg", "jp", "27/10/2013",
+					"12:12", "3");
 			Carona c = controller.buscaCarona(idCarona);
-			
-			assertTrue(c.getVagas()==3);
-			
-			int idVaga=controller.solicitaVaga(user2, c);
-			
+
+			assertTrue(c.getVagas() == 3);
+
+			int idVaga = user2.solicitaVaga(c);
+
 			assertTrue(user1.getRequests().size() != 0);
-			
+
 			user1.aceitaRequest(idVaga);
-			
-			assertTrue(c.getVagasLivres()==2);
+
+			assertTrue(c.getVagasLivres() == 2);
 			assertTrue(user1.getRequests().size() == 0);
-			
-			int sessionId=controller.getSessoes().searchSessionByLogin("xpto");
+
+			int sessionId = controller.getSessoes()
+					.searchSessionByLogin("xpto");
 			controller.getSessoes().desconectarSessao(sessionId);
-			sessionId=controller.getSessoes().searchSessionByLogin("joao");
+			sessionId = controller.getSessoes().searchSessionByLogin("joao");
 			controller.getSessoes().desconectarSessao(sessionId);
 			controller.getSessoes().zeraSessoes();
 			controller.zerarSistema();
@@ -58,26 +62,47 @@ public class SolicitaCaronaTest {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	@Test
-	public void TestErrorTwoAprovations(){
+	public void TestErrorTwoAprovations() {
 		controller.getSessoes().abrirSessao("xpto", "xpto");
 		controller.getSessoes().abrirSessao("joao", "joao");
-		
+
 		int idCarona;
 		try {
-			idCarona = user1.adicionaCarona("cg", "jp", "27/10/2013", "12:12", "3");
+			idCarona = user1.adicionaCarona("cg", "jp", "27/10/2013", "12:12",
+					"3");
 			Carona c = controller.buscaCarona(idCarona);
-			int idVaga=controller.solicitaVaga(user2, c);
-			
+			int idVaga = user2.solicitaVaga(c);
+
 			assertTrue(user1.getRequests().size() != 0);
 			user1.aceitaRequest(idVaga);
 			user1.aceitaRequest(idVaga);
 		} catch (Exception e) {
-			assertEquals(e.getMessage(),"Solicitação inexistente");
-			
+			assertEquals(e.getMessage(), "Solicitação inexistente");
+
 		}
-		
+		int sessionId = controller.getSessoes().searchSessionByLogin("xpto");
+		controller.getSessoes().desconectarSessao(sessionId);
+		sessionId = controller.getSessoes().searchSessionByLogin("joao");
+		controller.getSessoes().desconectarSessao(sessionId);
+		controller.getSessoes().zeraSessoes();
+		controller.zerarSistema();
+
+	}
+
+	@Test
+	public void TestRejectSolicitation(){
+		controller.getSessoes().abrirSessao("xpto", "xpto");
+		controller.getSessoes().abrirSessao("joao", "joao");
+		int idCarona;
+		try {
+			idCarona = user1.adicionaCarona("cg", "jp", "27/10/2013", "12:12", "3");
+			Carona c = controller.buscaCarona(idCarona);
+			int idVaga=user2.solicitaVaga(c);
+			assertTrue(user1.getRequests().size() != 0);
+			user1.rejeitarRequest(idVaga);
+			assertTrue(user1.getRequests().size() == 0);
+		}catch(Exception e){}
 	}
 }

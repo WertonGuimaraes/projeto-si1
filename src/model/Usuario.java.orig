@@ -62,7 +62,12 @@ public class Usuario {
 
 		return id;
 	}
+<<<<<<< HEAD
 
+	public int adicionaRequest(CaronaSolicitada carona, int id) {
+		this.getRequests().put(id,carona);
+=======
+	
 
 	
 	public int solicitaVaga(Carona carona){
@@ -70,6 +75,7 @@ public class Usuario {
 		CaronaSolicitada solicitacao = new CaronaSolicitada(carona, this);
 		solicitacao.setId(id);
 		Controller.getInstance().adicionaRequest(solicitacao,id);
+>>>>>>> 4ecef37d497dbb1c0223cd167605e8ee1e6b1258
 		return id;
 	}
 
@@ -85,7 +91,12 @@ public class Usuario {
 
 		throw new RuntimeException("Solicitação inexistente");	
 	}
+<<<<<<< HEAD
 
+	public void rejeitarRequest(int id){}
+
+=======
+	
 	public void rejeitarRequest(int id){
 		for(int i: this.getRequests().keySet()){
 			if(this.getRequests().get(i).getId() == id){
@@ -97,7 +108,8 @@ public class Usuario {
 		throw new RuntimeException("Solicitação inexistente");	
 		
 	}
-
+	
+>>>>>>> 4ecef37d497dbb1c0223cd167605e8ee1e6b1258
 
 	public List<Integer> buscaCarona(String origem, String destino){
 		return Controller.getInstance().buscaCarona(origem, destino);

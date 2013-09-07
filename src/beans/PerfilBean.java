@@ -105,7 +105,7 @@ public class PerfilBean {
 	}
 
 	public void solicitarCarona() {
-		Controller.getInstance().solicitaVaga(usuario, carona);
+		this.usuario.solicitaVaga(carona);
 	}
 
 	public String getOrigem() {

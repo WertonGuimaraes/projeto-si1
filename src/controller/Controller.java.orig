@@ -134,18 +134,9 @@ public class Controller {
 		return id;
 		//TODO ajeitar isso
 	}
-
-	public CaronaSolicitada buscaCaronaSolicitada(int idCaronaSolicitada){
-		for (Usuario usr : usuarios) {
-			for (int idCaronaExistente : usr.getRequests().keySet()) {
-				if (idCaronaSolicitada == idCaronaExistente) return usr.getRequests().get(idCaronaExistente);
-			}
-		}
-		throw new RuntimeException("Item inexistente");
-	}
-
-
-
+<<<<<<< HEAD
+	
+	
 	public Usuario searchMotorista(int idCarona){
 		for (Usuario usr : usuarios) {
 			for (int idCaronaExistente : usr.getCaronas().keySet()) {
@@ -165,6 +156,20 @@ public class Controller {
 	public int sugerirPontoEncontro(String idSessao, int idCarona, String pontos){
 		RequestMeetingPoint request = new RequestMeetingPoint(idCarona, idSessao, pontos);
 		ResponseMeetingPoint response = new ResponseMeetingPoint(idCarona, idSessao, pontos);
+=======
+
+	public CaronaSolicitada buscaCaronaSolicitada(int idCaronaSolicitada){
+		for (Usuario usr : usuarios) {
+			for (int idCaronaExistente : usr.getRequests().keySet()) {
+				if (idCaronaSolicitada == idCaronaExistente) return usr.getRequests().get(idCaronaExistente);
+			}
+		}
+		throw new RuntimeException("Item inexistente");
+	}
+
+
+
+>>>>>>> 4ecef37d497dbb1c0223cd167605e8ee1e6b1258
 
 		int idTalk = contadorTalks++;
 		Usuario motorista = searchMotorista(idCarona);
