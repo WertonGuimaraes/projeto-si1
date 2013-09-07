@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.state.AguardandoAceitacao;
-import model.state.StateChange;
+import model.state.StateChangeRequest;
 
 public class RequestMeetingPoint {
 	private int idSugestao;
@@ -13,7 +13,7 @@ public class RequestMeetingPoint {
 	private int idCarona;
 	private String idSessaoCaroneiro;
 	private String idSessaoMotorista;
-	private StateChange state;
+	private StateChangeRequest state;
 
 	public RequestMeetingPoint(int idCarona, String idSessaoCaroneiro,
 			String pontosDeEncontro) {
@@ -36,5 +36,39 @@ public class RequestMeetingPoint {
 	public int getIdSugestao() {
 		return idSugestao;
 	}
+
+	public StateChangeRequest getState() {
+		return state;
+	}
+
+	public List<String> getPontosCaroneiro() {
+		return pontosCaroneiro;
+	}
+
+	public List<String> getPontosMotorista() {
+		return pontosMotorista;
+	}
+
+	public int getIdCarona() {
+		return idCarona;
+	}
+
+	public String getIdSessaoCaroneiro() {
+		return idSessaoCaroneiro;
+	}
+
+	public String getIdSessaoMotorista() {
+		return idSessaoMotorista;
+	}
+
+	public void setIdSugestao(int idSugestao) {
+		this.idSugestao = idSugestao;
+	}
+
+	public void setState(StateChangeRequest state) {
+		this.state = state;
+	}
+	
+	
 
 }

@@ -3,10 +3,11 @@ package model.state;
 import model.RequestMeetingPoint;
 import model.TalkAboutMeetingPoint;
 
-public class AguardandoAceitacao implements StateChange {
-
-	public AguardandoAceitacao(RequestMeetingPoint requestMeetingPoint) {
-		// TODO Auto-generated constructor stub
+public class AguardandoAceitacao implements StateChangeRequest {
+	RequestMeetingPoint request;
+	
+	public AguardandoAceitacao(RequestMeetingPoint request) {
+		this.request = request;
 	}
 
 	@Override
@@ -27,6 +28,11 @@ public class AguardandoAceitacao implements StateChange {
 			String ponto) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public String toString() {
+		return "Aguardando aprovação";
 	}
 
 }

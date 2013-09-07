@@ -2,7 +2,7 @@ package model.state;
 
 import model.TalkAboutMeetingPoint;
 
-public interface StateChange {
+public interface StateChangeRequest {
 	public void respondeSugestao(TalkAboutMeetingPoint talk, int idSugestao, String pontosDeEcontro);
 	
 	public void rejeitarPonto(TalkAboutMeetingPoint talk, int idSugestao);

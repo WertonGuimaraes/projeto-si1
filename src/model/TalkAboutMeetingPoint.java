@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.state.AguardandoAceitacao;
-import model.state.StateChange;
+import model.state.StateChangeRequest;
 
 public class TalkAboutMeetingPoint {
 	private int idSugestao;
@@ -13,7 +13,7 @@ public class TalkAboutMeetingPoint {
 	private int idCarona;
 	private String idSessaoCaroneiro;
 	private String idSessaoMotorista;
-	private StateChange state;
+	private StateChangeRequest state;
 
 	public TalkAboutMeetingPoint(int idCarona, String idSessaoCaroneiro, 
 			String pontosDeEncontro){

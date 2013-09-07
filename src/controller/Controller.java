@@ -26,6 +26,7 @@ public class Controller {
 	int contadorTalks;
 	private Set<Usuario> usuarios;
 	private SessionController controladorDeSessoes;
+	private MeetingPointController controladorPontosEncontro;
 	private static Controller controller; 			//singleton
 	private Map<Integer, TalkAboutMeetingPoint> controlMeetingPoints;
 	
@@ -45,6 +46,7 @@ public class Controller {
 		this.contadorTalks = 0;
 		this.usuarios = new HashSet<Usuario>();
 		this.controladorDeSessoes = SessionController.getInstance();
+		controladorPontosEncontro = MeetingPointController.getInstance();
 		this.controlMeetingPoints = new HashMap<Integer, TalkAboutMeetingPoint>();
 	}
 
@@ -154,37 +156,30 @@ public class Controller {
 		}
 		return null;
 	}
+	
 	/***
-	 * Preciso pensar se esse metodo esta pronto, e o colocar
-	 * a solicitacao em uma lista
-	 * @param idSessao
-	 * @param idCarona
-	 * @param pontos
-	 * @return
+	 * Faz a solicitacão de ponto de encontro para
+	 * uma determinada carona.
+	 * @param idSessao Id da sessão do caroneiro interessado na solicitação
+	 * @param idCarona Id da carona de interesse
+	 * @param pontos Pontos de encontro sugeridos
+	 * @return  um valor inteiro que é o identificador da solicitação de ponto de encontro
 	 */
 	public int sugerirPontoEncontro(String idSessao, int idCarona, String pontos){
-		RequestMeetingPoint request = new RequestMeetingPoint(idCarona, idSessao, pontos);
-		ResponseMeetingPoint response = new ResponseMeetingPoint(idCarona, idSessao, pontos);
-
-		int idTalk = contadorTalks++;
 		Usuario motorista = searchMotorista(idCarona);
 		Usuario caroneiro = controller.getSessoes().searchSessionById(idSessao);
-		SolicitacaoPontoEncontro solicitacao = new SolicitacaoPontoEncontro(caroneiro, motorista, idCarona, idTalk);
-		
-		controller.addResponsesPendentes(motorista, response);
-		controller.addRequisicoesPendentes(caroneiro, request);
-		
-		return idTalk;
+
+		return controladorPontosEncontro.sugerirPontoEncontro(idSessao, idCarona, pontos, motorista, caroneiro);
 		
 	}
 
-	private void addResponsesPendentes(Usuario user,
-			ResponseMeetingPoint response) {
-		user.addResponse(response);
-	}
-
-	private void addRequisicoesPendentes(Usuario user, RequestMeetingPoint request){
-		user.addRequest(request);
+	public void respondeSolicitacaoMeetingPoint(int idSessao, int idCarona,
+			int idSugestao, String pontos) {
+		
+		SolicitacaoPontoEncontro solicitacao = controladorPontosEncontro.getSolicitacao(idSugestao);
+		Usuario motorista = solicitacao.getMotorista();
+		Usuario caroneiro = solicitacao.getCaroneiro();
+	
 	}
 
 }
