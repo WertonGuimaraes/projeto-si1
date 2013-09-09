@@ -15,7 +15,7 @@
 	<property name="sysLibs" value="lib" />
 	<property name="classTeste" value="easyaccept" />
 	<property name="webContent" value="WebContent" />
-	<property name="CATALINA_HOME" value="/opt/tomcat" /> <!-- Defina o local da pasta do Tomcat. -->
+	<property name="CATALINA_HOME" value="/home/tiaraju/tomcat" /> <!-- Defina o local da pasta do Tomcat. -->
 	<path id="libs">
 		<fileset dir="lib">
 			<include name="*.jar" />

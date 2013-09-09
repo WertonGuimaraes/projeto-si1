@@ -213,6 +213,13 @@ public class Usuario {
 	public void addRequest(RequestMeetingPoint request) {
 		this.requisicoesPontosPendentes.add(request);
 	}
+	/**
+	 * this method add a requested carona
+	 * @param carona
+	 */
+	public void addRequest(int id,CaronaSolicitada carona){
+		this.getRequests().put(id, carona);
+	}
 
 	public ResponseMeetingPoint getResponsePoint(int idSugestao) {
 		for(ResponseMeetingPoint response: this.responsesPontosPendentes){

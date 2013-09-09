@@ -21,6 +21,10 @@ public class CaronaSolicitada {
 	public Carona getCarona() {
 		return carona;
 	}
+	
+	public void addRequest(int id){
+		this.motorista.addRequest(id,this);
+	}
 
 	public void setCarona(Carona carona) {
 		this.carona = carona;

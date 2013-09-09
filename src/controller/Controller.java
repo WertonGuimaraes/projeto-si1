@@ -132,9 +132,8 @@ public class Controller {
 	}
 
 	public int adicionaRequest(CaronaSolicitada carona, int id) {
-		carona.getMotorista().getRequests().put(id,carona);
+		carona.addRequest(id);
 		return id;
-		//TODO ajeitar isso
 	}
 
 	public CaronaSolicitada buscaCaronaSolicitada(int idCaronaSolicitada){
@@ -158,12 +157,12 @@ public class Controller {
 	}
 	
 	/***
-	 * Faz a solicitacão de ponto de encontro para
+	 * Faz a solicitacï¿½o de ponto de encontro para
 	 * uma determinada carona.
-	 * @param idSessao Id da sessão do caroneiro interessado na solicitação
+	 * @param idSessao Id da sessï¿½o do caroneiro interessado na solicitaï¿½ï¿½o
 	 * @param idCarona Id da carona de interesse
 	 * @param pontos Pontos de encontro sugeridos
-	 * @return  um valor inteiro que é o identificador da solicitação de ponto de encontro
+	 * @return  um valor inteiro que ï¿½ o identificador da solicitaï¿½ï¿½o de ponto de encontro
 	 */
 	public int sugerirPontoEncontro(String idSessao, int idCarona, String pontos){
 		Usuario motorista = searchMotorista(idCarona);

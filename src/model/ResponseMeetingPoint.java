@@ -27,7 +27,7 @@ public class ResponseMeetingPoint{
 	
 	
 	/**
-	 * Método acessador para o idSugestao
+	 * Metodo acessador para o idSugestao
 	 * @return int
 	 */
 	public int getIdSugestao() {

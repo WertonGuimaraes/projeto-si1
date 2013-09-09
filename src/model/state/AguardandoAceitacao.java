@@ -32,7 +32,7 @@ public class AguardandoAceitacao implements StateChangeRequest {
 	
 	@Override
 	public String toString() {
-		return "Aguardando aprovação";
+		return "Aguardando aprovacao";
 	}
 
 	@Override

@@ -37,6 +37,7 @@ public class PerfilBean {
 					.searchSessionById(ID);
 			this.id = ID;
 			this.caronasDisponiveis = new ArrayList<Carona>();
+			this.reset();
 			localizaCaronasDisponiveis();
 		} else
 			throw new RuntimeException("Erro no id do perfil");

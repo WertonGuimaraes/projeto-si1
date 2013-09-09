@@ -17,12 +17,13 @@ public class SolicitacaoAceita implements StateChangeResponse {
 	@Override
 	public void aceitaSolicitacao(ResponseMeetingPoint responseMeetingPoint,
 			String pontos) {
-		throw new OperacaoInvalidaParaOEstadoException("Operação não permitida para esse estado");
+		throw new OperacaoInvalidaParaOEstadoException("Operacao nao permitida para esse estado");
 	}
 	
 	@Override
-	public String toString() {
-		return "Solicitação aprovada";
+	public String toString(
+			) {
+		return "Solicitacao aprovada";
 	}
 	
 	

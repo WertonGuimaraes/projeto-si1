@@ -37,7 +37,7 @@ public class AConfirmarSolicitacao implements StateChangeRequest {
 	@Override
 	public void motoristaAprovou(RequestMeetingPoint requestMeetingPoint,
 			String pontos) {
-		throw new OperacaoInvalidaParaOEstadoException("Operação não permitida para esse estado");
+		throw new OperacaoInvalidaParaOEstadoException("Operacao nao permitida para esse estado");
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ public class RequisicaoRecebida implements StateChangeResponse {
 	
 	@Override
 	public String toString(){
-		return "Solicitação recebida";
+		return "Solicitacao recebida";
 	}
 
 	@Override

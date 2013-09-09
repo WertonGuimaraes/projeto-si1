@@ -28,14 +28,14 @@ public class MeetingPointController {
 	}
 	
 	/***
-	 * Faz a solicitacão de ponto de encontro para
+	 * Faz a solicitacÃ£o de ponto de encontro para
 	 * uma determinada carona.
-	 * @param idSessao Id da sessão do caroneiro interessado na solicitação
+	 * @param idSessao Id da sessao do caroneiro interessado na solicitacao
 	 * @param idCarona Id da carona de interesse
 	 * @param pontos Pontos de encontro sugeridos
 	 * @param motorista Objeto Usuario do motorista dono da carona
-	 * @param caroneiro Objeto Usuario do caroneiro que fez a solicitação de ponto de encontro
-	 * @return  um valor inteiro que é o identificador da solicitação de ponto de encontro
+	 * @param caroneiro Objeto Usuario do caroneiro que fez a solicitacao de ponto de encontro
+	 * @return  um valor inteiro que e o identificador da solicitacao de ponto de encontro
 	 */
 	public int sugerirPontoEncontro(String idSessao, int idCarona, String pontos, Usuario motorista, Usuario caroneiro){
 		RequestMeetingPoint request = new RequestMeetingPoint(idCarona, idSessao, pontos);
@@ -76,7 +76,7 @@ public class MeetingPointController {
 			if(solicitacao.getIdSugestao() == idSugestao) return solicitacao;
 		}
 		
-		throw new RuntimeException("Não existe nenhuma solicitacao com esse id de sugestão");
+		throw new RuntimeException("Nao existe nenhuma solicitacao com esse id de sugestao");
 	}
 
 
