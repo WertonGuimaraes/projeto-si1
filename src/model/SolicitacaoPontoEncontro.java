@@ -1,5 +1,10 @@
 package model;
 
+/***
+ * Classe responsável por criar uma solicitaçao de ponto de encontro.
+ * @author Jessika
+ *
+ */
 public class SolicitacaoPontoEncontro {
 	private Usuario caroneiro;
 	private Usuario motorista;

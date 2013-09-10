@@ -149,9 +149,10 @@ public class MyEasyAcceptFacade {
 				.searchSessionById(idSessao);
 		int idCar = Integer.parseInt(idCarona);
 		Carona c = Controller.getInstance().buscaCarona(idCar);
-		int idSolicitacao = usr.solicitaVaga(c);
+		int idSolicitacao = usr.solicitaVaga(c, ponto);
 		return idSolicitacao;
 	}
+	 
 
 	// US5
 
@@ -182,6 +183,9 @@ public class MyEasyAcceptFacade {
 			return carona.getMotorista().getNome();
 		if (atributo.equals("Dono da solicitacao"))
 			return carona.getCaroneiro().getNome();
+		if(atributo.equals("Ponto de Encontro")){
+			return carona.getPontoEncontro();
+			}
 
 		throw new RuntimeException("Atributo inexistente");
 	}

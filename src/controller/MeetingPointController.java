@@ -38,6 +38,7 @@ public class MeetingPointController {
 	 * @return  um valor inteiro que e o identificador da solicitacao de ponto de encontro
 	 */
 	public int sugerirPontoEncontro(String idSessao, int idCarona, String pontos, Usuario motorista, Usuario caroneiro){
+		if(pontos.equals("")) throw new RuntimeException("Ponto Inválido");
 		RequestMeetingPoint request = new RequestMeetingPoint(idCarona, idSessao, pontos);
 		ResponseMeetingPoint response = new ResponseMeetingPoint(idCarona, idSessao, pontos);
 
@@ -58,6 +59,8 @@ public class MeetingPointController {
 
 	public void respondeSolicitacaoMeetingPoint(int idSessao, int idCarona,
 			int idSugestao, String pontos) {
+		if(pontos.equals("")) throw new RuntimeException("Ponto Inválido");
+		
 		SolicitacaoPontoEncontro solicitacao = getSolicitacao(idSugestao);
 				
 		Usuario caroneiro = solicitacao.getCaroneiro();

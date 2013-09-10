@@ -136,6 +136,7 @@ public class Controller {
 		return id;
 	}
 
+	
 	public CaronaSolicitada buscaCaronaSolicitada(int idCaronaSolicitada){
 		for (Usuario usr : usuarios) {
 			for (int idCaronaExistente : usr.getRequests().keySet()) {
@@ -146,7 +147,11 @@ public class Controller {
 	}
 
 
-
+	/**
+	 * Método que retorna o motorista dono da carona
+	 * @param idCarona identificador único da carona 
+	 * @return Usuario motorista
+	 */
 	public Usuario searchMotorista(int idCarona){
 		for (Usuario usr : usuarios) {
 			for (int idCaronaExistente : usr.getCaronas().keySet()) {
@@ -157,12 +162,12 @@ public class Controller {
 	}
 	
 	/***
-	 * Faz a solicitac�o de ponto de encontro para
+	 * Faz a solicitação de ponto de encontro para
 	 * uma determinada carona.
-	 * @param idSessao Id da sess�o do caroneiro interessado na solicita��o
+	 * @param idSessao Id da sessão do caroneiro interessado na solicitação
 	 * @param idCarona Id da carona de interesse
 	 * @param pontos Pontos de encontro sugeridos
-	 * @return  um valor inteiro que � o identificador da solicita��o de ponto de encontro
+	 * @return  um valor inteiro que é o identificador da solicitação de ponto de encontro
 	 */
 	public int sugerirPontoEncontro(String idSessao, int idCarona, String pontos){
 		Usuario motorista = searchMotorista(idCarona);
@@ -172,6 +177,18 @@ public class Controller {
 		
 	}
 
+	/***
+	 * Permite a um motorista resposder a uma sugestão de 
+	 * ponto de encontro feita a uma carona oferecida por
+	 * ele.
+	 * @param idSessao id da sessão do motorista
+	 * @param idCarona id da carona a qual o motorista vai responder 
+	 * a sugestão de ponto de encontro
+	 * @param idSugestao identificador da sugestão de ponto de encontro
+	 * ao qual o motorista quer responder
+	 * @param pontos pontos que o motorista pode sugerir para ser o de
+	 * encontro
+	 */
 	public void respondeSolicitacaoMeetingPoint(int idSessao, int idCarona,
 			int idSugestao, String pontos) {
 		

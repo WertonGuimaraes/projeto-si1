@@ -9,6 +9,7 @@ public class CaronaSolicitada {
 	private int id;
 	private String origem;
 	private String destino;
+	private String pontoEncontro;
 	
 	public CaronaSolicitada(Carona carona, Usuario caroneiro){
 		this.carona=carona;
@@ -16,6 +17,7 @@ public class CaronaSolicitada {
 		this.motorista=carona.getMotorista();
 		this.origem=carona.getOrigem();
 		this.destino=carona.getDestino();
+		this.pontoEncontro="";
 	}
 
 	public Carona getCarona() {
@@ -68,6 +70,14 @@ public class CaronaSolicitada {
 
 	public void setDestino(String destino) {
 		this.destino = destino;
+	}
+
+	public String getPontoEncontro() {
+		return pontoEncontro;
+	}
+
+	public void setPontoEncontro(String pontoEncontro) {
+		this.pontoEncontro = pontoEncontro;
 	}
 	
 	

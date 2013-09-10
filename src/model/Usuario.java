@@ -73,6 +73,15 @@ public class Usuario {
 		return id;
 	}
 
+	public int solicitaVaga(Carona carona, String pontoDeEncontro){
+		int id = Controller.getInstance().newRequestID();
+		CaronaSolicitada solicitacao = new CaronaSolicitada(carona, this);
+		solicitacao.setPontoEncontro(pontoDeEncontro);
+		solicitacao.setId(id);
+		Controller.getInstance().adicionaRequest(solicitacao,id);
+		return id;
+	}
+	
 	public void aceitaRequest(int id){
 		for(int i: this.getRequests().keySet()){
 			if(this.getRequests().get(i).getId() == id){
