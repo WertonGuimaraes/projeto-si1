@@ -152,6 +152,18 @@ public class MyEasyAcceptFacade {
 		int idSolicitacao = usr.solicitaVaga(c, ponto);
 		return idSolicitacao;
 	}
+	//desistirRequisicao idSessao=${sessaoBill} idCarona=${carona4ID} idSolicitacao=${solicitacao1ID}
+	
+	public void desistirRequisicao(String idSessao, String idCarona, String idSolicitacao){
+		if (idSessao == null || Util.isEmpty(idSessao))
+			throw new RuntimeException("Solicitação inexistente");
+		if (idSolicitacao == null || Util.isEmpty(idSolicitacao))
+			throw new RuntimeException("Solicitação inexistente");
+		
+		Controller.getInstance().desitirCarona(Integer.parseInt(idSessao), Integer.parseInt(idCarona), 
+				Integer.parseInt(idSolicitacao));
+		
+	}
 	 
 
 	// US5

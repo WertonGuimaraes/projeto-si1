@@ -103,8 +103,7 @@ public class ControllerTest {
 		
 		Assert.assertEquals(usr.getResponsePoint(idSugestao).getState().toString(), "Solicitacao aprovada");
 		Assert.assertEquals(usr2.getRequisicaoPoint(idSugestao).getState().toString(), "Motorista aprovou");
-		
-		
 	}
-
+	
+	
 }

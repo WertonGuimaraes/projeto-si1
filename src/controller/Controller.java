@@ -199,6 +199,24 @@ public class Controller {
 		controladorPontosEncontro.respondeSolicitacaoMeetingPoint(idSessao, idCarona, idSugestao, pontos);
 	
 	}
+	
+	
+	public void desitirCarona(int idSessao, int idCarona,
+			int idSugestao){
+		Usuario caroneiro = Controller.getInstance().getSessoes().searchSessionById(String.valueOf(idSessao));
+		for(int i: caroneiro.getRequests().keySet()){
+			if(caroneiro.getRequests().get(i).getId() == idSugestao){
+				Usuario motorista = caroneiro.getRequests().get(i).getMotorista();
+				caroneiro.getRequests().remove(i);
+				motorista.getRequests().remove(i);
+				return;
+			}
+		}
+
+		
+		
+	}
+
 
 }
 
