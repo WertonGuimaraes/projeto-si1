@@ -36,6 +36,7 @@ public class Controller {
 
 		if (controller == null) {
 			controller = new Controller();
+			//controller.add500Users();
 		}
 		return controller;
 	}
@@ -48,6 +49,18 @@ public class Controller {
 		this.controladorDeSessoes = SessionController.getInstance();
 		controladorPontosEncontro = MeetingPointController.getInstance();
 		this.controlMeetingPoints = new HashMap<Integer, TalkAboutMeetingPoint>();
+	}
+	
+	private void add500Users(){
+		String c;
+		for(int i = 0; i < 500; i++){
+			c = String.valueOf(i);
+			try {
+				Usuario user = new Usuario("user"+c, "senha"+c, "User"+c, "user"+c+"@carona.com", "Rua das flores");
+				controller.usuarios.add(user);
+			} catch (Exception e) {}
+			
+		}
 	}
 
 	public void criaConta(String login, String senha, String nome, String email, String endereco) throws Exception{
