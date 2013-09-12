@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+<<<<<<< HEAD
+	Feb 6, 2013 2:17:54 PM Werton Guimaraes - SI 1 - 2013.1 ====================================================================== -->
+<project name="Carona Book" default="" basedir=".">
+
+	<!-- ================================= propriedades do projeto ================================= -->
+	<property name="sysName" value="projeto-si1" /> <!-- Defina o nome do sistema sem espacos. -->
+	<property name="warFile" value="dist/${sysName}.war" />
+	<property name="src" value="/${basedir}/src" />
+	<property name="build" value="bin" />
+	<property name="dist" value="dist" />
+	<property name="doc" value="doc" />
+	<property name="webLibs" value="WebContent/WEB-INF/lib" />
+	<property name="webXML" value="WebContent/WEB-INF/web.xml" />
+	<property name="sysLibs" value="lib" />
+	<property name="classTeste" value="easyaccept" />
+=======
+     Feb 6, 2013 2:17:54 PM                                                        
+             
+     Jessika Renally - SI 1 - 2013.1    
+                                                
+     ====================================================================== -->
+<project name="lab4JessikaRenally" default="" basedir=".">
+	
+	<!-- ================================= 
+	          propriedades do projeto              
+	         ================================= -->
+	<property name="sysName" value="projeto-si1"/> 
+	<property name="warFile" value="dist/${sysName}.war"/>
+	<property name="src" value="\${basedir}/src"/>
+	<property name="build" value="bin"/>
+	<property name="dist" value="dist"/>
+	<property name="doc" value="doc"/>
+	<property name="webLibs" value="WebContent/WEB-INF/lib"/>
+	<property name="webXML" value="WebContent/WEB-INF/web.xml"/>
+	<property name="sysLibs" value="lib"/>
+	<property name="classTeste" value="easyaccept"/>
+>>>>>>> 5672f7f5d8b06ffc6cc89d6705f7b563b8c9736a
+	<property name="webContent" value="WebContent" />
+	<property name="CATALINA_HOME" value="C:\tomcat" /> 
+
+<<<<<<< HEAD
+	<!-- - - - - - - - - - - - - - - - - - target: init - - - - - - - - - - 
+		- - - - - - - -->
+	<target name="init">
+		<echo>Criando diretorio de build e dist.</echo>
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+		<mkdir dir="${doc}" />
+	</target>
+
+	<!-- ================================= target: compila ================================= -->
+=======
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="init">
+    	<echo>Criando diretorio de build e dist.</echo>
+    	<mkdir dir="${build}"/>
+    	<mkdir dir="${dist}"/>
+    	<mkdir dir="${doc}"/>
+    </target>
+	
+	<!-- ================================= 
+          target: compila              
+         ================================= -->
+>>>>>>> 5672f7f5d8b06ffc6cc89d6705f7b563b8c9736a
+	<path id="compile.classpath">
+		<fileset dir="${webLibs}">
+    		<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${sysLibs}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>	
+			
+    <target name="compila" depends="init" description="Compila o projeto.">
+        <echo>Compilando o projeto.</echo>
+    	<javac srcdir="src" destdir="${build}" debug="true">
+    		<classpath refid="compile.classpath" />
+    	</javac>
+		<echo>Processo de compilacao concluido com sucesso.</echo>
+<<<<<<< HEAD
+	</target>
+
+	<!-- ================================= target: war ================================= -->
+	<target name="war" depends="compila" description="Criar war do projeto.">
+		<echo>Criando War do projeto.</echo>
+		<war destfile="${warFile}" webxml="${webXML}">
+			<classes dir="${build}" />
+			<fileset dir="${webContent}" />
+			<lib dir="${webLibs}" />
+		</war>
+	</target>
+
+	<!-- ================================= target: limpa ================================= -->
+	<target name="limpa">
+		<echo>Limpando........</echo>
+		<delete dir="${dist}" />
+		<delete dir="${build}" />
+		<delete dir="${doc}" />
+		<delete dir="${CATALINA_HOME}/webapps">
+			<filename name="*" />
+		</delete>
+		<delete dir="${CATALINA_HOME}/webapps/${sysName}" />
+		<delete file="${sysName}.jar" />
+=======
+    </target>
+	
+	<!-- ================================= 
+          target: war              
+         ================================= -->
+    <target name="war" depends="compila" description="Criar war do projeto.">
+    	<echo>Criando War do projeto.</echo>
+        <war destfile="${warFile}" webxml="${webXML}">
+	    	<classes dir="${build}" />
+        	<fileset dir="${webContent}"/>
+        	<lib dir="${webLibs}"/>
+	    </war>
+    </target>
+
+	<!-- ================================= 
+	          target: limpa              
+	     ================================= -->
+    <target name="limpa">
+        <echo>Limpando........</echo>
+    	<delete dir="${dist}"/>
+    	<delete dir="${build}"/>
+    	<delete dir="${doc}"/>
+    	<delete dir="${CATALINA_HOME}\webapps">
+    		<filename name="*"/>
+    	</delete>
+    	<delete dir="${CATALINA_HOME}\webapps\${sysName}"/>
+    	<delete file="${sysName}.jar"/>
+>>>>>>> 5672f7f5d8b06ffc6cc89d6705f7b563b8c9736a
+		<delete includeemptydirs="true">
+			<fileset dir="${basedir}" >
+			    <include name="**/*.orig"/>
+			</fileset>
+		</delete>
+<<<<<<< HEAD
+		<echo>Processo de Limpeza concluido com sucesso.</echo>
+	</target>
+
+	<!-- ================================= target: deploy ================================= -->
+=======
+    	<echo>Processo de Limpeza concluido com sucesso.</echo>
+    </target>
+	
+	<!-- ================================= 
+	          target: deploy              
+	     ================================= -->
+>>>>>>> 5672f7f5d8b06ffc6cc89d6705f7b563b8c9736a
+	<target name="deploy" depends="war">
+		<copy todir="${CATALINA_HOME}\webapps" file="dist/${sysName}.war"/>
+	</target>
+<<<<<<< HEAD
+
+	<!-- ================================= target: start ================================= -->
+	<target name="start" depends="startWindows, startLinux, stop,limpa,deploy">
+		<echo message="START" />
+	</target>
+
+
+	<!-- ================================= target: stop ================================= -->
+	<target name="stop" depends="stopWindows, stopLinux">
+		<echo message="STOP" />
+	</target>
+
+
+	<!-- ================================= target: testa ================================= -->
+	<target name="testa" depends="compila">
+		<junit printsummary="yes" haltonfailure="no">
+			<formatter type="xml" />
+			<classpath>
+				<fileset dir="${sysLibs}" includes="*.jar" />
+				<pathelement location="${build}" />
+				<pathelement location="${test}" />
+			</classpath>
+			<batchtest fork="yes" todir="${lib.dir}">
+				<fileset dir="${build}" includes="**/*Test*.class" />
+			</batchtest>
+		</junit>
+	</target>
+
+	<!-- ==================================== AUXILIARES ==================================== -->
+
+	<target name="startWindows" if="isWindows">
+		<exec executable="cmd">
+			<arg value="/c" />
+			<arg value="${CATALINA_HOME}\bin\startup.bat" />
+		</exec>
+	</target>
+
+	<target name="startLinux" if="isUnix">
+		<exec dir="${CATALINA_HOME}/bin" executable="./startup.sh">
+			<arg line="-C ${CATALINA_HOME}/bin/startup.sh">
+			</arg>
+		</exec>
+	</target>
+
+	<target name="stopWindows" if="isWindows">
+		<exec executable="cmd">
+			<arg value="/c" />
+			<arg value="${CATALINA_HOME}\bin\shutdown.bat" />
+		</exec>
+	</target>
+
+	<target name="stopLinux" if="isUnix">
+		<exec dir="${CATALINA_HOME}/bin" executable="./shutdown.sh">
+			<arg line="-C ${CATALINA_HOME}/bin/shutdown.sh">
+			</arg>
+		</exec>
+	</target>
+=======
+	
+	<!-- ================================= 
+	          target: start         
+	     ================================= -->     
+	<target name="start" depends="stop,limpa,deploy">
+		<exec executable="cmd"> 
+			<arg value="/c" /> 
+			<arg value="${CATALINA_HOME}\bin\startup.bat" />
+		</exec>
+	</target>
+		
+	<!-- ================================= 
+	          target: stop      
+	     ================================= -->
+	<target name="stop">
+		<exec executable="cmd"> 
+			<arg value="/c" /> 
+			<arg value="${CATALINA_HOME}\bin\shutdown.bat" />
+		</exec>
+	</target>
+	
+	<!-- ================================= 
+	          target: testa      
+	     ================================= -->
+	<target name="testa" depends="compila" >
+	    <junit printsummary="yes" haltonfailure="no">
+	    	<formatter type="xml"/>
+	      <classpath>
+	      	<fileset dir="${sysLibs}" includes="*.jar" />
+	        <pathelement location="${build}"/>
+	      	<pathelement location="${test}"/>
+	      </classpath>
+	      <batchtest fork="yes" todir="${lib.dir}">
+	      	<fileset dir="${build}" includes="**/*Test*.class"/>
+	      </batchtest>
+	    </junit>
+	 </target>
+>>>>>>> 5672f7f5d8b06ffc6cc89d6705f7b563b8c9736a
+</project>

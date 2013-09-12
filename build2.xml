@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ====================================================================== 
-	Feb 6, 2013 2:17:54 PM Werton Guimaraes - SI 1 - 2013.1 ====================================================================== -->
+     Feb 6, 2013 2:17:54 PM  Werton Guimaraes - SI 1 - 2013.1 ====================================================================== -->
 <project name="Carona Book" default="" basedir=".">
 
-	<!-- ================================= propriedades do projeto ================================= -->
+	<!-- ================================= propriedades do projeto    ================================= -->
 	<property name="sysName" value="projeto-si1" /> <!-- Defina o nome do sistema sem espacos. -->
 	<property name="warFile" value="dist/${sysName}.war" />
 	<property name="src" value="/${basedir}/src" />
@@ -29,8 +29,9 @@
 	</condition>
 
 
-	<!-- - - - - - - - - - - - - - - - - - target: init - - - - - - - - - - 
-		- - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
 	<target name="init">
 		<echo>Criando diretorio de build e dist.</echo>
 		<mkdir dir="${build}" />
@@ -38,7 +39,9 @@
 		<mkdir dir="${doc}" />
 	</target>
 
-	<!-- ================================= target: compila ================================= -->
+	<!-- ================================= 
+          target: compila              
+         ================================= -->
 	<path id="compile.classpath">
 		<fileset dir="${webLibs}">
 			<include name="*.jar" />
@@ -56,7 +59,9 @@
 		<echo>Processo de compilacao concluido com sucesso.</echo>
 	</target>
 
-	<!-- ================================= target: war ================================= -->
+	<!-- ================================= 
+          target: war              
+         ================================= -->
 	<target name="war" depends="compila" description="Criar war do projeto.">
 		<echo>Criando War do projeto.</echo>
 		<war destfile="${warFile}" webxml="${webXML}">
@@ -66,7 +71,9 @@
 		</war>
 	</target>
 
-	<!-- ================================= target: limpa ================================= -->
+	<!-- ================================= 
+	          target: limpa              
+	     ================================= -->
 	<target name="limpa">
 		<echo>Limpando........</echo>
 		<delete dir="${dist}" />
@@ -85,24 +92,32 @@
 		<echo>Processo de Limpeza concluido com sucesso.</echo>
 	</target>
 
-	<!-- ================================= target: deploy ================================= -->
+	<!-- ================================= 
+	          target: deploy              
+	     ================================= -->
 	<target name="deploy" depends="war">
 		<copy todir="${CATALINA_HOME}/webapps" file="dist/${sysName}.war" />
 	</target>
 
-	<!-- ================================= target: start ================================= -->
+	<!-- ================================= 
+	          target: start         
+	     ================================= -->
 	<target name="start" depends="startWindows, startLinux, stop,limpa,deploy">
 		<echo message="START" />
 	</target>
 
 
-	<!-- ================================= target: stop ================================= -->
+	<!-- ================================= 
+	          target: stop      
+	     ================================= -->
 	<target name="stop" depends="stopWindows, stopLinux">
 		<echo message="STOP" />
 	</target>
 
 
-	<!-- ================================= target: testa ================================= -->
+	<!-- ================================= 
+	          target: testa      
+	     ================================= -->
 	<target name="testa" depends="compila">
 		<junit printsummary="yes" haltonfailure="no">
 			<formatter type="xml" />
@@ -117,7 +132,7 @@
 		</junit>
 	</target>
 
-	<!-- ==================================== AUXILIARES ==================================== -->
+	<!-- ====================================
                      AUXILIARES
 	     ==================================== -->
 

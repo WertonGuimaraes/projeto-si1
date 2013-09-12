@@ -152,7 +152,7 @@ public class MyEasyAcceptFacade {
 		int idSolicitacao = usr.solicitaVaga(c, ponto);
 		return idSolicitacao;
 	}
-	//desistirRequisicao idSessao=${sessaoBill} idCarona=${carona4ID} idSolicitacao=${solicitacao1ID}
+
 	
 	public void desistirRequisicao(String idSessao, String idCarona, String idSolicitacao){
 		if (idSessao == null || Util.isEmpty(idSessao))
