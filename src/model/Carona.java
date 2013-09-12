@@ -16,6 +16,7 @@ public class Carona {
 	private Set<Usuario> caroneiros;
 	private Set<String> pontosDeEncontro;
 	private Set<Request> requisicoes;
+	private int id;
 
 	public Carona(String origem, String destino, String data,String horaSaida, int vagas) throws Exception{
 		if(origem == null || Util.isEmpty(origem)) throw new RuntimeException("Origem inválida");
@@ -105,12 +106,19 @@ public class Carona {
 	public String getDate(){
 		return dateTime.toString("dd/MM/yyyy");
 	}
-
-
+	
+	/***
+	 * Método acessador para a hora
+	 * @return hora
+	 */
 	public String getHour() {
 		return dateTime.toString("HH:mm");
 	}
 
+	/**
+	 * Método modificador da data
+	 * @param data
+	 */
 	public void setDate(String data) {
 		this.year = Integer.parseInt(data.split("/")[2]);
 		this.month = Integer.parseInt(data.split("/")[1]);
@@ -157,20 +165,52 @@ public class Carona {
 		this.motorista = motorista;
 	}
 
+	/***
+	 * Metodo acessaro para os pontos de encontro da carona
+	 * @return set de pontos de encontro
+	 */
 	public Set<String> getPontosDeEncontro() {
 		return pontosDeEncontro;
 	}
-
+	
+	/**
+	 * Método modificador para os pontos de encontro da carona
+	 * @param pontosDeEncontro
+	 */
 	public void setPontosDeEncontro(Set<String> pontosDeEncontro) {
 		this.pontosDeEncontro = pontosDeEncontro;
 	}
 
+	/***
+	 * Método acessaro para as requisicoes da carona.
+	 * @return set de requisições para essa carona
+	 */
 	public Set<Request> getRequisicoes() {
 		return requisicoes;
 	}
 
+	/***
+	 * Metodo modificador para as requisições da carona.
+	 * @param requisicoes
+	 */
 	public void setRequisicoes(Set<Request> requisicoes) {
 		this.requisicoes = requisicoes;
+	}
+
+	/***
+	 * Metodo modificador para o id da carona
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * Método acessador para o id da carona
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
 
 

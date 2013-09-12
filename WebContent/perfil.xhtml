@@ -11,13 +11,14 @@
 </h:head>
 
 <h:body>
-			<div><h:form id="formLogoff" style="height:20px">
-				<p align="right" style="height:20px">
-					<p:commandLink value="Logout" action="#{perfilBean.logoffButton}"
-						style="float:right !important;margin:'0px 5px 98754px 0px';
-						font-color: #000000" />
-				</p>
-			</h:form></div>
+	<div><h:form id="formLogoff" style="height:20px">
+		<p align="right" style="height:20px">
+			<p:commandLink value="Logout" action="#{perfilBean.logoffButton}"
+				style="float:right !important;margin:'0px 5px 98754px 0px';
+				font-color: #000000" />
+		</p>
+	</h:form></div>
+	
 	<div align="center">
 	<p:layout style="min-width:1020px;max-width:1020px;min-height:600px"> <!--fullPage="true" style="width:100%;height:100%"-->
 
@@ -31,9 +32,21 @@
 				width="200" height="150" style="border:"/>
 
 			<br />
+			
+			<h:form enctype="multipart/form-data">        
+	            <p:fileUpload fileUploadListener="#{perfilBean.upload}"    
+	                    mode="advanced"     
+	                    update="messages"    
+	                    sizeLimit="5000000"     
+	                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+	                    style="font-size: 12px;	 height: 30px" />    
+	  
+	            <p:growl id="messages" showDetail="true"/>    
+        	</h:form> 
 
 			<p:commandButton id="modalDialogButton" value="Cadastrar carona"
-				onclick="dlg2.show()" type="button" />
+				onclick="dlg2.show()" type="button" style="font-size: 12px;
+				 height: 30px" />
 
 		</p:layoutUnit>
 
@@ -45,12 +58,12 @@
 
 			<h:form>
 				<p:panelGrid columns="5"  style="border-style: solid; border-color: #FFFFFF;width:510px; height:30px">
-					<p:outputLabel value="Origem" style="width:58px; height: 30px"/>
+					<p:outputLabel value="Origem" style="font-size:12px; width:58px; height: 30px"/>
 					<p:inputText id="inOrigem" value="#{perfilBean.origem}" 
 						style="width:150px;font-size: 12px; height: 20px; 
 						font-color: #36648B" label="Origem" />
 
-					<p:outputLabel value="Destino" style="width:65px; height: 20px" />
+					<p:outputLabel value="Destino" style="font-size:12px; width:65px; height: 20px" />
 					<p:inputText id="inDestino" value="#{perfilBean.destino}"
 						style="width:150px;font-size: 12px; height: 20px; 
 						font-color: #36648B" label="Destino" />
@@ -59,35 +72,76 @@
 						action="#{perfilBean.localizaCaronasDisponiveis}"
 						update="dtCaronasDisponiveis" style="width:120px;font-size:11px;height: 30px"/>
 				</p:panelGrid>
-
+			
 				<p:dataTable id="dtCaronasDisponiveis"
 					headerText="Caronas disponíveis" var="carona"
-					value="#{perfilBean.caronasDisponiveis}">
+					value="#{perfilBean.caronasDisponiveis}"
+					rowKey="#{carona.id}"  selection="#{perfilBean.selectedCarona}"
+					selectionMode="single" rows="2"
+					paginator="true">
+					
+					<f:facet name="header" style="height: 20px">  
+			            Caronas disponíveis  
+			        </f:facet>
 
-					<p:column headerText="Origem">
-						<h:outputText id="outOrigem" value="#{carona.origem}" />
+					<p:column headerText="Origem" style="font-size: 12px; height: 25px">
+						<h:outputText id="outOrigem" style="font-size: 12px; height: 20px"
+						value="#{carona.origem}" />
 					</p:column>
 
-					<p:column headerText="Destino">
-						<h:outputText id="outDestino" value="#{carona.destino}" />
+					<p:column headerText="Destino" style="font-size: 12px; height: 25px">
+						<h:outputText id="outDestino" style="font-size: 12px; height: 20px"
+						value="#{carona.destino}" />
 					</p:column>
 
-					<p:column headerText="Data">
-						<h:outputText id="outData" value="#{carona.date}" />
+					<p:column headerText="Data" style="font-size: 12px; height: 20px">
+						<h:outputText id="outData" style="font-size: 12px; height: 20px"
+						value="#{carona.date}" />
 					</p:column>
 
-					<p:column headerText="Hora">
-						<h:outputText id="outHora" value="#{carona.hour}" />
+					<p:column headerText="Hora" style="font-size: 12px; height: 20px">
+						<h:outputText id="outHora" style="font-size: 12px; height: 20px"
+						value="#{carona.hour}" />
 					</p:column>
 
-					<p:column headerText="Vagas">
-						<h:outputText id="outVagas" value="#{carona.vagas}" />
+					<p:column headerText="Vagas" style="font-size: 12px; height: 10px">
+						<h:outputText id="outVagas" style="font-size: 12px; height: 10px"
+						value="#{carona.vagas}" />
 					</p:column>
-
+					
+					<f:facet name="footer" style="height: 20px">
+						<p align="right">
+							<p:column  style="width:10px; height: 20px">  
+					            <p:commandButton id="selectButton" action="#{perfilBean.solicitarCarona}"
+					             value="Solicitar vaga" title="Solicite uma vaga"
+					             style="font-size: 12px; height: 20px"> </p:commandButton>  
+					        </p:column>  
+				        </p>
+					</f:facet>
+				
 				</p:dataTable>
+		
 			</h:form>
+			<br />
+			<div id="divCaronaSolicitada" align="left">
+				<h:form id="formCaronasSolicitadas" style="font-size: 12px">
+					<p:carousel id="carouselCaronasSolicitadas" value="#{perfilBean.caronasSolicitadas}" 
+					var="car" numVisible="1" headerText="Caronas solicitadas">  
+				        
+				        <h:panelGrid columns="1" style="width:100%" cellpadding="5">  
+				            <h:outputText value="Origem: #{car.origem}" style="font-size: 12px"/>  
+				            <h:outputText value="Destino: #{car.destino}" style=" font-size: 12px"/>  
+				            <h:outputText value="Data: #{car.data}" style="font-size: 12px"/>  
+				            <h:outputText value="Hora: #{car.hora}" style="font-size: 12px"/>  
+				        </h:panelGrid>  
+				  
+				    </p:carousel>
+				</h:form>				
+			</div>
+			
+			
+				
 		</p:layoutUnit>
-
 	</p:layout>
 
 	<p:dialog id="cadastrarCaronaDialog" header="Cadastrar Carona"

@@ -79,8 +79,22 @@ public class CaronaSolicitada {
 	public void setPontoEncontro(String pontoEncontro) {
 		this.pontoEncontro = pontoEncontro;
 	}
+		
+	public void setData(String data){
+		this.carona.setDate(data);
+	}
 	
+	public String getData(){
+		return this.carona.getDate();
+	}
 	
+	public void setHora(String hora){
+		this.carona.setHour(hora);
+	}
+	
+	public String getHora(){
+		return this.carona.getHour();
+	}
 	
 	
 	
