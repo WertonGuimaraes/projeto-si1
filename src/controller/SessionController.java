@@ -3,8 +3,6 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.management.RuntimeErrorException;
-
 import model.LoginInvalidoException;
 import model.Usuario;
 import model.Util;

@@ -17,7 +17,7 @@ import controller.SessionController;
 @ViewScoped
 @ManagedBean(name = "perfilBean")
 public class PerfilBean {
-	
+
 	public static String ID;
 	private String id;
 	private String origem;
@@ -29,6 +29,8 @@ public class PerfilBean {
 	private Carona carona;
 	int size;
 	private Usuario usuario;
+	private String LoginDoUsuarioProcurado;
+
 	private List<Carona> caronasDisponiveis;
 
 	public PerfilBean() {
@@ -42,14 +44,13 @@ public class PerfilBean {
 		} else
 			throw new RuntimeException("Erro no id do perfil");
 	}
-	
+
 	public String logoffButton() {
 		SessionController.getInstance().desconectarSessao(0); // FIXME o certo e
 		// passar id
 		return "index.xhtml";
 	}
-	
-	
+
 	public void setSize(int size) {
 		this.size = size;
 	}
@@ -58,6 +59,20 @@ public class PerfilBean {
 		return usuario;
 	}
 
+	public String getLoginDoUsuarioProcurado() {
+		return LoginDoUsuarioProcurado;
+	}
+
+	public void localizaPerfil() {
+		Usuario usuarioDoPerfil = Controller.getInstance()
+				.searchUsuariobyLogin(LoginDoUsuarioProcurado);
+		
+
+	}
+
+	public void setLoginDoUsuarioProcurado(String login) {
+		this.LoginDoUsuarioProcurado = login;
+	}
 
 	public String redirectPerfil() {
 		return "perfil.xhtml";
@@ -170,7 +185,7 @@ public class PerfilBean {
 	public void setPontoDeEncontro(String pontoDeEncontro) {
 		this.pontoDeEncontro = pontoDeEncontro;
 	}
-	
+
 	public Carona getCarona() {
 		return carona;
 	}

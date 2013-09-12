@@ -7,13 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.xml.ws.Response;
-
 import model.Carona;
 import model.CaronaSolicitada;
 import model.LoginInvalidoException;
-import model.RequestMeetingPoint;
-import model.ResponseMeetingPoint;
 import model.SolicitacaoPontoEncontro;
 import model.TalkAboutMeetingPoint;
 import model.Usuario;
@@ -24,6 +20,7 @@ public class Controller {
 	int contadorCaronas;
 	int contadorRequisicao;
 	int contadorTalks;
+	int contadorDePefisVisualizados;
 	private Set<Usuario> usuarios;
 	private SessionController controladorDeSessoes;
 	private MeetingPointController controladorPontosEncontro;
@@ -45,6 +42,7 @@ public class Controller {
 		this.contadorCaronas = 0;
 		this.contadorRequisicao = 0;
 		this.contadorTalks = 0;
+		this.contadorDePefisVisualizados=0;
 		this.usuarios = new HashSet<Usuario>();
 		this.controladorDeSessoes = SessionController.getInstance();
 		controladorPontosEncontro = MeetingPointController.getInstance();
@@ -143,6 +141,10 @@ public class Controller {
 	public int newRequestID(){
 		return ++contadorRequisicao;
 	}
+	
+	public int newPerfilVisualizadoID(){
+		return ++contadorDePefisVisualizados;
+	}
 
 	public int adicionaRequest(CaronaSolicitada carona, int id) {
 		carona.addRequest(id);
@@ -229,6 +231,7 @@ public class Controller {
 		
 		
 	}
+
 
 
 }
