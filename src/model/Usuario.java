@@ -58,6 +58,7 @@ public class Usuario {
 		Carona novaCarona = new Carona(origem, destino, data, hora, intVagas);
 		novaCarona.setMotorista(this);
 		int id = Controller.getInstance().newCaronaId();
+		novaCarona.setId(id);
 		this.getCaronas().put(id, novaCarona);
 
 		return id;
@@ -66,6 +67,8 @@ public class Usuario {
 
 	
 	public int solicitaVaga(Carona carona){
+		//if(carona.getMotorista().login.equals(this.login)) throw new RuntimeException("Você não pode solicitar vaga em sua própria carona!!");
+		
 		int id = Controller.getInstance().newRequestID();
 		CaronaSolicitada solicitacao = new CaronaSolicitada(carona, this);
 		solicitacao.setId(id);
