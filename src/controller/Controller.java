@@ -9,6 +9,7 @@ import java.util.Set;
 
 import model.Carona;
 import model.CaronaSolicitada;
+import model.HistoricoCarona;
 import model.LoginInvalidoException;
 import model.Perfil;
 import model.SolicitacaoPontoEncontro;
@@ -258,8 +259,29 @@ public class Controller {
 		
 		
 	}
+	
+	/**
+	 * Permite a um motorista fazer um review da carona informando o comportamento do
+	 * caroneiro: faltou, não faltou, não funcionou.
+	 * @param idSessao id do motorista
+	 * @param idCarona id da carona
+	 * @param login login do caroneiro
+	 * @param string comentário sobre a carona
+	 */
+	public void reviewEmCarona(int idSessao, int idCarona, String login,
+			String review) {
+		Usuario motorista = controller.getSessoes().searchSessionById(String.valueOf(idSessao));
+		Usuario caroneiro = controller.searchUsuariobyLogin(login);
+		Carona carona = controller.buscaCarona(idCarona);
 
-
+		if(carona.hasCaroneiro(caroneiro)){
+			//carona.addReview(caroneiro, review);
+			caroneiro.addReview(carona, review);
+		}else throw new RuntimeException("Usuário não possui vaga na carona.");
+		
+		
+	}
+		
 
 }
 

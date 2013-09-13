@@ -263,15 +263,19 @@ public class MyEasyAcceptFacade {
 			else if(atributo.equals("email")) return perfil.getEmail();
 			else if(atributo.equals("historico de caronas")) return perfil.getHistoricoDeCaronas();
 			else if(atributo.equals("historico de vagas em caronas")) return perfil.getHistoricoDeVagasEmCaronas();
-			else if(atributo.equals("caronas seguras e tranquilas")) return perfil.getCaronasSegurasTranquilas();
-			else if(atributo.equals("caronas que não funcionaram")) return perfil.getCaronasNaoFuncionaram();
-			else if(atributo.equals("faltas em vagas de caronas")) return perfil.getFaltasEmCaronas();
-			else if(atributo.equals("presenças em vagas de caronas")) return perfil.getPresencaEmCaronas();
+			else if(atributo.equals("caronas seguras e tranquilas")) return String.valueOf(perfil.getCaronasSegurasTranquilas());
+			else if(atributo.equals("caronas que não funcionaram")) return String.valueOf(perfil.getCaronasNaoFuncionaram());
+			else if(atributo.equals("faltas em vagas de caronas")) return String.valueOf(perfil.getFaltasEmCaronas());
+			else if(atributo.equals("presenças em vagas de caronas")) return String.valueOf(perfil.getPresencaEmCaronas());
 
 
 		}
 		
 		throw new RuntimeException("login invalido");
+	}
+	
+	public void reviewVagaEmCarona(String idSessao, String idCarona, String loginCaroneiro, String review){
+		Controller.getInstance().reviewEmCarona(Integer.parseInt(idSessao), Integer.parseInt(idCarona), loginCaroneiro, review);
 	}
 
 }

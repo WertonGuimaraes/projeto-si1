@@ -213,5 +213,13 @@ public class Carona {
 		return id;
 	}
 
+	public boolean hasCaroneiro(Usuario caroneiro) {
+		for (Usuario usuario : this.caroneiros) {
+			if(usuario.equals(caroneiro)) return true;
+		}
+		
+		return false;
+	}
+
 
 }

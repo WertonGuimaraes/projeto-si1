@@ -49,28 +49,35 @@ public class Perfil {
 		return Util.easyAccListParser(list);
 	}
 
-	public String getCaronasSegurasTranquilas() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getCaronasSegurasTranquilas() {
+		return this.user.getReviewSeguras();
 	}
 
-	public String getCaronasNaoFuncionaram() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getCaronasNaoFuncionaram() {
+		return this.user.getReviewNaoFuncionou();
 	}
 
-	public String getFaltasEmCaronas() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getFaltasEmCaronas() {
+		return this.user.getReviewFaltou();
 	}
 
-	public String getPresencaEmCaronas() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getPresencaEmCaronas() {
+		return this.user.getReviewNaoFaltou();
 	}
 
-	public String getHistoricoDeVagasEmCaronas() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getHistoricoDeVagasEmCaronas() {		
+		int size = this.user.getHistoricos().size();
+		String resultado = "[";
+		System.out.println(size);
+		for(int i=0; i < size; i++){
+			if (i == size - 1) resultado += this.user.getHistoricos().get(i).getCarona().getId();
+			else{
+				resultado += this.user.getHistoricos().get(i).getCarona().getId() + ",";
+			}
+			System.out.println(resultado);
+		}
+		
+		resultado += "]";
+		return resultado;
 	}
 }

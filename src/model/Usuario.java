@@ -19,6 +19,8 @@ public class Usuario {
 	private Map<Integer,CaronaSolicitada> requests;
 	private List<ResponseMeetingPoint> responsesPontosPendentes;
 	private List<RequestMeetingPoint> requisicoesPontosPendentes;
+	private List<HistoricoCarona> historicos;
+	
 
 	public Map<Integer,CaronaSolicitada> getRequests() {
 		return requests;
@@ -45,6 +47,7 @@ public class Usuario {
 		this.caronas = new HashMap<Integer, Carona>();
 		this.responsesPontosPendentes =  new ArrayList<ResponseMeetingPoint>();
 		this.requisicoesPontosPendentes = new ArrayList<RequestMeetingPoint>();
+		this.historicos = new ArrayList<HistoricoCarona>();
 	}
 
 	public int adicionaCarona(String origem, String destino, String data, String hora, String vagas) throws Exception{
@@ -85,17 +88,31 @@ public class Usuario {
 		return id;
 	}
 	
+	/**
+	 * Aceita requisicao de carona
+	 * @param id da solicitacao de carona
+	 */
 	public void aceitaRequest(int id){
 		for(int i: this.getRequests().keySet()){
 			if(this.getRequests().get(i).getId() == id){
 				Usuario caroneiro = this.getRequests().get(i).getCaroneiro();
 				this.getRequests().get(i).getCarona().addCaroneiro(caroneiro);
+				caroneiro.addHistorico(this.getRequests().get(i).getCarona());
 				this.getRequests().remove(i);
 				return;
 			}
 		}
 
 		throw new RuntimeException("Solicitação inexistente");	
+	}
+
+	/**
+	 * Adiciona carona ao historico
+	 * @param carona
+	 */
+	public void addHistorico(Carona carona) {
+		HistoricoCarona historico = new HistoricoCarona(carona);
+		this.historicos.add(historico);
 	}
 
 	public void rejeitarRequest(int id){
@@ -233,6 +250,11 @@ public class Usuario {
 		this.getRequests().put(id, carona);
 	}
 
+	/**
+	 * Retorna a resposta ao ponto de encontro dado o id de uma sugestão
+	 * @param idSugestao
+	 * @return o ResponseMeetingPoint da sugestão de ponto de encontro
+	 */
 	public ResponseMeetingPoint getResponsePoint(int idSugestao) {
 		for(ResponseMeetingPoint response: this.responsesPontosPendentes){
 			if(response.getIdSugestao() == idSugestao) return response;
@@ -248,6 +270,93 @@ public class Usuario {
 		return null;
 	}
 
+	/**
+	 * Adiciona um review ao usuario
+	 * @param carona
+	 * @param review
+	 */
+	public void addReview(Carona carona, String review) {
+		HistoricoCarona historico = searchHistoricoByCarona(carona);
+		historico.setReview(review);
+	}
 
+	
+	private HistoricoCarona searchHistoricoByCarona(Carona carona) {
+		for (HistoricoCarona historico : this.historicos) {
+			if(historico.getCarona().equals(carona)) return historico;
+		}
+		return null;
+	}
 
+	/**
+	 * Retorna o numero de caronas que o usuario faltou
+	 * @return número de caronas que faltou
+	 */
+	public int getReviewFaltou(){
+		int contador = 0;
+		for (HistoricoCarona historico : this.historicos) {
+			if(historico.getReview().equals("faltou")) contador++;
+		}
+		
+		return contador;
+	}
+	
+
+	/**
+	 * Retorna o numero de caronas que o usuario compareceu
+	 * @return numero de caronas que compareceu
+	 */
+	public int getReviewNaoFaltou(){
+		int contador = 0;
+		for (HistoricoCarona historico : this.historicos) {
+			if(historico.getReview().equals("não faltou")) contador++;
+		}
+		
+		return contador;
+	}
+	
+	/**
+	 * Retorna o numero de caronas do usuario que não
+	 * funcionaram
+	 * @return numero de caronas que não funcionaram
+	 */
+	public int getReviewNaoFuncionou(){
+		int contador = 0;
+		for (HistoricoCarona historico : this.historicos) {
+			if(historico.getReview().equals("não funcionou")) contador++;
+		}
+		
+		return contador;
+	}
+
+	/**
+	 * Retorna o numero de caronas seguras e tranquilas
+	 * @return numero de caronas seguras
+	 */
+	public int getReviewSeguras(){
+		int contador = 0;
+		for (HistoricoCarona historico : this.historicos) {
+			if(historico.getReview().equals("segura")) contador++;
+		}
+		
+		return contador;
+	}
+	
+	/**
+	 * Método acessador para o numero de caronas que
+	 * o usuario participou
+	 * @return numero de caronas que compareceu
+	 */
+	public int getVagasEmCaronas() {
+		return getReviewNaoFaltou()+getReviewSeguras();
+	}
+
+	/**
+	 * @return the historicos
+	 */
+	public List<HistoricoCarona> getHistoricos() {
+		return historicos;
+	}
+	
+	
 }

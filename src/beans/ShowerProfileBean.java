@@ -28,6 +28,7 @@ public class ShowerProfileBean {
 		}	
 	}
 
+	
 	public Perfil getPerfil() {
 		return this.perfil;
 	}
