@@ -46,7 +46,6 @@ public class Perfil {
 		for (int i : getUser().getCaronas().keySet()) {
 			list.add(getUser().getCaronas().get(i));
 		}
-		System.out.println("ASUIDHASUIHDA"+list.size());
 		return Util.easyAccListParser(list);
 	}
 

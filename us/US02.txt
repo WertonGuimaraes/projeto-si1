@@ -70,12 +70,12 @@ expectError "Data inválida" cadastrarCarona idSessao=${sessaoMark} origem="Camp
 expectError "Data inválida" cadastrarCarona idSessao=${sessaoMark} origem="Campina Grande" destino="João Pessoa" data="25/12/2011" hora="16:00" vagas=3
 
 
-expectError "Hora inválida" cadastrarCarona idSessao=${sessaoMark} origem="Campina Grande" destino="João Pessoa" data="23/06/2013" hora= vagas=3
-expectError "Hora inválida" cadastrarCarona idSessao=${sessaoMark} origem="Patos" destino="João Pessoa" data="31/05/2013" hora="" vagas=2
-expectError "Hora inválida" cadastrarCarona idSessao=${sessaoMark} origem="Patos" destino="João Pessoa" data="31/05/2013" hora="seis" vagas=2
+expectError "Hora inválida" cadastrarCarona idSessao=${sessaoMark} origem="Campina Grande" destino="João Pessoa" data="23/06/2014" hora= vagas=3
+expectError "Hora inválida" cadastrarCarona idSessao=${sessaoMark} origem="Patos" destino="João Pessoa" data="31/05/2014" hora="" vagas=2
+expectError "Hora inválida" cadastrarCarona idSessao=${sessaoMark} origem="Patos" destino="João Pessoa" data="31/05/2014" hora="seis" vagas=2
 
-expectError "Vaga inválida" cadastrarCarona idSessao=${sessaoMark} origem="Campina Grande" destino="João Pessoa" data="23/06/2013" hora="16:00" vagas=
-expectError "Vaga inválida" cadastrarCarona idSessao=${sessaoMark} origem="Patos" destino="João Pessoa" data="31/05/2013" hora="08:00" vagas="duas"
+expectError "Vaga inválida" cadastrarCarona idSessao=${sessaoMark} origem="Campina Grande" destino="João Pessoa" data="23/06/2014" hora="16:00" vagas=
+expectError "Vaga inválida" cadastrarCarona idSessao=${sessaoMark} origem="Patos" destino="João Pessoa" data="31/05/2014" hora="08:00" vagas="duas"
 
 expectError "Identificador do carona é inválido" getAtributoCarona idCarona= atributo="origem"
 expectError "Identificador do carona é inválido" getAtributoCarona idCarona="" atributo="origem"
