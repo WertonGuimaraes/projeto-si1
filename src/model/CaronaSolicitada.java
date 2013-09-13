@@ -96,6 +96,19 @@ public class CaronaSolicitada {
 		return this.carona.getHour();
 	}
 	
+	/***
+	 * Metodo acessador para o nome do caroneiro
+	 * @return nome do caroneiro
+	 */
+	public String getNomeCaroneiro(){
+		return this.caroneiro.getNome();
+	}
 	
-	
+	/***
+	 * Metodo acessador para o nome do motorista
+	 * @return nome do motorista
+	 */
+	public String getNomeMotorista(){
+		return this.motorista.getNome();
+	}
 }

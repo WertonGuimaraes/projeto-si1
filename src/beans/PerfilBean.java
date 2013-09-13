@@ -42,6 +42,7 @@ public class PerfilBean {
 
 	private List<Carona> caronasDisponiveis;
 	private List<CaronaSolicitada> caronasSolicitadas;
+	private CaronaSolicitada selectedCaronaSolicitada;
 	private Carona selectedCarona;
 	private List<RequestMeetingPoint> requestMeetingPoint;
 
@@ -285,6 +286,7 @@ public class PerfilBean {
 	 * @param selectedCarona the selectedCarona to set
 	 */
 	public void setSelectedCarona(Carona selectedCarona) {
+		
 		this.selectedCarona = selectedCarona;
 	}
 
@@ -302,6 +304,20 @@ public class PerfilBean {
 	 */
 	public void setRequestMeetingPoint(List<RequestMeetingPoint> requestMeetingPoint) {
 		this.requestMeetingPoint = requestMeetingPoint;
+	}
+
+	/**
+	 * @return the selectedCaronaSolictada
+	 */
+	public CaronaSolicitada getSelectedCaronaSolicitada() {
+		return selectedCaronaSolicitada;
+	}
+
+	/**
+	 * @param selectedCaronaSolictada the selectedCaronaSolictada to set
+	 */
+	public void setSelectedCaronaSolicitada(CaronaSolicitada selectedCaronaSolictada) {
+		this.selectedCaronaSolicitada = selectedCaronaSolictada;
 	}
 
 }

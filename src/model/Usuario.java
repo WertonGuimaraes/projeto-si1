@@ -20,8 +20,12 @@ public class Usuario {
 	private List<ResponseMeetingPoint> responsesPontosPendentes;
 	private List<RequestMeetingPoint> requisicoesPontosPendentes;
 	private List<HistoricoCarona> historicos;
+	private List<CaronaSolicitada> caronasSolicitadas;
 	
-
+	/***
+	 * Método acessador para as caronas que foram solicitadas a esse usuario
+	 * @return map requisicioes de caronas feitas
+	 */
 	public Map<Integer,CaronaSolicitada> getRequests() {
 		return requests;
 	}
@@ -48,8 +52,19 @@ public class Usuario {
 		this.responsesPontosPendentes =  new ArrayList<ResponseMeetingPoint>();
 		this.requisicoesPontosPendentes = new ArrayList<RequestMeetingPoint>();
 		this.historicos = new ArrayList<HistoricoCarona>();
+		this.caronasSolicitadas = new ArrayList<CaronaSolicitada>();
 	}
-
+	
+	/***
+	 * Permite ao usuario cadastrar uma carona no sistema
+	 * @param origem
+	 * @param destino
+	 * @param data
+	 * @param hora
+	 * @param vagas
+	 * @return o id da carona
+	 * @throws Exception se vagas == 0
+	 */
 	public int adicionaCarona(String origem, String destino, String data, String hora, String vagas) throws Exception{
 		Integer intVagas;
 		try {
@@ -68,17 +83,29 @@ public class Usuario {
 	}
 
 
-	
+	/***
+	 * Permite ao usuario solicitar vaga em uma carona
+	 * @param carona que o usuario quer solicitar vaga
+	 * @return id da solicitacao
+	 */
 	public int solicitaVaga(Carona carona){
-		//if(carona.getMotorista().login.equals(this.login)) throw new RuntimeException("Você não pode solicitar vaga em sua própria carona!!");
+		if(carona.getMotorista().login.equals(this.login)) throw new RuntimeException("Você não pode solicitar vaga em sua própria carona!!");
 		
 		int id = Controller.getInstance().newRequestID();
 		CaronaSolicitada solicitacao = new CaronaSolicitada(carona, this);
 		solicitacao.setId(id);
 		Controller.getInstance().adicionaRequest(solicitacao,id);
+		caronasSolicitadas.add(solicitacao);
 		return id;
 	}
 
+	/***
+	 * Permite ao usuario solicitar vaga em uma carona e m
+	 * ponto de encontro
+	 * @param carona que o usuario quer solicitar vaga
+	 * @param pontoDeEncontro ponto de encontro da carona
+	 * @return id da solicitacao
+	 */
 	public int solicitaVaga(Carona carona, String pontoDeEncontro){
 		int id = Controller.getInstance().newRequestID();
 		CaronaSolicitada solicitacao = new CaronaSolicitada(carona, this);
@@ -114,7 +141,11 @@ public class Usuario {
 		HistoricoCarona historico = new HistoricoCarona(carona);
 		this.historicos.add(historico);
 	}
-
+	
+	/**
+	 * Rejeita uma solicitacao de carona
+	 * @param id da solicitacao
+	 */
 	public void rejeitarRequest(int id){
 		for(int i: this.getRequests().keySet()){
 			if(this.getRequests().get(i).getId() == id){
@@ -127,15 +158,29 @@ public class Usuario {
 		
 	}
 
-
+	/***
+	 * Procura uma carona pela origem e destino especificados
+	 * @param origem
+	 * @param destino
+	 * @return
+	 */
 	public List<Integer> buscaCarona(String origem, String destino){
 		return Controller.getInstance().buscaCarona(origem, destino);
 	}
 
+	/**
+	 * Verifica se dois usuarios sao amigos
+	 * @param user
+	 * @return true se sao amigos, false se nao
+	 */
 	public boolean isFriendOf(Usuario user){
 		return friends.contains(user);
 	}
 
+	/***
+	 * Adiciona um amigo
+	 * @param user
+	 */
 	public void addFriend(Usuario user) {
 		friends.add(user);
 	}
