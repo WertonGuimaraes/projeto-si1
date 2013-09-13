@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -36,13 +38,16 @@ public class Perfil {
 	}
 
 	public String getEmail() {
-		// TODO Auto-generated method stub
-		return null;
+		return getUser().getEmail();
 	}
 
 	public String getHistoricoDeCaronas() {
-		// TODO Auto-generated method stub
-		return null;
+		List list = new ArrayList<Carona>();
+		for (int i : getUser().getCaronas().keySet()) {
+			list.add(getUser().getCaronas().get(i));
+		}
+		System.out.println("ASUIDHASUIHDA"+list.size());
+		return Util.easyAccListParser(list);
 	}
 
 	public String getCaronasSegurasTranquilas() {
