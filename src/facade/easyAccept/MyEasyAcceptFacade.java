@@ -122,27 +122,27 @@ public class MyEasyAcceptFacade {
 				.searchSessionByLogin(login);
 		Controller.getInstance().getSessoes().desconectarSessao(key);
 	}
-	
+
 	// US4
-	
+
 	public int sugerirPontoEncontro(String idSessao, String idCarona, String pontos){
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
 		Usuario usr = Controller.getInstance().getSessoes()
 				.searchSessionById(idSessao);
 		return Controller.getInstance().sugerirPontoEncontro(idSessao, Integer.parseInt(idCarona), pontos);
-		
+
 	}
-	
+
 	public void responderSugestaoPontoEncontro(String idSessao, String idCarona, String idSugestao, String pontos){
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
 		Usuario usr = Controller.getInstance().getSessoes()
 				.searchSessionById(idSessao);
 		Controller.getInstance().respondeSolicitacaoMeetingPoint(Integer.parseInt(idSessao), Integer.parseInt(idCarona), Integer.parseInt(idSugestao), pontos);
-		
+
 	}
-	
+
 	public int solicitarVagaPontoEncontro(String idSessao, String idCarona, String ponto){
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
@@ -154,18 +154,18 @@ public class MyEasyAcceptFacade {
 		return idSolicitacao;
 	}
 
-	
+
 	public void desistirRequisicao(String idSessao, String idCarona, String idSolicitacao){
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
 		if (idSolicitacao == null || Util.isEmpty(idSolicitacao))
 			throw new RuntimeException("Solicitação inexistente");
-		
+
 		Controller.getInstance().desitirCarona(Integer.parseInt(idSessao), Integer.parseInt(idCarona), 
 				Integer.parseInt(idSolicitacao));
-		
+
 	}
-	 
+
 
 	// US5
 
@@ -202,61 +202,61 @@ public class MyEasyAcceptFacade {
 
 		throw new RuntimeException("Atributo inexistente");
 	}
-	
+
 	public void aceitarSolicitacao(String idSessao, String idSolicitacao){
 		if (idSolicitacao == null || Util.isEmpty(idSolicitacao))
 			throw new RuntimeException("Solicitação inexistente");
-		
+
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
-		
+
 		Usuario usr = Controller.getInstance().getSessoes()
 				.searchSessionById(idSessao);
-		
+
 		int id = Integer.parseInt(idSolicitacao);
 		usr.aceitaRequest(id);
 	}
-	
+
 	public void aceitarSolicitacaoPontoEncontro(String idSessao, String idSolicitacao){
 		if (idSolicitacao == null || Util.isEmpty(idSolicitacao))
 			throw new RuntimeException("Solicitação inexistente");
-		
+
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
-		
+
 		Usuario usr = Controller.getInstance().getSessoes()
 				.searchSessionById(idSessao);
-		
+
 		int id = Integer.parseInt(idSolicitacao);
 		usr.aceitaRequest(id);
 	}
-	
+
 	public void rejeitarSolicitacao(String idSessao, String idSolicitacao){
 		if (idSolicitacao == null || Util.isEmpty(idSolicitacao))
 			throw new RuntimeException("Solicitação inexistente");
-		
+
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
-		
+
 		Usuario usr = Controller.getInstance().getSessoes()
 				.searchSessionById(idSessao);
-		
+
 		int id = Integer.parseInt(idSolicitacao);
 		usr.rejeitarRequest(id);
 	}
-	
+
 	//US6
-	
+
 	public int visualizarPerfil(int idSessao,String login){
-		Usuario usr = Controller.getInstance().searchUsuariobyLogin(login);
+		Usuario usr = Controller.getInstance().searchPerfilUsuariobyLogin(login);
 		int id = Controller.getInstance().visualizaPerfil(usr);
 		return id;
 	}
-	
+
 	public String getAtributoPerfil(String login,String atributo){
 		Usuario usr = Controller.getInstance().searchUsuariobyLogin(login);
 		Perfil perfil = Controller.getInstance().searchPerfilByUser(usr);
-		
+
 		if(perfil != null){
 			if(atributo.equals("nome")) return perfil.getNome();
 			else if(atributo.equals("endereco")) return perfil.getEndereco();
@@ -270,10 +270,10 @@ public class MyEasyAcceptFacade {
 
 
 		}
-		
+
 		throw new RuntimeException("login invalido");
 	}
-	
+
 	public void reviewVagaEmCarona(String idSessao, String idCarona, String loginCaroneiro, String review){
 		Controller.getInstance().reviewEmCarona(Integer.parseInt(idSessao), Integer.parseInt(idCarona), loginCaroneiro, review);
 	}

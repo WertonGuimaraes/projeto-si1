@@ -68,13 +68,11 @@ public class Perfil {
 	public String getHistoricoDeVagasEmCaronas() {		
 		int size = this.user.getHistoricos().size();
 		String resultado = "[";
-		System.out.println(size);
 		for(int i=0; i < size; i++){
 			if (i == size - 1) resultado += this.user.getHistoricos().get(i).getCarona().getId();
 			else{
 				resultado += this.user.getHistoricos().get(i).getCarona().getId() + ",";
 			}
-			System.out.println(resultado);
 		}
 		
 		resultado += "]";

@@ -85,6 +85,17 @@ public class Controller {
 		}
 		throw new RuntimeException("Usuário inexistente");
 	}
+	
+	public Usuario searchPerfilUsuariobyLogin(String login){
+		if(login == null || Util.isEmpty(login)) throw new RuntimeException("Login inválido");
+		for (Usuario usr : usuarios) {
+			if (usr.getLogin().equals(login)) {
+				return usr;
+			}
+		}
+		throw new RuntimeException("Login inválido");
+	}
+	
 
 	public Perfil searchPerfilById(int id){
 		for (int key : perfisLocalizados.keySet()) {
@@ -105,6 +116,7 @@ public class Controller {
 	}
 	
 	public int visualizaPerfil(Usuario user){
+		if(user==null)throw new RuntimeException("Login inválido");
 		Perfil perfil = new Perfil(user);
 		int id = newPerfilVisualizadoID();
 		this.perfisLocalizados.put(id, perfil);
