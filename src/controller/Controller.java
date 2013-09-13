@@ -20,9 +20,13 @@ import model.Usuario;
 import model.Util;
 import persistencia.Reader;
 import persistencia.Writer;
+/**
+ * 
+ * @author tiaraju
+ *
+ */
+public class Controller implements Serializable {
 
-public class Controller  implements Serializable{
-	
 	private static final long serialVersionUID = 1L;
 
 	int contadorCaronas;
@@ -32,28 +36,32 @@ public class Controller  implements Serializable{
 	private Set<Usuario> usuarios;
 	private SessionController controladorDeSessoes;
 	private MeetingPointController controladorPontosEncontro;
-	private static Controller controller; 			//singleton
+	private static Controller controller; // singleton
 	private Map<Integer, TalkAboutMeetingPoint> controlMeetingPoints;
 	private Map<Integer, Perfil> perfisLocalizados;
 	
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public static Controller getInstance() {
 		if (controller == null) {
 			try {
 				controller = (Controller) Reader.read();
 			} catch (ClassNotFoundException e) {
-				controller= new Controller();
+				controller = new Controller();
 			} catch (IOException e) {
-				controller= new Controller();
+				controller = new Controller();
 			}
 			gravaDados();
-			//controller.add500Users();
+			// controller.add500Users();
 		}
 		return controller;
 	}
-	
+
 	private static void gravaDados() {
-		//TODO usar THREAD aqui
+		// TODO usar THREAD aqui
 		try {
 			Writer.write(controller);
 		} catch (FileNotFoundException e) {
@@ -65,39 +73,57 @@ public class Controller  implements Serializable{
 		this.contadorCaronas = 0;
 		this.contadorRequisicao = 0;
 		this.contadorTalks = 0;
-		this.contadorDePefisVisualizados=0;
+		this.contadorDePefisVisualizados = 0;
 		this.usuarios = new HashSet<Usuario>();
 		this.controladorDeSessoes = SessionController.getInstance();
 		controladorPontosEncontro = MeetingPointController.getInstance();
 		this.controlMeetingPoints = new HashMap<Integer, TalkAboutMeetingPoint>();
 		this.perfisLocalizados = new HashMap<Integer, Perfil>();
 	}
-	
-	private void add500Users(){
+
+	private void add500Users() {
 		String c;
-		for(int i = 0; i < 500; i++){
+		for (int i = 0; i < 500; i++) {
 			c = String.valueOf(i);
 			try {
-				Usuario user = new Usuario("user"+c, "senha"+c, "User"+c, "user"+c+"@carona.com", "Rua das flores");
+				Usuario user = new Usuario("user" + c, "senha" + c, "User" + c,
+						"user" + c + "@carona.com", "Rua das flores");
 				controller.usuarios.add(user);
-			} catch (Exception e) {}
-			
+			} catch (Exception e) {
+			}
+
 		}
 	}
-
-	public void criaConta(String login, String senha, String nome, String email, String endereco) throws Exception{
+	/**
+	 * 
+	 * @param login
+	 * @param senha
+	 * @param nome
+	 * @param email
+	 * @param endereco
+	 * @throws Exception
+	 */
+	public void criaConta(String login, String senha, String nome,
+			String email, String endereco) throws Exception {
 		for (Usuario usuarioExistente : usuarios) {
 			if (usuarioExistente.getEmail().equals(email))
-				throw new LoginInvalidoException("Já existe um usuário com este email");
+				throw new LoginInvalidoException(
+						"Já existe um usuário com este email");
 			else if (usuarioExistente.getLogin().equals(login))
-				throw new LoginInvalidoException("Já existe um usuário com este login");
+				throw new LoginInvalidoException(
+						"Já existe um usuário com este login");
 		}
 		Usuario usuario = new Usuario(login, senha, nome, email, endereco);
 		usuarios.add(usuario);
 	}
-
-	public Usuario searchUsuariobyLogin(String login){
-		if(login == null || Util.isEmpty(login)) throw new RuntimeException("Login inválido");
+	/**
+	 * 
+	 * @param login
+	 * @return
+	 */
+	public Usuario searchUsuariobyLogin(String login) {
+		if (login == null || Util.isEmpty(login))
+			throw new RuntimeException("Login inválido");
 		for (Usuario usr : usuarios) {
 			if (usr.getLogin().equals(login)) {
 				return usr;
@@ -105,9 +131,14 @@ public class Controller  implements Serializable{
 		}
 		throw new RuntimeException("Usuário inexistente");
 	}
-	
-	public Usuario searchPerfilUsuariobyLogin(String login){
-		if(login == null || Util.isEmpty(login)) throw new RuntimeException("Login inválido");
+	/**
+	 * 
+	 * @param login
+	 * @return
+	 */
+	public Usuario searchPerfilUsuariobyLogin(String login) {
+		if (login == null || Util.isEmpty(login))
+			throw new RuntimeException("Login inválido");
 		for (Usuario usr : usuarios) {
 			if (usr.getLogin().equals(login)) {
 				return usr;
@@ -115,36 +146,47 @@ public class Controller  implements Serializable{
 		}
 		throw new RuntimeException("Login inválido");
 	}
-	
-
-	public Perfil searchPerfilById(int id){
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Perfil searchPerfilById(int id) {
 		for (int key : perfisLocalizados.keySet()) {
-			if(key==id){
+			if (key == id) {
 				return perfisLocalizados.get(id);
 			}
 		}
 		throw new RuntimeException("Perfil não encontrado");
 	}
-	
-	public Perfil searchPerfilByUser(Usuario user){
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	public Perfil searchPerfilByUser(Usuario user) {
 		for (int key : perfisLocalizados.keySet()) {
-			if(perfisLocalizados.get(key).getUser().equals(user)){
+			if (perfisLocalizados.get(key).getUser().equals(user)) {
 				return perfisLocalizados.get(key);
 			}
 		}
 		throw new RuntimeException("Perfil não encontrado");
 	}
-	
-	public int visualizaPerfil(Usuario user){
-		if(user==null)throw new RuntimeException("Login inválido");
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	public int visualizaPerfil(Usuario user) {
+		if (user == null)
+			throw new RuntimeException("Login inválido");
 		Perfil perfil = new Perfil(user);
 		int id = newPerfilVisualizadoID();
 		this.perfisLocalizados.put(id, perfil);
 		return id;
 	}
 
-
-	public void zerarSistema(){
+	public void zerarSistema() {
 		usuarios = new HashSet<Usuario>();
 		controladorDeSessoes.zeraSessoes();
 	}
@@ -156,39 +198,46 @@ public class Controller  implements Serializable{
 	public SessionController getSessoes() {
 		return controladorDeSessoes;
 	}
-
+	/**
+	 * 
+	 * @param origem
+	 * @param destino
+	 * @return
+	 */
 	public List<Integer> buscaCarona(String origem, String destino) {
 		boolean condicao;
 
-		if(Util.containsInvalidChar(origem)) throw new RuntimeException("Origem inválida");
-		if(Util.containsInvalidChar(destino)) throw new RuntimeException("Destino inválido");
+		if (Util.containsInvalidChar(origem))
+			throw new RuntimeException("Origem inválida");
+		if (Util.containsInvalidChar(destino))
+			throw new RuntimeException("Destino inválido");
 
 		List<Integer> caronasEncontradas = new LinkedList<Integer>();
 		for (Usuario usr : usuarios) {
-			for (int chave: usr.getCaronas().keySet() ){
-				Carona caronaExistente = usr.getCaronas().get(chave);	
+			for (int chave : usr.getCaronas().keySet()) {
+				Carona caronaExistente = usr.getCaronas().get(chave);
 
 				if (Util.isEmpty(origem) && Util.isEmpty(destino))
 					condicao = true;
-				else if(Util.isEmpty(destino))
+				else if (Util.isEmpty(destino))
 					condicao = caronaExistente.getOrigem().equals(origem);
 				else if (Util.isEmpty(origem))
 					condicao = caronaExistente.getDestino().equals(destino);
 				else
 					condicao = caronaExistente.getDestino().equals(destino)
-					&& caronaExistente.getOrigem().equals(origem);
-				if(condicao)
+							&& caronaExistente.getOrigem().equals(origem);
+				if (condicao)
 					caronasEncontradas.add(chave);
 			}
 		}
 		return caronasEncontradas;
 	}
 
-
 	public Carona buscaCarona(int idCarona) {
 		for (Usuario usr : usuarios) {
 			for (int idCaronaExistente : usr.getCaronas().keySet()) {
-				if (idCarona == idCaronaExistente) return usr.getCaronas().get(idCarona);
+				if (idCarona == idCaronaExistente)
+					return usr.getCaronas().get(idCarona);
 			}
 		}
 		throw new RuntimeException("Item inexistente");
@@ -198,11 +247,11 @@ public class Controller  implements Serializable{
 		return ++contadorCaronas;
 	}
 
-	public int newRequestID(){
+	public int newRequestID() {
 		return ++contadorRequisicao;
 	}
-	
-	public int newPerfilVisualizadoID(){
+
+	public int newPerfilVisualizadoID() {
 		return ++contadorDePefisVisualizados;
 	}
 
@@ -211,127 +260,144 @@ public class Controller  implements Serializable{
 		return id;
 	}
 
-	
-	public CaronaSolicitada buscaCaronaSolicitada(int idCaronaSolicitada){
+	public CaronaSolicitada buscaCaronaSolicitada(int idCaronaSolicitada) {
 		for (Usuario usr : usuarios) {
 			for (int idCaronaExistente : usr.getRequests().keySet()) {
-				if (idCaronaSolicitada == idCaronaExistente) return usr.getRequests().get(idCaronaExistente);
+				if (idCaronaSolicitada == idCaronaExistente)
+					return usr.getRequests().get(idCaronaExistente);
 			}
 		}
 		throw new RuntimeException("Item inexistente");
 	}
 
-
 	/**
 	 * Método que retorna o motorista dono da carona
-	 * @param idCarona identificador único da carona 
+	 * 
+	 * @param idCarona
+	 *            identificador único da carona
 	 * @return Usuario motorista
 	 */
-	public Usuario searchMotorista(int idCarona){
+	public Usuario searchMotorista(int idCarona) {
 		for (Usuario usr : usuarios) {
 			for (int idCaronaExistente : usr.getCaronas().keySet()) {
-				if (idCarona == idCaronaExistente) return usr;
+				if (idCarona == idCaronaExistente)
+					return usr;
 			}
 		}
 		return null;
 	}
-	
+
 	/***
-	 * Faz a solicitação de ponto de encontro para
-	 * uma determinada carona.
-	 * @param idSessao Id da sessão do caroneiro interessado na solicitação
-	 * @param idCarona Id da carona de interesse
-	 * @param pontos Pontos de encontro sugeridos
-	 * @return  um valor inteiro que é o identificador da solicitação de ponto de encontro
+	 * Faz a solicitação de ponto de encontro para uma determinada carona.
+	 * 
+	 * @param idSessao
+	 *            Id da sessão do caroneiro interessado na solicitação
+	 * @param idCarona
+	 *            Id da carona de interesse
+	 * @param pontos
+	 *            Pontos de encontro sugeridos
+	 * @return um valor inteiro que é o identificador da solicitação de ponto de
+	 *         encontro
 	 */
-	public int sugerirPontoEncontro(String idSessao, int idCarona, String pontos){
+	public int sugerirPontoEncontro(String idSessao, int idCarona, String pontos) {
 		Usuario motorista = searchMotorista(idCarona);
 		Usuario caroneiro = controller.getSessoes().searchSessionById(idSessao);
 
-		return controladorPontosEncontro.sugerirPontoEncontro(idSessao, idCarona, pontos, motorista, caroneiro);
-		
+		return controladorPontosEncontro.sugerirPontoEncontro(idSessao,
+				idCarona, pontos, motorista, caroneiro);
+
 	}
 
 	/***
-	 * Permite a um motorista resposder a uma sugestão de 
-	 * ponto de encontro feita a uma carona oferecida por
-	 * ele.
-	 * @param idSessao id da sessão do motorista
-	 * @param idCarona id da carona a qual o motorista vai responder 
-	 * a sugestão de ponto de encontro
-	 * @param idSugestao identificador da sugestão de ponto de encontro
-	 * ao qual o motorista quer responder
-	 * @param pontos pontos que o motorista pode sugerir para ser o de
-	 * encontro
+	 * Permite a um motorista resposder a uma sugestão de ponto de encontro
+	 * feita a uma carona oferecida por ele.
+	 * 
+	 * @param idSessao
+	 *            id da sessão do motorista
+	 * @param idCarona
+	 *            id da carona a qual o motorista vai responder a sugestão de
+	 *            ponto de encontro
+	 * @param idSugestao
+	 *            identificador da sugestão de ponto de encontro ao qual o
+	 *            motorista quer responder
+	 * @param pontos
+	 *            pontos que o motorista pode sugerir para ser o de encontro
 	 */
 	public void respondeSolicitacaoMeetingPoint(int idSessao, int idCarona,
 			int idSugestao, String pontos) {
-		
-		SolicitacaoPontoEncontro solicitacao = controladorPontosEncontro.getSolicitacao(idSugestao);
+
+		SolicitacaoPontoEncontro solicitacao = controladorPontosEncontro
+				.getSolicitacao(idSugestao);
 		Usuario motorista = solicitacao.getMotorista();
 		Usuario caroneiro = solicitacao.getCaroneiro();
-		
-		controladorPontosEncontro.respondeSolicitacaoMeetingPoint(idSessao, idCarona, idSugestao, pontos);
-	
+
+		controladorPontosEncontro.respondeSolicitacaoMeetingPoint(idSessao,
+				idCarona, idSugestao, pontos);
+
 	}
-	
-	
-	public void desitirCarona(int idSessao, int idCarona,
-			int idSugestao){
-		Usuario caroneiro = Controller.getInstance().getSessoes().searchSessionById(String.valueOf(idSessao));
-		for(int i: caroneiro.getRequests().keySet()){
-			if(caroneiro.getRequests().get(i).getId() == idSugestao){
-				Usuario motorista = caroneiro.getRequests().get(i).getMotorista();
+	/**
+	 * 
+	 * @param idSessao
+	 * @param idCarona
+	 * @param idSugestao
+	 */
+	public void desitirCarona(int idSessao, int idCarona, int idSugestao) {
+		Usuario caroneiro = Controller.getInstance().getSessoes()
+				.searchSessionById(String.valueOf(idSessao));
+		for (int i : caroneiro.getRequests().keySet()) {
+			if (caroneiro.getRequests().get(i).getId() == idSugestao) {
+				Usuario motorista = caroneiro.getRequests().get(i)
+						.getMotorista();
 				caroneiro.getRequests().remove(i);
 				motorista.getRequests().remove(i);
 				return;
 			}
 		}
 
-		
-		
 	}
-	
+
 	/**
-	 * Permite a um motorista fazer um review da carona informando o comportamento do
-	 * caroneiro: faltou, não faltou, não funcionou.
-	 * @param idSessao id do motorista
-	 * @param idCarona id da carona
-	 * @param login login do caroneiro
-	 * @param string comentário sobre a carona
+	 * Permite a um motorista fazer um review da carona informando o
+	 * comportamento do caroneiro: faltou, não faltou, não funcionou.
+	 * 
+	 * @param idSessao
+	 *            id do motorista
+	 * @param idCarona
+	 *            id da carona
+	 * @param login
+	 *            login do caroneiro
+	 * @param string
+	 *            comentário sobre a carona
 	 */
 	public void reviewEmCarona(int idSessao, int idCarona, String login,
 			String review) {
-		Usuario motorista = controller.getSessoes().searchSessionById(String.valueOf(idSessao));
+		Usuario motorista = controller.getSessoes().searchSessionById(
+				String.valueOf(idSessao));
 		Usuario caroneiro = controller.searchUsuariobyLogin(login);
 		Carona carona = controller.buscaCarona(idCarona);
 
-		if(carona.hasCaroneiro(caroneiro)){
-			//carona.addReview(caroneiro, review);
+		if (carona.hasCaroneiro(caroneiro)) {
+			// carona.addReview(caroneiro, review);
 			caroneiro.addReview(carona, review);
-		}else throw new RuntimeException("Usuário não possui vaga na carona.");
-		
-		
+		} else
+			throw new RuntimeException("Usuário não possui vaga na carona.");
+
 	}
-	
-	
+
 	public void reiniciar() {
 		gravaDados();
 		try {
-			controller=(Controller) Reader.read();
+			controller = (Controller) Reader.read();
 		} catch (ClassNotFoundException e) {
 		} catch (IOException e) {
 		}
-		
+
 	}
-		
-	public void encerrarSistema(){
+
+	public void encerrarSistema() {
 		gravaDados();
 		zerarSistema();
-		
+
 	}
 
 }
-
-
-
