@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.Carona;
 import model.CaronaSolicitada;
+import model.Perfil;
 import model.Usuario;
 import model.Util;
 import controller.Controller;
@@ -242,6 +243,35 @@ public class MyEasyAcceptFacade {
 		
 		int id = Integer.parseInt(idSolicitacao);
 		usr.rejeitarRequest(id);
+	}
+	
+	//US6
+	
+	public int visualizarPerfil(int idSessao,String login){
+		Usuario usr = Controller.getInstance().searchUsuariobyLogin(login);
+		int id = Controller.getInstance().visualizaPerfil(usr);
+		return id;
+	}
+	
+	public String getAtributoPerfil(String login,String atributo){
+		Usuario usr = Controller.getInstance().searchUsuariobyLogin(login);
+		Perfil perfil = Controller.getInstance().searchPerfilByUser(usr);
+		
+		if(perfil != null){
+			if(atributo.equals("nome")) return perfil.getNome();
+			else if(atributo.equals("endereco")) return perfil.getEndereco();
+			else if(atributo.equals("email")) return perfil.getEmail();
+			else if(atributo.equals("historico de caronas")) return perfil.getHistoricoDeCaronas();
+			else if(atributo.equals("historico de vagas em caronas")) return perfil.getHistoricoDeVagasEmCaronas();
+			else if(atributo.equals("caronas seguras e tranquilas")) return perfil.getCaronasSegurasTranquilas();
+			else if(atributo.equals("caronas que não funcionaram")) return perfil.getCaronasNaoFuncionaram();
+			else if(atributo.equals("faltas em vagas de caronas")) return perfil.getFaltasEmCaronas();
+			else if(atributo.equals("presenças em vagas de caronas")) return perfil.getPresencaEmCaronas();
+
+
+		}
+		
+		throw new RuntimeException("login invalido");
 	}
 
 }

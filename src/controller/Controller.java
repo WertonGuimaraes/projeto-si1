@@ -10,6 +10,7 @@ import java.util.Set;
 import model.Carona;
 import model.CaronaSolicitada;
 import model.LoginInvalidoException;
+import model.Perfil;
 import model.SolicitacaoPontoEncontro;
 import model.TalkAboutMeetingPoint;
 import model.Usuario;
@@ -26,6 +27,7 @@ public class Controller {
 	private MeetingPointController controladorPontosEncontro;
 	private static Controller controller; 			//singleton
 	private Map<Integer, TalkAboutMeetingPoint> controlMeetingPoints;
+	private Map<Integer, Perfil> perfisLocalizados;
 	
 	
 	public static Controller getInstance() {
@@ -47,6 +49,7 @@ public class Controller {
 		this.controladorDeSessoes = SessionController.getInstance();
 		controladorPontosEncontro = MeetingPointController.getInstance();
 		this.controlMeetingPoints = new HashMap<Integer, TalkAboutMeetingPoint>();
+		this.perfisLocalizados = new HashMap<Integer, Perfil>();
 	}
 	
 	private void add500Users(){
@@ -82,6 +85,30 @@ public class Controller {
 		throw new RuntimeException("Usuário inexistente");
 	}
 
+	public Perfil searchPerfilById(int id){
+		for (int key : perfisLocalizados.keySet()) {
+			if(key==id){
+				return perfisLocalizados.get(id);
+			}
+		}
+		throw new RuntimeException("Perfil não encontrado");
+	}
+	
+	public Perfil searchPerfilByUser(Usuario user){
+		for (int key : perfisLocalizados.keySet()) {
+			if(perfisLocalizados.get(key).getUser().equals(user)){
+				return perfisLocalizados.get(key);
+			}
+		}
+		throw new RuntimeException("Perfil não encontrado");
+	}
+	
+	public int visualizaPerfil(Usuario user){
+		Perfil perfil = new Perfil(user);
+		int id = newPerfilVisualizadoID();
+		this.perfisLocalizados.put(id, perfil);
+		return id;
+	}
 
 
 	public void zerarSistema(){

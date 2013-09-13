@@ -45,7 +45,7 @@ public class PerfilBean {
 	private Carona selectedCarona;
 	private List<RequestMeetingPoint> requestMeetingPoint;
 
-	
+
 	public PerfilBean() {
 		if (ID != null) {
 			this.usuario = SessionController.getInstance()
@@ -58,24 +58,17 @@ public class PerfilBean {
 		} else
 			throw new RuntimeException("Erro no id do perfil");
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> 2fa0f518b0f8fe924cd1f073faa252e4c04058b3
 
 	public String logoffButton() {
 		SessionController.getInstance().desconectarSessao(Integer.parseInt(id)); 
 		return "index.xhtml";
 	}
-<<<<<<< HEAD
 
 	public void setSize(int size) {
 		this.size = size;
 	}
-=======
-	
-	
->>>>>>> 2fa0f518b0f8fe924cd1f073faa252e4c04058b3
+
+
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -85,11 +78,14 @@ public class PerfilBean {
 		return LoginDoUsuarioProcurado;
 	}
 
-	public void localizaPerfil() {
-		Usuario usuarioDoPerfil = Controller.getInstance()
-				.searchUsuariobyLogin(LoginDoUsuarioProcurado);
+	public String localizaPerfil() {
+		Usuario user = Controller.getInstance().searchUsuariobyLogin(LoginDoUsuarioProcurado);
+		if(user != null){
+			ShowerProfileBean.ID=String.valueOf(Controller.getInstance().visualizaPerfil(user));
+			return "perfilViewer?faces-redirect=true";
+		}
 		
-
+		throw new RuntimeException("perfil invalido");
 	}
 
 	public void setLoginDoUsuarioProcurado(String login) {
@@ -134,21 +130,21 @@ public class PerfilBean {
 	}
 
 	public void solicitarCarona() {
-		
+
 		this.usuario.solicitaVaga(this.selectedCarona);
 		System.out.println(this.usuario.getRequests().size());
 		update();
 	}
-	
+
 	private void update() {
 		Map<Integer, CaronaSolicitada> requisicoes = this.usuario.getRequests();
 		caronasSolicitadas = new ArrayList<CaronaSolicitada>();
 		for (Integer id : requisicoes.keySet()) {
 			caronasSolicitadas.add(requisicoes.get(id));
 		}
-		
+
 		this.setRequestMeetingPoint(this.usuario.getRequisicoesPontosPendentes());
-		
+
 		System.out.println(caronasSolicitadas);
 	}
 
@@ -159,39 +155,39 @@ public class PerfilBean {
 		this.setHora("");
 		this.setVagas("");
 	}
-	
+
 	public void upload(FileUploadEvent event) {  
-        FacesMessage msg = new FacesMessage(event.getFile().getFileName() + " foi enviado com sucesso.");  
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
-        // Do what you want with the file          
-        System.out.println(1);
-        try {  
-            byte[] foto = event.getFile().getContents();  
-            String nomeArquivo = event.getFile().getFileName();    
-            System.out.println(2);
-            FacesContext facesContext = FacesContext.getCurrentInstance();    
-            ServletContext scontext = (ServletContext) facesContext.getExternalContext().getContext();    
-            String arquivo = scontext.getRealPath("/uploads/imagensTopo/" + nomeArquivo);  
-            System.out.println(3);  
-//            String arquivo = scontext.getContextPath()+"/uploadis/" + nomeArquivo;  
-            File f=new File(arquivo);  
-            if(!f.getParentFile().exists()) f.getParentFile().mkdirs();  
-            if(!f.exists()) f.createNewFile();  
-            System.out.println("cheguei aqui");
-            System.out.println(f.getAbsolutePath());  
-            
-            FileOutputStream fos=new FileOutputStream(arquivo);  
-            fos.write(foto);  
-            System.out.println(4);
-            fos.flush();  
-            System.out.println(5);
-            fos.close();  
-        } catch (IOException e) {  
-        	System.out.println("exececao");
-            e.printStackTrace();  
-        }  
-  
-    }  
+		FacesMessage msg = new FacesMessage(event.getFile().getFileName() + " foi enviado com sucesso.");  
+		FacesContext.getCurrentInstance().addMessage(null, msg);  
+		// Do what you want with the file          
+		System.out.println(1);
+		try {  
+			byte[] foto = event.getFile().getContents();  
+			String nomeArquivo = event.getFile().getFileName();    
+			System.out.println(2);
+			FacesContext facesContext = FacesContext.getCurrentInstance();    
+			ServletContext scontext = (ServletContext) facesContext.getExternalContext().getContext();    
+			String arquivo = scontext.getRealPath("/uploads/imagensTopo/" + nomeArquivo);  
+			System.out.println(3);  
+			//            String arquivo = scontext.getContextPath()+"/uploadis/" + nomeArquivo;  
+			File f=new File(arquivo);  
+			if(!f.getParentFile().exists()) f.getParentFile().mkdirs();  
+			if(!f.exists()) f.createNewFile();  
+			System.out.println("cheguei aqui");
+			System.out.println(f.getAbsolutePath());  
+
+			FileOutputStream fos=new FileOutputStream(arquivo);  
+			fos.write(foto);  
+			System.out.println(4);
+			fos.flush();  
+			System.out.println(5);
+			fos.close();  
+		} catch (IOException e) {  
+			System.out.println("exececao");
+			e.printStackTrace();  
+		}  
+
+	}  
 
 	public Collection<Carona> getCaronas() {
 		return usuario.getCaronas().values();
@@ -275,9 +271,6 @@ public class PerfilBean {
 		this.caronasSolicitadas = caronasSolicitadas;
 	}
 
-	public void setSize(int size) {
-		this.size = size;
-	}
 
 
 	/**

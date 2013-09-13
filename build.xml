@@ -118,8 +118,6 @@
 	</target>
 
 	<!-- ==================================== AUXILIARES ==================================== -->
-                     AUXILIARES
-	     ==================================== -->
 
 	<target name="startWindows" if="isWindows">
 		<exec executable="cmd">
