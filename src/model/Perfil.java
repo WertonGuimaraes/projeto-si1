@@ -32,8 +32,7 @@ public class Perfil {
 	}
 
 	public String getEndereco() {
-		// TODO Auto-generated method stub
-		return null;
+		return getUser().getEndereco();
 	}
 
 	public String getEmail() {
