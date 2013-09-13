@@ -277,5 +277,13 @@ public class MyEasyAcceptFacade {
 	public void reviewVagaEmCarona(String idSessao, String idCarona, String loginCaroneiro, String review){
 		Controller.getInstance().reviewEmCarona(Integer.parseInt(idSessao), Integer.parseInt(idCarona), loginCaroneiro, review);
 	}
+	
+	
+	//US 07
+	public void reiniciarSistema(){
+		Controller.getInstance().reiniciar();
+	}
+	
+	
 
 }

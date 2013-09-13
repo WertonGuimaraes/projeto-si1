@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -9,15 +12,18 @@ import java.util.Set;
 
 import model.Carona;
 import model.CaronaSolicitada;
-import model.HistoricoCarona;
 import model.LoginInvalidoException;
 import model.Perfil;
 import model.SolicitacaoPontoEncontro;
 import model.TalkAboutMeetingPoint;
 import model.Usuario;
 import model.Util;
+import persistencia.Reader;
+import persistencia.Writer;
 
-public class Controller {
+public class Controller  implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
 	int contadorCaronas;
 	int contadorRequisicao;
@@ -32,13 +38,27 @@ public class Controller {
 	
 	
 	public static Controller getInstance() {
-		// controller = metodoPersistencia(); TODO implementar persistencia
-
 		if (controller == null) {
-			controller = new Controller();
+			try {
+				controller = (Controller) Reader.read();
+			} catch (ClassNotFoundException e) {
+				controller= new Controller();
+			} catch (IOException e) {
+				controller= new Controller();
+			}
+			gravaDados();
 			//controller.add500Users();
 		}
 		return controller;
+	}
+	
+	private static void gravaDados() {
+		//TODO usar THREAD aqui
+		try {
+			Writer.write(controller);
+		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+		}
 	}
 
 	private Controller() {
@@ -293,7 +313,23 @@ public class Controller {
 		
 		
 	}
+	
+	
+	public void reiniciar() {
+		gravaDados();
+		try {
+			controller=(Controller) Reader.read();
+		} catch (ClassNotFoundException e) {
+		} catch (IOException e) {
+		}
 		
+	}
+		
+	public void encerrarSistema(){
+		gravaDados();
+		zerarSistema();
+		
+	}
 
 }
 
