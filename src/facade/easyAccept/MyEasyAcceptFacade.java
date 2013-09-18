@@ -1,5 +1,6 @@
 package facade.easyAccept;
 
+import java.io.Serializable;
 import java.util.List;
 
 import model.Carona;
@@ -9,7 +10,9 @@ import model.Usuario;
 import model.Util;
 import controller.Controller;
 
-public class MyEasyAcceptFacade {
+public class MyEasyAcceptFacade implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Controller controller;
 
@@ -115,7 +118,7 @@ public class MyEasyAcceptFacade {
 	}
 
 	public void encerrarSistema() {
-		controller.zerarSistema();
+		controller.encerrarSistema();
 	}
 
 	public void encerrarSessao(String login) {
@@ -299,6 +302,12 @@ public class MyEasyAcceptFacade {
 	// US 07
 	public void reiniciarSistema() {
 		Controller.getInstance().reiniciar();
+	}
+	
+	public int getCaronaUsuario(int idSessao,int indexCarona){
+		String id = String.valueOf(idSessao);
+		Usuario user=Controller.getInstance().getSessoes().searchSessionById(id);
+		return user.getCaronas().get(indexCarona).getId();
 	}
 
 }

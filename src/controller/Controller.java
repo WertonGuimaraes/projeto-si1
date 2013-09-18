@@ -39,8 +39,8 @@ public class Controller implements Serializable {
 	private static Controller controller; // singleton
 	private Map<Integer, TalkAboutMeetingPoint> controlMeetingPoints;
 	private Map<Integer, Perfil> perfisLocalizados;
-	
-	
+
+
 	/**
 	 * 
 	 * @return
@@ -49,13 +49,11 @@ public class Controller implements Serializable {
 		if (controller == null) {
 			try {
 				controller = (Controller) Reader.read();
-			} catch (ClassNotFoundException e) {
+			} catch (Exception e) {
 				controller = new Controller();
-			} catch (IOException e) {
-				controller = new Controller();
+				gravaDados();
+				// controller.add500Users();
 			}
-			gravaDados();
-			// controller.add500Users();
 		}
 		return controller;
 	}
@@ -63,7 +61,7 @@ public class Controller implements Serializable {
 	private static void gravaDados() {
 		// TODO usar THREAD aqui
 		try {
-			Writer.write(controller);
+			Writer.write(Controller.getInstance());
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
 		}
@@ -225,7 +223,7 @@ public class Controller implements Serializable {
 					condicao = caronaExistente.getDestino().equals(destino);
 				else
 					condicao = caronaExistente.getDestino().equals(destino)
-							&& caronaExistente.getOrigem().equals(origem);
+					&& caronaExistente.getOrigem().equals(origem);
 				if (condicao)
 					caronasEncontradas.add(chave);
 			}
@@ -385,18 +383,13 @@ public class Controller implements Serializable {
 	}
 
 	public void reiniciar() {
-		gravaDados();
-		try {
-			controller = (Controller) Reader.read();
-		} catch (ClassNotFoundException e) {
-		} catch (IOException e) {
-		}
+
 
 	}
 
 	public void encerrarSistema() {
 		gravaDados();
-		zerarSistema();
+		//zerarSistema();
 
 	}
 

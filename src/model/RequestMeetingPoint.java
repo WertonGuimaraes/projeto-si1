@@ -1,14 +1,16 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import controller.Controller;
-
 import model.state.AguardandoAceitacao;
 import model.state.StateChangeRequest;
 
-public class RequestMeetingPoint {
+public class RequestMeetingPoint implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int idSugestao;
 	private List<String> pontosCaroneiro;
 	private List<String> pontosMotorista;

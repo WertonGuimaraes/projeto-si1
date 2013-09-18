@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +11,9 @@ import org.joda.time.DateTime;
  * @author tiaraju
  *
  */
-public class Carona {
+public class Carona implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String origem;
 	private String destino;

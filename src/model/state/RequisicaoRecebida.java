@@ -1,9 +1,13 @@
 package model.state;
 
+import java.io.Serializable;
+
 import model.ResponseMeetingPoint;
 import model.TalkAboutMeetingPoint;
 
-public class RequisicaoRecebida implements StateChangeResponse {
+public class RequisicaoRecebida implements StateChangeResponse, Serializable {
+
+	private static final long serialVersionUID = 1L;
 	ResponseMeetingPoint response;
 	
 	public RequisicaoRecebida(ResponseMeetingPoint response){
