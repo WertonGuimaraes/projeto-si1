@@ -39,6 +39,9 @@ public class Controller implements Serializable {
 	private static Controller controller; // singleton
 	private Map<Integer, TalkAboutMeetingPoint> controlMeetingPoints;
 	private Map<Integer, Perfil> perfisLocalizados;
+	private static Reader reader;
+	private static Writer writer;
+	private static final String NOME_DO_ARQUIVO="SYSTEMA.txt";
 
 
 	/**
@@ -48,7 +51,7 @@ public class Controller implements Serializable {
 	public static Controller getInstance() {
 		if (controller == null) {
 			try {
-				controller = (Controller) Reader.read();
+				controller = (Controller) getReader().read(controller);
 			} catch (Exception e) {
 				controller = new Controller();
 				gravaDados();
@@ -61,7 +64,7 @@ public class Controller implements Serializable {
 	private static void gravaDados() {
 		// TODO usar THREAD aqui
 		try {
-			Writer.write(Controller.getInstance());
+			getWriter().write(controller);
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
 		}
@@ -77,6 +80,8 @@ public class Controller implements Serializable {
 		controladorPontosEncontro = MeetingPointController.getInstance();
 		this.controlMeetingPoints = new HashMap<Integer, TalkAboutMeetingPoint>();
 		this.perfisLocalizados = new HashMap<Integer, Perfil>();
+		this.reader=new Reader(NOME_DO_ARQUIVO);
+		this.writer=new Writer(NOME_DO_ARQUIVO);
 	}
 
 	private void add500Users() {
@@ -193,6 +198,14 @@ public class Controller implements Serializable {
 		return usuarios;
 	}
 
+	public static Writer getWriter(){
+		return writer;
+	}
+	
+	public static Reader getReader(){
+		return reader;
+	}
+	
 	public SessionController getSessoes() {
 		return controladorDeSessoes;
 	}
