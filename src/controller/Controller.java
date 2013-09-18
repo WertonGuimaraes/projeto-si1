@@ -396,7 +396,13 @@ public class Controller implements Serializable {
 	}
 
 	public void reiniciar() {
-
+		Reader reader = new Reader(NOME_DO_ARQUIVO);
+		SessionController.getInstance().zeraSessoes();
+		try {
+			this.controller = reader.read(this.controller);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
