@@ -1,19 +1,33 @@
 package persistencia;
 
-import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import controller.Controller;
+
 public class Reader {
 	
-	private static final String SYSTEM = "SYSTEM";
+	private  String NOME_DO_ARQUIVO;
 
-	public static Object read() throws IOException, ClassNotFoundException {
-		ObjectInputStream reader = new ObjectInputStream(new BufferedInputStream(
-				new FileInputStream(SYSTEM)));
-		Object o = reader.readObject();
-		reader.close();
-		return o;
+	public Reader(String NOME_DO_ARQUIVO){
+		this.NOME_DO_ARQUIVO = NOME_DO_ARQUIVO;
+	}
+
+
+
+	public  Controller read(Controller controller) throws IOException {
+		FileInputStream fis = null;
+		ObjectInputStream in = null;
+		try {
+			fis = new FileInputStream(NOME_DO_ARQUIVO);
+			in = new ObjectInputStream(fis);
+			controller = (Controller) in.readObject();
+			in.close();
+		} catch (IOException ex) {
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return controller;
 	}
 }

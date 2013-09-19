@@ -1,5 +1,6 @@
 package facade.easyAccept;
 
+import java.io.Serializable;
 import java.util.List;
 
 import model.Carona;
@@ -9,7 +10,9 @@ import model.Usuario;
 import model.Util;
 import controller.Controller;
 
-public class MyEasyAcceptFacade {
+public class MyEasyAcceptFacade implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Controller controller;
 
@@ -81,7 +84,8 @@ public class MyEasyAcceptFacade {
 		if (atributo.equals("data"))
 			return Controller.getInstance().buscaCarona(id).getDate();
 		if (atributo.equals("vagas"))
-			return "" + Controller.getInstance().buscaCarona(id).getVagasLivres();
+			return ""
+					+ Controller.getInstance().buscaCarona(id).getVagasLivres();
 
 		throw new RuntimeException("Atributo inexistente");
 	}
@@ -114,7 +118,7 @@ public class MyEasyAcceptFacade {
 	}
 
 	public void encerrarSistema() {
-		controller.zerarSistema();
+		controller.encerrarSistema();
 	}
 
 	public void encerrarSessao(String login) {
@@ -125,25 +129,31 @@ public class MyEasyAcceptFacade {
 
 	// US4
 
-	public int sugerirPontoEncontro(String idSessao, String idCarona, String pontos){
+	public int sugerirPontoEncontro(String idSessao, String idCarona,
+			String pontos) {
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
 		Usuario usr = Controller.getInstance().getSessoes()
 				.searchSessionById(idSessao);
-		return Controller.getInstance().sugerirPontoEncontro(idSessao, Integer.parseInt(idCarona), pontos);
+		return Controller.getInstance().sugerirPontoEncontro(idSessao,
+				Integer.parseInt(idCarona), pontos);
 
 	}
 
-	public void responderSugestaoPontoEncontro(String idSessao, String idCarona, String idSugestao, String pontos){
+	public void responderSugestaoPontoEncontro(String idSessao,
+			String idCarona, String idSugestao, String pontos) {
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
 		Usuario usr = Controller.getInstance().getSessoes()
 				.searchSessionById(idSessao);
-		Controller.getInstance().respondeSolicitacaoMeetingPoint(Integer.parseInt(idSessao), Integer.parseInt(idCarona), Integer.parseInt(idSugestao), pontos);
+		Controller.getInstance().respondeSolicitacaoMeetingPoint(
+				Integer.parseInt(idSessao), Integer.parseInt(idCarona),
+				Integer.parseInt(idSugestao), pontos);
 
 	}
 
-	public int solicitarVagaPontoEncontro(String idSessao, String idCarona, String ponto){
+	public int solicitarVagaPontoEncontro(String idSessao, String idCarona,
+			String ponto) {
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
 		Usuario usr = Controller.getInstance().getSessoes()
@@ -154,18 +164,17 @@ public class MyEasyAcceptFacade {
 		return idSolicitacao;
 	}
 
-
-	public void desistirRequisicao(String idSessao, String idCarona, String idSolicitacao){
+	public void desistirRequisicao(String idSessao, String idCarona,
+			String idSolicitacao) {
 		if (idSessao == null || Util.isEmpty(idSessao))
 			throw new RuntimeException("Solicitação inexistente");
 		if (idSolicitacao == null || Util.isEmpty(idSolicitacao))
 			throw new RuntimeException("Solicitação inexistente");
 
-		Controller.getInstance().desitirCarona(Integer.parseInt(idSessao), Integer.parseInt(idCarona), 
-				Integer.parseInt(idSolicitacao));
+		Controller.getInstance().desitirCarona(Integer.parseInt(idSessao),
+				Integer.parseInt(idCarona), Integer.parseInt(idSolicitacao));
 
 	}
-
 
 	// US5
 
@@ -196,14 +205,14 @@ public class MyEasyAcceptFacade {
 			return carona.getMotorista().getNome();
 		if (atributo.equals("Dono da solicitacao"))
 			return carona.getCaroneiro().getNome();
-		if(atributo.equals("Ponto de Encontro")){
+		if (atributo.equals("Ponto de Encontro")) {
 			return carona.getPontoEncontro();
-			}
+		}
 
 		throw new RuntimeException("Atributo inexistente");
 	}
 
-	public void aceitarSolicitacao(String idSessao, String idSolicitacao){
+	public void aceitarSolicitacao(String idSessao, String idSolicitacao) {
 		if (idSolicitacao == null || Util.isEmpty(idSolicitacao))
 			throw new RuntimeException("Solicitação inexistente");
 
@@ -217,7 +226,8 @@ public class MyEasyAcceptFacade {
 		usr.aceitaRequest(id);
 	}
 
-	public void aceitarSolicitacaoPontoEncontro(String idSessao, String idSolicitacao){
+	public void aceitarSolicitacaoPontoEncontro(String idSessao,
+			String idSolicitacao) {
 		if (idSolicitacao == null || Util.isEmpty(idSolicitacao))
 			throw new RuntimeException("Solicitação inexistente");
 
@@ -231,7 +241,7 @@ public class MyEasyAcceptFacade {
 		usr.aceitaRequest(id);
 	}
 
-	public void rejeitarSolicitacao(String idSessao, String idSolicitacao){
+	public void rejeitarSolicitacao(String idSessao, String idSolicitacao) {
 		if (idSolicitacao == null || Util.isEmpty(idSolicitacao))
 			throw new RuntimeException("Solicitação inexistente");
 
@@ -245,45 +255,59 @@ public class MyEasyAcceptFacade {
 		usr.rejeitarRequest(id);
 	}
 
-	//US6
+	// US6
 
-	public int visualizarPerfil(int idSessao,String login){
-		Usuario usr = Controller.getInstance().searchPerfilUsuariobyLogin(login);
+	public int visualizarPerfil(int idSessao, String login) {
+		Usuario usr = Controller.getInstance()
+				.searchPerfilUsuariobyLogin(login);
 		int id = Controller.getInstance().visualizaPerfil(usr);
 		return id;
 	}
 
-	public String getAtributoPerfil(String login,String atributo){
+	public String getAtributoPerfil(String login, String atributo) {
 		Usuario usr = Controller.getInstance().searchUsuariobyLogin(login);
 		Perfil perfil = Controller.getInstance().searchPerfilByUser(usr);
 
-		if(perfil != null){
-			if(atributo.equals("nome")) return perfil.getNome();
-			else if(atributo.equals("endereco")) return perfil.getEndereco();
-			else if(atributo.equals("email")) return perfil.getEmail();
-			else if(atributo.equals("historico de caronas")) return perfil.getHistoricoDeCaronas();
-			else if(atributo.equals("historico de vagas em caronas")) return perfil.getHistoricoDeVagasEmCaronas();
-			else if(atributo.equals("caronas seguras e tranquilas")) return String.valueOf(perfil.getCaronasSegurasTranquilas());
-			else if(atributo.equals("caronas que não funcionaram")) return String.valueOf(perfil.getCaronasNaoFuncionaram());
-			else if(atributo.equals("faltas em vagas de caronas")) return String.valueOf(perfil.getFaltasEmCaronas());
-			else if(atributo.equals("presenças em vagas de caronas")) return String.valueOf(perfil.getPresencaEmCaronas());
-
+		if (perfil != null) {
+			if (atributo.equals("nome"))
+				return perfil.getNome();
+			else if (atributo.equals("endereco"))
+				return perfil.getEndereco();
+			else if (atributo.equals("email"))
+				return perfil.getEmail();
+			else if (atributo.equals("historico de caronas"))
+				return perfil.getHistoricoDeCaronas();
+			else if (atributo.equals("historico de vagas em caronas"))
+				return perfil.getHistoricoDeVagasEmCaronas();
+			else if (atributo.equals("caronas seguras e tranquilas"))
+				return String.valueOf(perfil.getCaronasSegurasTranquilas());
+			else if (atributo.equals("caronas que não funcionaram"))
+				return String.valueOf(perfil.getCaronasNaoFuncionaram());
+			else if (atributo.equals("faltas em vagas de caronas"))
+				return String.valueOf(perfil.getFaltasEmCaronas());
+			else if (atributo.equals("presenças em vagas de caronas"))
+				return String.valueOf(perfil.getPresencaEmCaronas());
 
 		}
 
 		throw new RuntimeException("login invalido");
 	}
 
-	public void reviewVagaEmCarona(String idSessao, String idCarona, String loginCaroneiro, String review){
-		Controller.getInstance().reviewEmCarona(Integer.parseInt(idSessao), Integer.parseInt(idCarona), loginCaroneiro, review);
+	public void reviewVagaEmCarona(String idSessao, String idCarona,
+			String loginCaroneiro, String review) {
+		Controller.getInstance().reviewEmCarona(Integer.parseInt(idSessao),
+				Integer.parseInt(idCarona), loginCaroneiro, review);
 	}
-	
-	
-	//US 07
-	public void reiniciarSistema(){
+
+	// US 07
+	public void reiniciarSistema() {
 		Controller.getInstance().reiniciar();
 	}
 	
-	
+	public int getCaronaUsuario(int idSessao,int indexCarona){
+		String id = String.valueOf(idSessao);
+		Usuario user=Controller.getInstance().getSessoes().searchSessionById(id);
+		return user.getCaronas().get(indexCarona).getId();
+	}
 
 }

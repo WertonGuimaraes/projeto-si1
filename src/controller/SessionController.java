@@ -112,5 +112,9 @@ public class SessionController implements Serializable {
 	public void desconectarSessao(int key) {
 		sessoesAbertas.remove(key);
 	}
+	
+	public Map<Integer,Usuario>getSessoesAbertas(){
+		return this.sessoesAbertas;
+	}
 
 }

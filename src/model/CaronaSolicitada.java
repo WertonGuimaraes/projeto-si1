@@ -1,7 +1,11 @@
 package model;
 
+import java.io.Serializable;
 
-public class CaronaSolicitada {
+
+public class CaronaSolicitada implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	private Carona carona;
 	private Usuario caroneiro;

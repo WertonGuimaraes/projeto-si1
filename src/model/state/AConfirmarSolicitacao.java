@@ -1,12 +1,15 @@
 package model.state;
 
+import java.io.Serializable;
 import java.util.List;
 
 import model.RequestMeetingPoint;
 import model.TalkAboutMeetingPoint;
 import model.Util;
 
-public class AConfirmarSolicitacao implements StateChangeRequest {
+public class AConfirmarSolicitacao implements StateChangeRequest,  Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private List<String> pontosDoMotorista;
 	
 	public AConfirmarSolicitacao(AguardandoAceitacao aguardandoAceitacao,

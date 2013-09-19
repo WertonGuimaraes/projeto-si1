@@ -1,11 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class Perfil {
+public class Perfil implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	private Usuario user;
 
@@ -46,7 +49,7 @@ public class Perfil {
 		for (int i : getUser().getCaronas().keySet()) {
 			list.add(getUser().getCaronas().get(i));
 		}
-		return Util.easyAccListParser(list);
+		return list.toString();
 	}
 
 	public int getCaronasSegurasTranquilas() {

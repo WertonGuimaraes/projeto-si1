@@ -1,12 +1,15 @@
 package model.state;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.ResponseMeetingPoint;
 import model.Util;
 
-public class SolicitacaoAceita implements StateChangeResponse {
+public class SolicitacaoAceita implements StateChangeResponse, Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private List<String> pontosMotorista;
 	
 	public SolicitacaoAceita(ResponseMeetingPoint responseMeetingPoint,

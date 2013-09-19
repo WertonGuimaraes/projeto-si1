@@ -1,6 +1,10 @@
 package model;
 
-public class HistoricoCarona {
+import java.io.Serializable;
+
+public class HistoricoCarona implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Carona carona;
 	private String review;
 	private final String[] reviews= {"faltou", "não faltou", "não funcionou"};

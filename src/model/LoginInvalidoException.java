@@ -1,11 +1,14 @@
 package model;
 
-public class LoginInvalidoException extends RuntimeException {
+import java.io.Serializable;
+
+public class LoginInvalidoException extends RuntimeException implements Serializable {
+
 
 	/**
 	 * Classe para exceções no login do usuario
 	 */
-	private static final long serialVersionUID = -8537124074016363415L;
+	private static final long serialVersionUID = 1L;
 
 	public LoginInvalidoException(){
 		
