@@ -39,6 +39,7 @@ public class PerfilBean {
 	int size;
 	private Usuario usuario;
 	private String LoginDoUsuarioProcurado;
+	private String opcao;
 
 	private List<Carona> caronasDisponiveis;
 	private List<CaronaSolicitada> caronasSolicitadas;
@@ -339,5 +340,19 @@ public class PerfilBean {
 		int idCarona = this.selectedCaronaSolicitada.getId();
 		
 		motorista.rejeitarRequest(idCarona);
+	}
+
+	/**
+	 * @return the opcao
+	 */
+	public String getOpcao() {
+		return opcao;
+	}
+
+	/**
+	 * @param opcao the opcao to set
+	 */
+	public void setOpcao(String opcao) {
+		this.opcao = opcao;
 	}
 }

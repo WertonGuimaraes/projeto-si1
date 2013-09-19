@@ -213,13 +213,17 @@
 		<p:dialog header="Opções" showEffect="fade" hideEffect="fade" modal="true"  
 	        widgetVar="caronaOpcoesDialog" closable="true" >  
 	          
-	        <p:outputPanel id="caronaOpcoes" style="text-align:center;" layout="block">  
-	            <h:panelGrid  columns="2" cellpadding="5">  
-	                <h:outputText id="color" 
-	                	value="#{perfilBean.selectedCaronaSolicitada.origem}"/>  
-	            </h:panelGrid>  
-	        </p:outputPanel>  
-          
+	        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+  
+		        <h:outputText value="O que você deseja fazer? " />  
+		        <p:selectOneRadio id="options" value="#{perfilBean.opcao}">  
+		            <f:selectItem itemLabel="Aceitar solicitação" itemValue="1" />  
+		            <br />
+		            <f:selectItem itemLabel="Recusar solicitação" itemValue="2" />  
+		        </p:selectOneRadio>  
+		  
+		    </h:panelGrid>    
+		          
    		 </p:dialog> 
 		
 		
