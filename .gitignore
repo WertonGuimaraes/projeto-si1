@@ -5,4 +5,5 @@
 /build
 /.settings
 /dist
-build.xml
+/%CATALINA_HOME%
+/CATALINA_HOME
