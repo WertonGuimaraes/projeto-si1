@@ -152,10 +152,10 @@
 								<h:outputText value="Caroneiro: #{car.nomeCaroneiro}" style="font-size: 12px" />
 							</h:panelGrid>
 							
-							<p:commandLink id="view" oncomplete="PF('caronaOpcoesDialog').show()" title="View Detail">  
+							<p:commandLink id="view" oncomplete="caronaOpcoesDialog.show()" title="View Detail">  
 					            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />   
 					            <f:setPropertyActionListener value="#{car}"   
-					                    target="#{perfilBean.selectedCaronaSolicitada}" />  
+					                    target="#{perfilBean.selectedCaronaSolicitada}"> </f:setPropertyActionListener>  
 					        </p:commandLink>
 
 						</p:carousel>

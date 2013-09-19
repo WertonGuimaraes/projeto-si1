@@ -272,8 +272,7 @@ public class PerfilBean {
 		this.caronasSolicitadas = caronasSolicitadas;
 	}
 
-
-
+	
 	/**
 	 * @return the selectedCarona
 	 */
@@ -317,7 +316,28 @@ public class PerfilBean {
 	 * @param selectedCaronaSolictada the selectedCaronaSolictada to set
 	 */
 	public void setSelectedCaronaSolicitada(CaronaSolicitada selectedCaronaSolictada) {
+		System.out.println("ta mudando");
 		this.selectedCaronaSolicitada = selectedCaronaSolictada;
+		System.out.println(this.selectedCaronaSolicitada.getOrigem());
+	}
+	
+	/**
+	 * aceita uma solicitação de carona
+	 */
+	public void aceitaCarona(){
+		Usuario motorista =  this.selectedCaronaSolicitada.getMotorista();
+		int idCarona = this.selectedCaronaSolicitada.getId();
+		
+		motorista.aceitaRequest(idCarona);
 	}
 
+	/***
+	 * rejeita a solicitação de carona
+	 */
+	public void rejeitaCarona(){
+		Usuario motorista =  this.selectedCaronaSolicitada.getMotorista();
+		int idCarona = this.selectedCaronaSolicitada.getId();
+		
+		motorista.rejeitarRequest(idCarona);
+	}
 }
