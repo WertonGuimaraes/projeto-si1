@@ -21,8 +21,6 @@ public class LoginBean {
 	
 	public String login(){
 		PerfilBean.ID = String.valueOf(SessionController.getInstance().abrirSessao(login, password));	
-		System.out.println(PerfilBean.ID);
-		System.out.println("iai?");
 		return "perfil?faces-redirect=true";
 	}
 	

@@ -1,6 +1,15 @@
 package model;
 
-public class SolicitacaoPontoEncontro {
+import java.io.Serializable;
+
+/***
+ * Classe responsável por criar uma solicitaçao de ponto de encontro.
+ * @author Jessika
+ *
+ */
+public class SolicitacaoPontoEncontro implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Usuario caroneiro;
 	private Usuario motorista;
 	int idCarona;

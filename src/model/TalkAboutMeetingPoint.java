@@ -1,12 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.state.AguardandoAceitacao;
 import model.state.StateChangeRequest;
 
-public class TalkAboutMeetingPoint {
+public class TalkAboutMeetingPoint implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int idSugestao;
 	private List<String> pontosCaroneiro;
 	private List<String> pontosMotorista;

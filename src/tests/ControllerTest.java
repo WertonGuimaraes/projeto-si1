@@ -2,10 +2,14 @@ package tests;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
+import model.Perfil;
 import model.Usuario;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import beans.PerfilBean;
+import beans.ShowerProfileBean;
 
 import controller.Controller;
 
@@ -96,15 +100,26 @@ public class ControllerTest {
 		Assert.assertEquals(usr2.getRequisicoesPontosPendentes().size(), 1);
 		
 		//Preciso implementar os estados de request e response
-		Assert.assertEquals(usr2.getRequisicaoPoint(idSugestao).getState().toString(), "Aguardando aprovação");
-		Assert.assertEquals(usr.getResponsePoint(idSugestao).getState().toString(), "Solicitação recebida");
+		Assert.assertEquals(usr2.getRequisicaoPoint(idSugestao).getState().toString(), "Aguardando aprovacao");
+		Assert.assertEquals(usr.getResponsePoint(idSugestao).getState().toString(), "Solicitacao recebida");
 	
 		controlador.respondeSolicitacaoMeetingPoint(idSessao1,  idCarona, idSugestao, "shopping;extra");
 		
-		Assert.assertEquals(usr.getResponsePoint(idSugestao).getState().toString(), "Solicitação aprovada");
+		Assert.assertEquals(usr.getResponsePoint(idSugestao).getState().toString(), "Solicitacao aprovada");
 		Assert.assertEquals(usr2.getRequisicaoPoint(idSugestao).getState().toString(), "Motorista aprovou");
 		
+		int idSolitcao = usr2.solicitaVaga(controlador.buscaCarona(idCarona));
+		usr.aceitaRequest(idSolitcao);
 		
+		controlador.reviewEmCarona(idSessao1, idCarona, usr2.getLogin(), "faltou");
+		
+		Perfil profile = new Perfil(usr2);
+		
+		Assert.assertEquals(1, profile.getFaltasEmCaronas());
+		Assert.assertEquals("["+idCarona+"]", profile.getHistoricoDeVagasEmCaronas());
+		
+	
 	}
-
+	
+	
 }

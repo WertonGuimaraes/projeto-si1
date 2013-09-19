@@ -1,9 +1,13 @@
 package model.state;
 
+import java.io.Serializable;
+
 import model.RequestMeetingPoint;
 import model.TalkAboutMeetingPoint;
 
-public class AguardandoAceitacao implements StateChangeRequest {
+public class AguardandoAceitacao implements StateChangeRequest, Serializable {
+
+	private static final long serialVersionUID = 1L;
 	RequestMeetingPoint request;
 	
 	public AguardandoAceitacao(RequestMeetingPoint request) {
@@ -32,7 +36,7 @@ public class AguardandoAceitacao implements StateChangeRequest {
 	
 	@Override
 	public String toString() {
-		return "Aguardando aprovação";
+		return "Aguardando aprovacao";
 	}
 
 	@Override

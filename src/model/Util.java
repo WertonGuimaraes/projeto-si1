@@ -1,9 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Util {
+public class Util implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	
 	/**
@@ -27,6 +30,8 @@ public class Util {
 	
 	
 	public static String easyAccListParser(List<?> list){
+		//if(list.isEmpty()) return "[]";
+		
 		String result = list.toString();
 		result=result.replaceAll(", ",",");
 		result=result.replace("[","{");
@@ -44,6 +49,5 @@ public class Util {
 		return result;
 	}
 
-	
 	
 }

@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,9 @@ import model.state.RequisicaoRecebida;
 import model.state.StateChangeRequest;
 import model.state.StateChangeResponse;
 
-public class ResponseMeetingPoint{
+public class ResponseMeetingPoint implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int idSugestao;
 	private List<String> pontosCaroneiro;
 	private List<String> pontosMotorista;
@@ -27,7 +30,7 @@ public class ResponseMeetingPoint{
 	
 	
 	/**
-	 * Método acessador para o idSugestao
+	 * Metodo acessador para o idSugestao
 	 * @return int
 	 */
 	public int getIdSugestao() {

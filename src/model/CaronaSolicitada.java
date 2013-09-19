@@ -1,7 +1,11 @@
 package model;
 
+import java.io.Serializable;
 
-public class CaronaSolicitada {
+
+public class CaronaSolicitada implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	private Carona carona;
 	private Usuario caroneiro;
@@ -9,6 +13,7 @@ public class CaronaSolicitada {
 	private int id;
 	private String origem;
 	private String destino;
+	private String pontoEncontro;
 	
 	public CaronaSolicitada(Carona carona, Usuario caroneiro){
 		this.carona=carona;
@@ -16,10 +21,15 @@ public class CaronaSolicitada {
 		this.motorista=carona.getMotorista();
 		this.origem=carona.getOrigem();
 		this.destino=carona.getDestino();
+		this.pontoEncontro="";
 	}
 
 	public Carona getCarona() {
 		return carona;
+	}
+	
+	public void addRequest(int id){
+		this.motorista.addRequest(id,this);
 	}
 
 	public void setCarona(Carona carona) {
@@ -65,9 +75,44 @@ public class CaronaSolicitada {
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
+
+	public String getPontoEncontro() {
+		return pontoEncontro;
+	}
+
+	public void setPontoEncontro(String pontoEncontro) {
+		this.pontoEncontro = pontoEncontro;
+	}
+		
+	public void setData(String data){
+		this.carona.setDate(data);
+	}
 	
+	public String getData(){
+		return this.carona.getDate();
+	}
 	
+	public void setHora(String hora){
+		this.carona.setHour(hora);
+	}
 	
+	public String getHora(){
+		return this.carona.getHour();
+	}
 	
+	/***
+	 * Metodo acessador para o nome do caroneiro
+	 * @return nome do caroneiro
+	 */
+	public String getNomeCaroneiro(){
+		return this.caroneiro.getNome();
+	}
 	
+	/***
+	 * Metodo acessador para o nome do motorista
+	 * @return nome do motorista
+	 */
+	public String getNomeMotorista(){
+		return this.motorista.getNome();
+	}
 }
