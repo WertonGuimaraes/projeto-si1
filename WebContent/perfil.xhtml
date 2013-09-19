@@ -49,18 +49,12 @@
 
 				<p:commandButton id="modalDialogButton" value="Cadastrar Caronas"
 					onclick="dlg2.show()" type="button"
-					style="font-size: 12px;
-				 height: 30px" />
-				 
-				<p:commandButton id="selectButton"
-					action="#{perfilBean.solicitarCarona}" value="Solicitar vaga"
-					title="Solicite uma vaga" style="font-size: 12px; height: 20px">
-				</p:commandButton>
-
+					style="font-size: 12px; height: 30px; width: 170px" />
+				
 				<br/>
 				 
-				 <p:commandButton id="perfil" value="Visualizar Perfil"
-					type="button" style="font-size: 12px; height: 30px" />
+				 <p:commandButton id="perfil" value="Visualizar Perfil" action="#{perfilBean.meuPerfil}"
+					type="button" style="font-size: 12px; height: 30px; width: 170px"  />
 					
 
 			</p:layoutUnit>
@@ -142,7 +136,7 @@
 								</p:column>
 							</p>
 						</f:facet>
-
+					
 					</p:dataTable>
 
 				</h:form>

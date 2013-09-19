@@ -5,7 +5,7 @@
      Jessika Renally - SI 1 - 2013.1    
                                                 
      ====================================================================== -->
-<project name="lab4JessikaRenally" default="" basedir=".">
+<project name="projetoSI1" default="" basedir=".">
 	
 	<!-- ================================= 
 	          propriedades do projeto              

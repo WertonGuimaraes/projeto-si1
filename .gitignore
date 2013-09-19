@@ -7,3 +7,4 @@
 /dist
 /%CATALINA_HOME%
 /CATALINA_HOME
+build.xml
