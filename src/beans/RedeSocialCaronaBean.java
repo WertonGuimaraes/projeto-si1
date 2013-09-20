@@ -23,16 +23,16 @@ public class RedeSocialCaronaBean{
 											"Rua G", "Rua Sao Jose", "Rua Onze", "Rua H", "Rua Sao Paulo", "Rua Doze", "Rua Treze",
 											"Rua Santo Antonio", "Avenida Brasil", "Rua I" , "Rua 2", "Rua 1",  "Rua 3"};
 	
-	private String[] nomesComuns = {"Gabriel", "Júlia", "Giulia", "Arthur" , "Artur", "Sofia" , "Sophia",
+	private String[] nomesComuns = {"Gabriel", "Julia", "Giulia", "Arthur" , "Artur", "Sofia" , "Sophia",
 									"Matheus", "Mateus",  "Maria Eduarda", "Davi", "David" , "Giovanna" , "Giovana",
 									"Lucas",  "Isabela" ,"Isabella", "Guilherme", "Beatriz", "Pedro", "Manuela",  "Manoela",
 									"Manuella", "Miguel", "Yasmin", "Iasmin", "Enzo",  "Maria Clara", "Gustavo" ,  "Ana Clara",
-									"Mariana", "Felipe", "Filipe", "Gabriela", "João Pedro", "Luiza", "Luísa", "Pedro Henrique",
-									"Laura", "Nicholas" , "Nicolas", "Lara", "Kauã" , "Cauã",  "Nicole", "Terêncio",
+									"Mariana", "Felipe", "Filipe", "Gabriela", "Joao Pedro", "Luiza", "Luisa", "Pedro Henrique",
+									"Laura", "Nicholas" , "Nicolas", "Lara", "Kaua" , "Caua",  "Nicole", "Terencio",
 									"Tiaraju", "Jessika", "Rafael"}; 
 	
 	private String[] sobreNomesComuns = {"Silva", "Souza", "Costa", "Santos", "Oliveira", "Pereira", "Rodrigues",
-										"Almeida", "Nascimento", "Lima", "Araújo", "Fernandes" , "Carvalho",
+										"Almeida", "Nascimento", "Lima", "Araujo", "Fernandes" , "Carvalho",
 										"Gomes", "Martins", "Rocha", "Ribeiro", "Alves", "Monteiro", "Mendes", "Barros",
 										"Freitas", "Barbosa", "Pinto", "Moura", "Cavalcanti", "Dias", "Castro", "Campos",
 										"Cardoso", "Horto", "Smaneoto", "Rodrigues", "Rego"};
@@ -71,7 +71,7 @@ public class RedeSocialCaronaBean{
 	 */
 	private void criaUsuarios(){
 		Controller.getInstance().criaConta("r", "r", "r", "r", "r");
-		Controller.getInstance().criaConta("si1", "si1si1", "Sistemas de Informação I", "si1@si1-ufcg.tk", "Aprígio Veloso....");
+		Controller.getInstance().criaConta("si1", "si1si1", "Sistemas de Informacao I", "si1@si1-ufcg.tk", "Aprigio Veloso....");
 		
 		for (int i = 0; i < 501; i++) {
 			String login = "usuario"+i , senha = "si1", nome = geraNome();
