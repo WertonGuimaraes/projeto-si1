@@ -12,6 +12,7 @@ public class AConfirmarSolicitacao implements StateChangeRequest,  Serializable 
 	private static final long serialVersionUID = 1L;
 	private List<String> pontosDoMotorista;
 	
+	
 	public AConfirmarSolicitacao(AguardandoAceitacao aguardandoAceitacao,
 			String pontos) {
 		this.pontosDoMotorista = Util.extractListPoints(pontos);
