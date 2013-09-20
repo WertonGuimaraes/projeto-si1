@@ -53,7 +53,8 @@ public class RedeSocialCaronaBean{
 		Controller.getInstance().criaConta("si1", "si1si1", "Sistemas de Informação I", "si1@si1-ufcg.tk", "Aprígio Veloso....");
 		
 		for (int i = 0; i < 501; i++) {
-			String login = "usuario"+i , senha = "si1", nome = geraNome(), email = nome+"@si1-ufcg.tk", endereco = geraEndereco();
+			String login = "usuario"+i , senha = "si1", nome = geraNome();
+			String email = "usuario"+i+"@si1-ufcg.tk", endereco = geraEndereco();
 			Controller.getInstance().criaConta(login, senha, nome, email, endereco);
 		}
 		
