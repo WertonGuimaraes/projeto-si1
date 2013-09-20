@@ -161,7 +161,7 @@ public class PerfilBean {
 
 		this.setRequestMeetingPoint(this.usuario.getRequisicoesPontosPendentes());
 		this.requestsPontosEncontro = this.usuario.getRequisicoesPontosPendentes();
-		this.caronasSolicitadasPorMim = this.usuario.get
+		this.caronasSolicitadasPorMim = this.usuario.getCaronasSolicitadas();
 		System.out.println(caronasSolicitadas);
 	}
 
