@@ -69,7 +69,7 @@ public class RedeSocialCaronaBean{
 	}
 	
 	private void criaCaronas(){
-		for (int i = 0; i < 1001; i++) {
+		for (int i = 0; i < 1000; i++) {
 			Usuario usr = Controller.getInstance().searchPerfilUsuariobyLogin("usuario"+ (int)( Math.random()*500) );
 			String data = ( 1+(int)(Math.random()*25) ) + "/" + ( 1+(int)(Math.random()*10) ) + "/" + 2014;
 			String hora = String.valueOf((int)(Math.random()*23)) + ":00";
