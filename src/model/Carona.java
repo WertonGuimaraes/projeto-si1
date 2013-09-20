@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.joda.time.DateTime;
@@ -12,7 +11,7 @@ import org.joda.time.DateTime;
  *
  */
 public class Carona implements Serializable {
-
+	
 	private static final long serialVersionUID = 1L;
 
 	private String origem;
@@ -25,8 +24,7 @@ public class Carona implements Serializable {
 	private Set<Request> requisicoes;
 	private int id;
 
-	public Carona(String origem, String destino, String data, String horaSaida,
-			int vagas) throws Exception {
+	public Carona(String origem, String destino, String data, String horaSaida, int vagas){
 		if (origem == null || Util.isEmpty(origem))
 			throw new RuntimeException("Origem inválida");
 		if (Util.containsInvalidChar(origem))

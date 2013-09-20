@@ -75,11 +75,9 @@ public class Usuario implements Serializable {
 	 * @param hora
 	 * @param vagas
 	 * @return o id da carona
-	 * @throws Exception
-	 *             se vagas == 0
+	 * 
 	 */
-	public int adicionaCarona(String origem, String destino, String data,
-			String hora, String vagas) throws Exception {
+	public int adicionaCarona(String origem, String destino, String data, String hora, String vagas){
 		Integer intVagas;
 		try {
 			if (vagas == null || Util.isEmpty(vagas))
