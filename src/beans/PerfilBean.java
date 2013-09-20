@@ -19,6 +19,7 @@ import org.primefaces.event.FileUploadEvent;
 import model.Carona;
 import model.CaronaSolicitada;
 import model.RequestMeetingPoint;
+import model.ResponseMeetingPoint;
 import model.SolicitacaoPontoEncontro;
 import model.Usuario;
 import controller.Controller;
@@ -39,18 +40,21 @@ public class PerfilBean {
 	private Carona carona;
 	private String LoginDoUsuarioProcurado;
 	private String opcao;
+	private String pontosMotorista;
 	int size;
 
 	private Usuario usuario;
 	private CaronaSolicitada selectedCaronaSolicitada;
 	private Carona selectedCarona;
 	private RequestMeetingPoint requestPoint;
+	private ResponseMeetingPoint responsePoint;
 	
 	private List<Carona> caronasDisponiveis;
 	private List<CaronaSolicitada> caronasSolicitadas;
 	private List<CaronaSolicitada> caronasSolicitadasPorMim;
 	private List<RequestMeetingPoint> requestMeetingPoint;
 	private List<RequestMeetingPoint> requestsPontosEncontro;
+	private List<ResponseMeetingPoint> responsesPontosEncontro;
 	
 
 	public PerfilBean() {
@@ -146,10 +150,11 @@ public class PerfilBean {
 		update();
 	}
 
-	public void solicitarCarona() {
+	public String solicitarCarona() {
 
 		this.usuario.solicitaVaga(this.selectedCarona);
 		update();
+		return redirectPerfil();
 	}
 
 	private void update() {
@@ -161,6 +166,7 @@ public class PerfilBean {
 
 		this.setRequestMeetingPoint(this.usuario.getRequisicoesPontosPendentes());
 		this.requestsPontosEncontro = this.usuario.getRequisicoesPontosPendentes();
+		this.setResponsesPontosEncontro(this.usuario.getResponsesPontosPendentes());
 		this.caronasSolicitadasPorMim = this.usuario.getCaronasSolicitadas();
 	}
 
@@ -336,11 +342,12 @@ public class PerfilBean {
 		System.out.println(this.selectedCaronaSolicitada.getOrigem());
 	}
 	
-	public void escolheResultado(){
+	public String escolheResultado(){
 		if(opcao.equals("1")) aceitaCarona();
 		else if(opcao.equals("2")) rejeitaCarona();
 		
 		update();
+		return redirectPerfil();
 	}
 	
 	/**
@@ -398,7 +405,7 @@ public class PerfilBean {
 	/**
 	 * Sugere ponto de encontro
 	 */
-	public void sugerirPonto(){
+	public String sugerirPonto(){
 		Controller cont = Controller.getInstance();
 		int idSessao = cont.getSessoes().searchSessionByLogin(this.usuario.getLogin());
 
@@ -406,6 +413,8 @@ public class PerfilBean {
 				this.selectedCarona.getId(), this.pontoDeEncontro);
 		update();
 		msg("Ponto sugeiro com sucesso");
+	
+		return redirectPerfil();
 	}
 
 	/**
@@ -423,7 +432,7 @@ public class PerfilBean {
 	}
 	
 	
-	public void escolheResultadoRequest(){
+	public String escolheResultadoRequest(){
 		int idCarona = this.requestPoint.getIdCarona(); //id da carona mesmo
 		this.selectedCarona = Controller.getInstance().buscaCarona(idCarona);
 		//this.selectedCaronaSolicitada = Controller.getInstance().buscaCaronaSolicitada(idCaronaSolicitada)
@@ -432,6 +441,7 @@ public class PerfilBean {
 		else if(opcao.equals("2")) 	solicitarCarona();
 		
 		update();
+		return redirectPerfil();
 	}
 	
 	
@@ -441,26 +451,41 @@ public class PerfilBean {
 		//Controller.getInstance().desitirCarona(idSessao, idCarona, idSugestao);
 	}
 	
-	public void escolheResultadoMinhasSolicitacoes(){
+	public String escolheResultadoMinhasSolicitacoes(){
 		int idSessao = Controller.getInstance().getSessoes()
 				.searchSessionByLogin(this.usuario.getLogin());
 		System.out.println("verificando");
 		System.out.println(this.opcao);
-		if(opcao.equals("1")) desistirCarona(idSessao, 0,
+		if(opcao.equals("1")) desistirCarona(idSessao,
 				this.selectedCaronaSolicitada.getId()); //idCarona inutil por isso 0 default
 		
 		update();
+		return redirectPerfil();
 	}
 	
 	/***
 	 * 
 	 * @param idSessao
-	 * @param idCarona
 	 * @param idSugestao e o id da carona solicitada 
 	 */
-	public void desistirCarona(int idSessao, int idCarona, int idSugestao){
+	public void desistirCarona(int idSessao, int idSugestao){
 		System.out.println("entrou");
-		Controller.getInstance().desitirCarona(idSessao, idCarona, idSugestao);
+		Controller.getInstance().desitirCarona(idSessao, idSugestao);
+	}
+	
+	public String escolheResultadoResponse(){
+		Controller cont = Controller.getInstance();
+		Carona car = this.selectedCaronaSolicitada.getCarona();
+		if(opcao.equals("1")){			
+			Controller.getInstance().respondeSolicitacaoMeetingPoint(cont.getSessoes()
+					.searchSessionByLogin(this.usuario.getLogin()), car.getId(),
+					this.selectedCaronaSolicitada.getId(), this.pontosMotorista);
+		}else if(opcao.equals("2")){
+			
+		}
+		
+		return redirectPerfil();
+			
 	}
 
 	/**
@@ -475,5 +500,47 @@ public class PerfilBean {
 	 */
 	public void setCaronasSolicitadasPorMim(List<CaronaSolicitada> caronasSolicitadasPorMim) {
 		this.caronasSolicitadasPorMim = caronasSolicitadasPorMim;
+	}
+
+	/**
+	 * @return the responsePoint
+	 */
+	public ResponseMeetingPoint getResponsePoint() {
+		return responsePoint;
+	}
+
+	/**
+	 * @param responsePoint the responsePoint to set
+	 */
+	public void setResponsePoint(ResponseMeetingPoint responsePoint) {
+		this.responsePoint = responsePoint;
+	}
+
+	/**
+	 * @return the pontosMotorista
+	 */
+	public String getPontosMotorista() {
+		return pontosMotorista;
+	}
+
+	/**
+	 * @param pontosMotorista the pontosMotorista to set
+	 */
+	public void setPontosMotorista(String pontosMotorista) {
+		this.pontosMotorista = pontosMotorista;
+	}
+
+	/**
+	 * @return the responsesPontosEncontro
+	 */
+	public List<ResponseMeetingPoint> getResponsesPontosEncontro() {
+		return responsesPontosEncontro;
+	}
+
+	/**
+	 * @param responsesPontosEncontro the responsesPontosEncontro to set
+	 */
+	public void setResponsesPontosEncontro(List<ResponseMeetingPoint> responsesPontosEncontro) {
+		this.responsesPontosEncontro = responsesPontosEncontro;
 	}
 }

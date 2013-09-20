@@ -398,27 +398,18 @@ public class Controller implements Serializable {
 	 */
 	public void desitirCarona(int idSessao, int idCaronaSolicitada) {
 		System.out.println("to aqui");
+		Usuario motorista, caroneiro;
 		
-		Usuario caroneiro = Controller.getInstance().getSessoes()
+		caroneiro = Controller.getInstance().getSessoes()
 				.searchSessionById(String.valueOf(idSessao));
+		caroneiro.removeSolicitacaoCaronaFeita(idCaronaSolicitada);
 		
 		for(CaronaSolicitada carona: caroneiro.getCaronasSolicitadas()){
 			if(carona.getId() == idCaronaSolicitada){
-				Usuario motorista =  carona.getMotorista();
+				motorista =  carona.getMotorista();
+				motorista.removeRequestById(idCaronaSolicitada);
 			}
 		}
-		
-		for (int i : caroneiro.getRequests().keySet()) {
-			if (caroneiro.getRequests().get(i).getId() == idCaronaSolicitada) {
-				Usuario motorista = caroneiro.getRequests().get(i)
-						.getMotorista();
-				caroneiro.getRequests().remove(i);
-				caroneiro.removeSolicitacaoCaronaFeita(idCaronaSolicitada);
-				motorista.getRequests().remove(i);
-				return;
-			}
-		}
-
 	}
 
 	/**
