@@ -48,6 +48,7 @@ public class PerfilBean {
 	
 	private List<Carona> caronasDisponiveis;
 	private List<CaronaSolicitada> caronasSolicitadas;
+	private List<CaronaSolicitada> caronasSolicitadasPorMim;
 	private List<RequestMeetingPoint> requestMeetingPoint;
 	private List<RequestMeetingPoint> requestsPontosEncontro;
 	
@@ -160,6 +161,7 @@ public class PerfilBean {
 
 		this.setRequestMeetingPoint(this.usuario.getRequisicoesPontosPendentes());
 		this.requestsPontosEncontro = this.usuario.getRequisicoesPontosPendentes();
+		this.caronasSolicitadasPorMim = this.usuario.get
 		System.out.println(caronasSolicitadas);
 	}
 
@@ -437,5 +439,19 @@ public class PerfilBean {
 		//CaronaSolicitada c
 		//aqui eu preciso da CaronaSolicatda mas em RequestPoint eu so tenho o id da Carona normal
 		//Controller.getInstance().desitirCarona(idSessao, idCarona, idSugestao);
+	}
+
+	/**
+	 * @return the caronasSolicitadasPorMim
+	 */
+	public List<CaronaSolicitada> getCaronasSolicitadasPorMim() {
+		return caronasSolicitadasPorMim;
+	}
+
+	/**
+	 * @param caronasSolicitadasPorMim the caronasSolicitadasPorMim to set
+	 */
+	public void setCaronasSolicitadasPorMim(List<CaronaSolicitada> caronasSolicitadasPorMim) {
+		this.caronasSolicitadasPorMim = caronasSolicitadasPorMim;
 	}
 }

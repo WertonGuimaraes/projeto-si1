@@ -37,6 +37,10 @@ public class Usuario implements Serializable {
 		return requests;
 	}
 
+	/**
+	 * Método modificador para as caronas que foram solicitadas a esse usuario
+	 * @param requests
+	 */
 	public void setRequests(Map<Integer, CaronaSolicitada> requests) {
 		this.requests = requests;
 	}
@@ -63,7 +67,7 @@ public class Usuario implements Serializable {
 		this.responsesPontosPendentes = new ArrayList<ResponseMeetingPoint>();
 		this.requisicoesPontosPendentes = new ArrayList<RequestMeetingPoint>();
 		this.historicos = new ArrayList<HistoricoCarona>();
-		this.caronasSolicitadas = new ArrayList<CaronaSolicitada>();
+		this.setCaronasSolicitadas(new ArrayList<CaronaSolicitada>());
 	}
 
 	/***
@@ -111,7 +115,7 @@ public class Usuario implements Serializable {
 		CaronaSolicitada solicitacao = new CaronaSolicitada(carona, this);
 		solicitacao.setId(id);
 		Controller.getInstance().adicionaRequest(solicitacao, id);
-		caronasSolicitadas.add(solicitacao);
+		getCaronasSolicitadas().add(solicitacao);
 		return id;
 	}
 
@@ -436,6 +440,22 @@ public class Usuario implements Serializable {
 	 */
 	public List<HistoricoCarona> getHistoricos() {
 		return historicos;
+	}
+
+	/**
+	 * Método acessador para as caronas que o usuario solicitou
+	 * @return the caronasSolicitadas
+	 */
+	public List<CaronaSolicitada> getCaronasSolicitadas() {
+		return caronasSolicitadas;
+	}
+
+	/**
+	 * Método modificador para as caronas que o usuario solicitou
+	 * @param caronasSolicitadas the caronasSolicitadas to set
+	 */
+	public void setCaronasSolicitadas(List<CaronaSolicitada> caronasSolicitadas) {
+		this.caronasSolicitadas = caronasSolicitadas;
 	}
 
 }
