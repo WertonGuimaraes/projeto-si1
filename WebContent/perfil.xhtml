@@ -20,7 +20,7 @@
 			</p>
 		</h:form>
 	</div>
-
+	
 	<div align="center">
 		<p:layout style="min-width:1020px;max-width:1020px;min-height:600px">
 			<!--fullPage="true" style="width:100%;height:100%"-->
@@ -30,14 +30,10 @@
 					<font size="4" color="#36648B">Seja bem vindo
 						#{perfilBean.usuario.nome} </font>
 				</h2>
+							
 				<p:graphicImage
 					url="http://blog.cancaonova.com/cantinho/files/2011/09/box-home-clube-PP.jpg"
 					width="200" height="150" style="border:" />
-				<br />
-				
-				<p:commandButton id="visualizarPerfil" value="Visualizar meu Pefil"
-							style="width:120px;font-size:11px;height:30px" />
-							
 				<br />
 
 				<h:form enctype="multipart/form-data">
@@ -51,10 +47,21 @@
 				<br />
 				<br />
 
-				<p:commandButton id="modalDialogButton" value="Cadastrar carona"
+				<p:commandButton id="modalDialogButton" value="Cadastrar Caronas"
 					onclick="dlg2.show()" type="button"
 					style="font-size: 12px;
 				 height: 30px" />
+				 
+				<p:commandButton id="selectButton"
+					action="#{perfilBean.solicitarCarona}" value="Solicitar vaga"
+					title="Solicite uma vaga" style="font-size: 12px; height: 20px">
+				</p:commandButton>
+
+				<br/>
+				 
+				 <p:commandButton id="perfil" value="Visualizar Perfil"
+					type="button" style="font-size: 12px; height: 30px" />
+					
 
 			</p:layoutUnit>
 

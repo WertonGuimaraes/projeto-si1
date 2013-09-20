@@ -21,7 +21,7 @@
 	<property name="sysLibs" value="lib"/>
 	<property name="classTeste" value="easyaccept"/>
 	<property name="webContent" value="WebContent" />
-	<property name="CATALINA_HOME" value="%CATALINA_HOME%" /> 
+	<property name="CATALINA_HOME" value="C:\tomcat\bin" /> 
 
 	<!-- - - - - - - - - - - - - - - - - - 
           target: init                      
