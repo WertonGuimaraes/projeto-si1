@@ -25,6 +25,14 @@ import model.Usuario;
 import controller.Controller;
 import controller.SessionController;
 
+/**
+ * @author Rafael
+ *
+ */
+/**
+ * @author Rafael
+ *
+ */
 @ViewScoped
 @ManagedBean(name = "perfilBean")
 public class PerfilBean {
@@ -57,10 +65,13 @@ public class PerfilBean {
 	private List<ResponseMeetingPoint> responsesPontosEncontro;
 	
 
+	/**
+	 * Procura o Usuario pela sua Id e monta o Perfil a partir do objeto
+	 * Usuario.
+	 */
 	public PerfilBean() {
 		if (ID != null) {
-			this.usuario = SessionController.getInstance()
-					.searchSessionById(ID);
+			this.usuario = SessionController.getInstance().searchSessionById(ID);
 			this.id = ID;
 			this.caronasDisponiveis = new ArrayList<Carona>();
 			this.reset();
@@ -70,6 +81,10 @@ public class PerfilBean {
 			throw new RuntimeException("Erro no id do perfil");
 	}
 
+	/**
+	 * Faz logoff do usuario
+	 * @return pagina inicial
+	 */
 	public String logoffButton() {
 		SessionController.getInstance().desconectarSessao(Integer.parseInt(id)); 
 		return "index.xhtml";
@@ -89,6 +104,10 @@ public class PerfilBean {
 		return LoginDoUsuarioProcurado;
 	}
 	
+	/**
+	 * Localiza um perfil de Usuario a partir do seu Login
+	 * @return pagina de Perfil do Usuario solicitado
+	 */
 	public String localizaPerfil() {
 		Usuario user = Controller.getInstance().searchUsuariobyLogin(LoginDoUsuarioProcurado);
 		if(user != null){
@@ -99,6 +118,10 @@ public class PerfilBean {
 		throw new RuntimeException("perfil invalido");
 	}
 	
+	/**
+	 * Localiza o perfil do Próprio usuario a partir do seu login
+	 * @return pagina de perfil
+	 */
 	public String meuPerfil(){
 		Usuario user = Controller.getInstance().searchUsuariobyLogin(usuario.getLogin());
 		if(user != null){
@@ -112,11 +135,19 @@ public class PerfilBean {
 	public void setLoginDoUsuarioProcurado(String login) {
 		this.LoginDoUsuarioProcurado = login;
 	}
-
+	
+	
+	/**
+	 * @return pagina de perfil
+	 */
 	public String redirectPerfil() {
 		return "perfil.xhtml";
 	}
 
+	/**
+	 * Limpa as listas de caronas e retorna para a página de perfil
+	 * @return pagina do perfil
+	 */
 	public String cleanAndExit() {
 		this.caronasDisponiveis = new ArrayList<Carona>();
 		return "perfil.xhtml";
@@ -124,6 +155,9 @@ public class PerfilBean {
 	}
 
 
+	/**
+	 * Localiza uma carona de acordo com a origem e destino especificados
+	 */
 	public void localizaCaronasDisponiveis() {
 		this.setCaronasDisponiveis(new ArrayList<Carona>());
 		List<Integer> idsCaronas = Controller.getInstance().buscaCarona(
@@ -136,6 +170,9 @@ public class PerfilBean {
 	}
 
 
+	/**
+	 * Cadastra uma carona a partir da orige,destino,data,hora e vagas setados no PerfilBean
+	 */
 	public void cadastrarCarona() {
 		try {
 			usuario.adicionaCarona(this.origem, this.destino, this.data,
@@ -150,6 +187,10 @@ public class PerfilBean {
 		update();
 	}
 
+	/**
+	 * Solicita uma carona e redireciona o usuario para o seu perfil
+	 * @return perfil do usuario
+	 */
 	public String solicitarCarona() {
 
 		this.usuario.solicitaVaga(this.selectedCarona);
@@ -157,6 +198,10 @@ public class PerfilBean {
 		return redirectPerfil();
 	}
 
+	
+	/**
+	 * Atualiza todas as informações de PerfilBean.
+	 */
 	private void update() {
 		Map<Integer, CaronaSolicitada> requisicoes = this.usuario.getRequests();
 		caronasSolicitadas = new ArrayList<CaronaSolicitada>();
@@ -170,6 +215,9 @@ public class PerfilBean {
 		this.caronasSolicitadasPorMim = this.usuario.getCaronasSolicitadas();
 	}
 
+	/**
+	 * Zera os atributos relacionados a Carona no PerfilBean. (origem,destino,data,hora,vagas)
+	 */
 	public void reset() {
 		this.setOrigem("");
 		this.setDestino("");
@@ -178,6 +226,10 @@ public class PerfilBean {
 		this.setVagas("");
 	}
 
+	/**
+	 * Realiza upload de uma foto de perfil para o usuario
+	 * @param event upload da foto
+	 */
 	public void upload(FileUploadEvent event) {  
 		FacesMessage msg = new FacesMessage(event.getFile().getFileName() + " foi enviado com sucesso.");  
 		FacesContext.getCurrentInstance().addMessage(null, msg);  
@@ -210,7 +262,7 @@ public class PerfilBean {
 		}  
 
 	}  
-
+	
 	public Collection<Carona> getCaronas() {
 		return usuario.getCaronas().values();
 	}
@@ -342,6 +394,11 @@ public class PerfilBean {
 		System.out.println(this.selectedCaronaSolicitada.getOrigem());
 	}
 	
+	/**
+	 * Decide se aceita ou rejeita a Carona. 
+	 * Os inteiros 1 e 2 aceitam e rejeitam, respectivamente, a carona.
+	 * @return perfil do usuario
+	 */
 	public String escolheResultado(){
 		if(opcao.equals("1")) aceitaCarona();
 		else if(opcao.equals("2")) rejeitaCarona();
@@ -351,7 +408,7 @@ public class PerfilBean {
 	}
 	
 	/**
-	 * aceita uma solicitação de carona
+	 * Aceita uma solicitação de carona
 	 */
 	public void aceitaCarona(){
 		Usuario motorista =  this.selectedCaronaSolicitada.getMotorista();
@@ -362,7 +419,7 @@ public class PerfilBean {
 	}
 
 	/***
-	 * rejeita a solicitação de carona
+	 * Rejeita a solicitação de carona
 	 */
 	public void rejeitaCarona(){
 		Usuario motorista =  this.selectedCaronaSolicitada.getMotorista();
@@ -432,6 +489,11 @@ public class PerfilBean {
 	}
 	
 	
+	/**
+	 * Escolhe se quer aceitar ou rejeitar uma carona e
+	 * redireciona para o perfil do usuario
+	 * @return pagina de perfil do usuario
+	 */
 	public String escolheResultadoRequest(){
 		int idCarona = this.requestPoint.getIdCarona(); //id da carona mesmo
 		this.selectedCarona = Controller.getInstance().buscaCarona(idCarona);
@@ -451,13 +513,17 @@ public class PerfilBean {
 		//Controller.getInstance().desitirCarona(idSessao, idCarona, idSugestao);
 	}
 	
+	
+	/**
+	 * Escolhe se aceita ou não uma Carona solicitada por outro usuario.
+	 * Em seguida, redireciona para a pagina de perfil.
+	 * @return pagina de perfil do usuario.
+	 */
 	public String escolheResultadoMinhasSolicitacoes(){
-		int idSessao = Controller.getInstance().getSessoes()
-				.searchSessionByLogin(this.usuario.getLogin());
+		int idSessao = Controller.getInstance().getSessoes().searchSessionByLogin(this.usuario.getLogin());
 		System.out.println("verificando");
 		System.out.println(this.opcao);
-		if(opcao.equals("1")) desistirCarona(idSessao,
-				this.selectedCaronaSolicitada.getId()); //idCarona inutil por isso 0 default
+		if(opcao.equals("1")) desistirCarona(idSessao, this.selectedCaronaSolicitada.getId()); //idCarona inutil por isso 0 default
 		
 		update();
 		return redirectPerfil();
