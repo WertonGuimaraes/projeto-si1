@@ -59,11 +59,17 @@
 				</h:form>
 				
 				<h:form>
-					<p:dataGrid var="car" value="#{perfilBean.friends}" columns="3"  
-        					rows="5" paginator="true" rowsPerPageTemplate="9,12,15">
-        					
-        			</p:dataGrid>
+					<p:outputLabel value="Nome do amigo"
+							style="font-size:12px; width:58px; height: 30px" />
+					<p:inputText id="inAmigo" value="#{perfilBean.nomeAmigo}"
+						style="width:150px;font-size: 12px; height: 20px; 
+						font-color: #36648B" label="nome" />
+					<p:commandButton value="Ver perfil" action="#{perfilBean.redirectShowePerfil}"/>
 				
+					<p:dataGrid var="friend" value="#{perfilBean.friends}" columns="3"  
+        					rows="5" paginator="true" rowsPerPageTemplate="9,12,15">
+        					<h:outputText value="#{friend.nome}" /> 
+        			</p:dataGrid>
 				
 				</h:form>
 
