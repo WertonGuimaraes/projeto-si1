@@ -17,11 +17,11 @@ import controller.Controller;
 @ManagedBean(name = "redeBean", eager = true)
 @ApplicationScoped
 public class RedeSocialCaronaBean{
-	private String[] enderecosRecorrentes = {"Rua Dois", "Rua Três", "Rua Um", "Rua B", "Rua Quatro",
+	private String[] enderecosRecorrentes = {"Rua Dois", "Rua Tres", "Rua Um", "Rua B", "Rua Quatro",
 											"Rua Principal", "Rua A", "Rua C", "Rua Cinco", "Rua Seis", 
 											"Rua D", "Rua Sete", "Rua Oito", "Rua E", "Rua F", "Rua Nove", "Rua Dez",
-											"Rua G", "Rua São José", "Rua Onze", "Rua H", "Rua São Paulo", "Rua Doze", "Rua Treze",
-											"Rua Santo Antônio (554)", "Avenida Brasil", "Rua I" , "Rua 2", "Rua 1",  "Rua 3"};
+											"Rua G", "Rua Sao Jose", "Rua Onze", "Rua H", "Rua Sao Paulo", "Rua Doze", "Rua Treze",
+											"Rua Santo Antonio", "Avenida Brasil", "Rua I" , "Rua 2", "Rua 1",  "Rua 3"};
 	
 	private String[] nomesComuns = {"Gabriel", "Júlia", "Giulia", "Arthur" , "Artur", "Sofia" , "Sophia",
 									"Matheus", "Mateus",  "Maria Eduarda", "Davi", "David" , "Giovanna" , "Giovana",
@@ -69,11 +69,11 @@ public class RedeSocialCaronaBean{
 	}
 	
 	private void criaCaronas(){
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1001; i++) {
 			Usuario usr = Controller.getInstance().searchPerfilUsuariobyLogin("usuario"+ (int)( Math.random()*500) );
-			String data = ( 1+(int)(Math.random()*25)) + "/" + ( 1+(int)(Math.random()*10) ) + "/" + 2014;
-			String hora = String.valueOf((int)(Math.random()*23))+":00";
-			String vagas = String.valueOf(1+(int)( Math.random()*5));
+			String data = ( 1+(int)(Math.random()*25) ) + "/" + ( 1+(int)(Math.random()*10) ) + "/" + 2014;
+			String hora = String.valueOf((int)(Math.random()*23)) + ":00";
+			String vagas = String.valueOf(1+(int)( Math.random()*5) );
 			
 			usr.adicionaCarona(geraEndereco(), geraEndereco(), data, hora, vagas);
 		}
