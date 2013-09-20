@@ -8,8 +8,8 @@ import javax.faces.context.FacesContext;
 import controller.Controller;
 import controller.SessionController;
 
+@ManagedBean(name="loginBean", eager = true)
 @SessionScoped
-@ManagedBean(name="loginBean")
 public class LoginBean {
 	String login;
 	String password;
@@ -18,6 +18,9 @@ public class LoginBean {
 	String endereco;
 	String telefone;
 	
+	public LoginBean(){
+		
+	}
 	
 	public String login(){
 		PerfilBean.ID = String.valueOf(SessionController.getInstance().abrirSessao(login, password));	

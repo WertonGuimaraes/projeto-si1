@@ -44,7 +44,7 @@ public class SessionController implements Serializable {
 
 		if (newUsr == null) {
 			throw new RuntimeException("Usuário inexistente");
-		} // FIXME criar/utilizar exceção do case
+		}
 		else if (newUsr.autenticateAccount(senha)) {
 			int newId = newSessionId();
 			sessoesAbertas.put(newId, newUsr);

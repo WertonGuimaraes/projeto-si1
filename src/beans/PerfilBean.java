@@ -89,7 +89,7 @@ public class PerfilBean {
 		
 		throw new RuntimeException("perfil invalido");
 	}
-
+	
 	public void setLoginDoUsuarioProcurado(String login) {
 		this.LoginDoUsuarioProcurado = login;
 	}
@@ -341,7 +341,7 @@ public class PerfilBean {
 		
 		motorista.rejeitarRequest(idCarona);
 	}
-
+	
 	/**
 	 * @return the opcao
 	 */

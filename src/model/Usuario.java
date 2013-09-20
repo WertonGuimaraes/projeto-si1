@@ -41,8 +41,7 @@ public class Usuario implements Serializable {
 		this.requests = requests;
 	}
 
-	public Usuario(String login, String senha, String nome, String email,
-			String endereco) throws Exception {
+	public Usuario(String login, String senha, String nome, String email, String endereco) {
 		if (login == null || Util.isEmpty(login))
 			throw new LoginInvalidoException("Login inválido");
 		if (endereco == null || Util.isEmpty(endereco))

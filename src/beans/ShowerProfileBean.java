@@ -27,7 +27,7 @@ public class ShowerProfileBean {
 			throw new RuntimeException("Erro no id do perfil");
 		}	
 	}
-
+	
 	
 	public Perfil getPerfil() {
 		return this.perfil;

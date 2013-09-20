@@ -106,8 +106,7 @@ public class Controller implements Serializable {
 	 * @param endereco
 	 * @throws Exception
 	 */
-	public void criaConta(String login, String senha, String nome,
-			String email, String endereco) throws Exception {
+	public void criaConta(String login, String senha, String nome, String email, String endereco){
 		for (Usuario usuarioExistente : usuarios) {
 			if (usuarioExistente.getEmail().equals(email))
 				throw new LoginInvalidoException(
