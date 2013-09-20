@@ -166,11 +166,14 @@
 				
 					<h:form id="formCaronasSolicitadas" style="font-size: 12px">
 						<!-- Caronas que me solicitaram -->
+						
+						<h2> <font color="#36648B"> Solicitações de carona: </font> </h2>
+						
 						<p:carousel id="carouselCaronasSolicitadas"
 							value="#{perfilBean.caronasSolicitadas}" var="car" numVisible="1"
-							headerText="Requisicões de caronas" style="width:50%; height: 30px">
+							headerText="A responder" style="width:45%; height: 30px">
 
-							<h:panelGrid columns="1"  cellpadding="7">
+							<h:panelGrid columns="1" style="width:100%" cellpadding="7">
 								<h:outputText value="Origem: #{car.origem}"
 									style="font-size: 12px" />
 								<h:outputText value="Destino: #{car.destino}"
@@ -191,9 +194,9 @@
 						<!-- Caronas que eu solicitei -->
 						<p:carousel id="carouselCaronasQueEuSolicitei"
 							value="#{perfilBean.caronasSolicitadasPorMim}" var="carona" numVisible="1"
-							headerText="Caronas que solicitei" style="width:50%; height: 30px">
+							headerText="Meus pedidos" style="width:45%; height: 30px">
 
-							<h:panelGrid columns="1" cellpadding="7">
+							<h:panelGrid columns="1" style="width:100%" cellpadding="7">
 								<h:outputText value="Origem: #{carona.origem}"
 									style="font-size: 12px" />
 								<h:outputText value="Destino: #{carona.destino}"
@@ -228,11 +231,14 @@
 					
 					<h:form id="formPontosSugeridos" style="font-size: 12px">
 						<!-- Requisicoes de pontos de encontro que fiz -->
+						
+						<h2> <font color="#36648B"> Solicitações de ponto de encontro: </font> </h2>
+						
 						<p:carousel id="carouselPontosSugeridos"
 							value="#{perfilBean.requestsPontosEncontro}" var="ponto" numVisible="1"
-							headerText="Requisicoes de pontos de encontro" style="width:50%; height: 30px">
+							headerText="Meus pedidos" style="width:45%; height: 30px">
 
-							<h:panelGrid columns="1"  cellpadding="15">
+							<h:panelGrid columns="1" style="width:100%" cellpadding="15">
 								<h:outputText value="Trajeto: #{ponto.caminho}"
 									style="font-size: 12px" />
 								<h:outputText value="Status: #{ponto.status}"
@@ -256,9 +262,9 @@
 						<!-- Respostas a pontos de encontro que me fizeram -->
 						<p:carousel id="carouselRequestPontosSugeridos"
 							value="#{perfilBean.responsesPontosEncontro}" var="ponto" numVisible="1"
-							headerText="Respostas a pontos de encontro" style="width:50%; height: 30px">
+							headerText="A responder" style="width:45%; height: 30px">
 
-							<h:panelGrid columns="1"  cellpadding="15">
+							<h:panelGrid columns="1" style="width:100%" cellpadding="15">
 								<h:outputText value="Trajeto: #{ponto.caminho}"
 									style="font-size: 12px" />
 								<h:outputText value="Status: #{ponto.status}"
