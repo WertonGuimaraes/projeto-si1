@@ -47,15 +47,24 @@
 				<br />
 				<br />
 
+				<h:form>
 				<p:commandButton id="modalDialogButton" value="Cadastrar Caronas"
 					onclick="dlg2.show()" type="button"
-					style="font-size: 12px; height: 30px; width: 170px" />
+					style="font-size: 12px; height: 30px; width: 150px" />
 				
 				<br/>
 				
-				<h:form>
 				 <p:commandButton id="perfil" value="Visualizar Perfil" action="#{perfilBean.meuPerfil}"
-					 style="font-size: 12px; height: 30px; width: 170px"  />
+					 style="font-size: 12px; height: 30px; width: 150px"  />
+				</h:form>
+				
+				<h:form>
+					<p:dataGrid var="car" value="#{perfilBean.friends}" columns="3"  
+        					rows="5" paginator="true" rowsPerPageTemplate="9,12,15">
+        					
+        			</p:dataGrid>
+				
+				
 				</h:form>
 
 			</p:layoutUnit>
