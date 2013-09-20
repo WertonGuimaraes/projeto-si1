@@ -462,19 +462,10 @@ public class Usuario implements Serializable {
 	 * Remove uma solicitacao de carona feita
 	 * @param idSugestao id da carona solictada ao qual se deseja remover
 	 */
-	public void removeSolicitacaoCaronaFeita(int idSugestao) {
-		System.out.println("id da sugetao passado como paramentro");
-		System.out.println(idSugestao);
-		System.out.println("id da sugestao guardadas no usuario");
-
+	public void removeSolicitacaoCaronaFeita(int idSugestao) {		
 		for(int i = 0; i < this.caronasSolicitadas.size(); i++){
-			System.out.println(this.caronasSolicitadas.get(i));
 			if(this.caronasSolicitadas.get(i).getId() == idSugestao){
-				System.out.println("igual");
-				System.out.println(this.caronasSolicitadas.size());
 				this.caronasSolicitadas.remove(i);
-				System.out.println(this.caronasSolicitadas.size());
-
 				break;
 			}				
 		}		
