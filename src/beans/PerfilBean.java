@@ -162,7 +162,6 @@ public class PerfilBean {
 		this.setRequestMeetingPoint(this.usuario.getRequisicoesPontosPendentes());
 		this.requestsPontosEncontro = this.usuario.getRequisicoesPontosPendentes();
 		this.caronasSolicitadasPorMim = this.usuario.getCaronasSolicitadas();
-		System.out.println(caronasSolicitadas);
 	}
 
 	public void reset() {
@@ -446,8 +445,7 @@ public class PerfilBean {
 		int idSessao = Controller.getInstance().getSessoes()
 				.searchSessionByLogin(this.usuario.getLogin());
 		System.out.println("verificando");
-		System.out.println(idSessao);
-		System.out.println(this.selectedCaronaSolicitada);
+		System.out.println(this.opcao);
 		if(opcao.equals("1")) desistirCarona(idSessao, 0,
 				this.selectedCaronaSolicitada.getId()); //idCarona inutil por isso 0 default
 		
@@ -461,6 +459,7 @@ public class PerfilBean {
 	 * @param idSugestao e o id da carona solicitada 
 	 */
 	public void desistirCarona(int idSessao, int idCarona, int idSugestao){
+		System.out.println("entrou");
 		Controller.getInstance().desitirCarona(idSessao, idCarona, idSugestao);
 	}
 

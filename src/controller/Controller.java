@@ -364,6 +364,7 @@ public class Controller implements Serializable {
 				idCarona, idSugestao, pontos);
 
 	}
+	
 	/**
 	 * O Usuario utiliza este método para desistir de uma Carona
 	 * @param idSessao
@@ -371,14 +372,48 @@ public class Controller implements Serializable {
 	 * @param idSugestao
 	 */
 	public void desitirCarona(int idSessao, int idCarona, int idSugestao) {
+		System.out.println("to aqui");
+		
 		Usuario caroneiro = Controller.getInstance().getSessoes()
 				.searchSessionById(String.valueOf(idSessao));
+		System.out.println(caroneiro.getLogin());
+		System.out.println(caroneiro.getRequests().size());
 		for (int i : caroneiro.getRequests().keySet()) {
 			if (caroneiro.getRequests().get(i).getId() == idSugestao) {
 				Usuario motorista = caroneiro.getRequests().get(i)
 						.getMotorista();
 				caroneiro.getRequests().remove(i);
 				caroneiro.removeSolicitacaoCaronaFeita(idSugestao);
+				motorista.getRequests().remove(i);
+				return;
+			}
+		}
+
+	}
+	
+	/***
+	 * 
+	 * @param idSessao
+	 * @param idSugestao
+	 */
+	public void desitirCarona(int idSessao, int idCaronaSolicitada) {
+		System.out.println("to aqui");
+		
+		Usuario caroneiro = Controller.getInstance().getSessoes()
+				.searchSessionById(String.valueOf(idSessao));
+		
+		for(CaronaSolicitada carona: caroneiro.getCaronasSolicitadas()){
+			if(carona.getId() == idCaronaSolicitada){
+				Usuario motorista =  carona.getMotorista();
+			}
+		}
+		
+		for (int i : caroneiro.getRequests().keySet()) {
+			if (caroneiro.getRequests().get(i).getId() == idCaronaSolicitada) {
+				Usuario motorista = caroneiro.getRequests().get(i)
+						.getMotorista();
+				caroneiro.getRequests().remove(i);
+				caroneiro.removeSolicitacaoCaronaFeita(idCaronaSolicitada);
 				motorista.getRequests().remove(i);
 				return;
 			}
