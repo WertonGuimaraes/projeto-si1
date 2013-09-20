@@ -96,8 +96,8 @@
 						rows="2" paginator="true">
 
 						<f:facet name="header" style="height: 20px">  
-			            Caronas disponíveis  
-			        </f:facet>
+			           	 Caronas disponíveis  
+			        	</f:facet>
 
 						<p:column headerText="Origem"
 							style="font-size: 12px; height: 25px">
@@ -128,11 +128,26 @@
 
 						<f:facet name="footer" style="height: 20px">
 							<p align="right">
-								<p:column style="width:10px; height: 20px">
+
+								<p:column style="width:10px; height: 30px">
+									<h:inputText id="inPonto" value="#{perfilBean.pontoDeEncontro}"
+										style="width:150px;font-size: 12px; height: 20px; 
+										font-color: #36648B" label="Ponto de encontro" />
+								</p:column>
+
+								<p:column style="width:10px; height: 30px">
+									<p:commandButton id="btSelectPoint"
+										action="#{perfilBean.sugerirPonto}" value="Sugerir ponto"
+										title="Sugira um ponto de encontro"
+										style="font-size: 12px; height: 30px">
+									</p:commandButton>
+								</p:column>
+								
+								<p:column style="width:10px; height: 30px">
 									<p:commandButton id="selectButton"
 										action="#{perfilBean.solicitarCarona}" value="Solicitar vaga"
 										title="Solicite uma vaga"
-										style="font-size: 12px; height: 20px">
+										style="font-size: 12px; height: 30px">
 									</p:commandButton>
 								</p:column>
 							</p>
@@ -167,6 +182,27 @@
 						</p:carousel>
 						
 					</h:form>
+					
+					<h:form id="formPontosSugeridos" style="font-size: 12px">
+						<p:carousel id="carouselPontosSugeridos"
+							value="#{perfilBean.requestsPontosEncontro}" var="pontos" numVisible="1"
+							headerText="Pontos de encontro" style="width:100%">
+
+							<h:panelGrid columns="1" style="width:100%" cellpadding="15">
+								<h:outputText value="Origem: #{ponto.id}"
+									style="font-size: 12px" />
+							</h:panelGrid>
+							
+							<!-- p:commandLink id="view" oncomplete="caronaOpcoesDialog.show()" title="View Detail">  
+					            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />   
+					            <f:setPropertyActionListener value="#{car}"   
+					                    target="#{perfilBean.selectedCaronaSolicitada}"> </f:setPropertyActionListener>  
+					        </p:commandLink-->
+
+						</p:carousel>
+						
+					</h:form>
+					
 				</div>
 
 
@@ -208,6 +244,7 @@
 						onsuccess="dlg2.hide() #{perfilBean.caronasDisponiveis}"
 						update="inOrigem,inDestino,inData,
 					inHora,inVagas" />
+					
 					<p:commandButton id="btBack" value="Fechar" onclick="dlg2.close()"
 						action="#{perfilBean.redirectPerfil}"
 						update="inOrigem,inDestino,inData,
@@ -218,18 +255,21 @@
 		
 		<p:dialog header="Opções" showEffect="fade" hideEffect="fade" modal="true"  
 	        widgetVar="caronaOpcoesDialog" closable="true" >  
-	          
-	        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
-  
-		        <h:outputText value="O que você deseja fazer? " />  
-		        <p:selectOneRadio id="options" value="#{perfilBean.opcao}">  
-		            <f:selectItem itemLabel="Aceitar solicitação" itemValue="1" />  
-		            <br />
-		            <f:selectItem itemLabel="Recusar solicitação" itemValue="2" />  
-		        </p:selectOneRadio>  
-		  
-		    </h:panelGrid>    
-		          
+	        <h:form> 
+		        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+	  
+			        <h:outputText value="O que você deseja fazer? " />  
+			        <p:selectOneRadio id="options" value="#{perfilBean.opcao}">  
+			            <f:selectItem itemLabel="Aceitar solicitação" itemValue="1" />  
+			            <br />
+			            <f:selectItem itemLabel="Recusar solicitação" itemValue="2" />  
+			        </p:selectOneRadio>  
+			        <p:commandButton id="btOkAcc" value="Ok" action="#{perfilBean.escolheResultado}"
+					 style="font-size: 12px; height: 30px; width: 60px"  />
+				
+			  
+			    </h:panelGrid>    
+		    </h:form>     
    		 </p:dialog> 
 		
 		

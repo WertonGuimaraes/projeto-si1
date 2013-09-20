@@ -19,6 +19,7 @@ import org.primefaces.event.FileUploadEvent;
 import model.Carona;
 import model.CaronaSolicitada;
 import model.RequestMeetingPoint;
+import model.SolicitacaoPontoEncontro;
 import model.Usuario;
 import controller.Controller;
 import controller.SessionController;
@@ -46,7 +47,8 @@ public class PerfilBean {
 	private CaronaSolicitada selectedCaronaSolicitada;
 	private Carona selectedCarona;
 	private List<RequestMeetingPoint> requestMeetingPoint;
-
+	private List<RequestMeetingPoint> requestsPontosEncontro;
+	
 
 	public PerfilBean() {
 		if (ID != null) {
@@ -156,7 +158,7 @@ public class PerfilBean {
 		}
 
 		this.setRequestMeetingPoint(this.usuario.getRequisicoesPontosPendentes());
-
+		this.requestsPontosEncontro = this.usuario.getRequisicoesPontosPendentes();
 		System.out.println(caronasSolicitadas);
 	}
 
@@ -332,6 +334,11 @@ public class PerfilBean {
 		System.out.println(this.selectedCaronaSolicitada.getOrigem());
 	}
 	
+	public void escolheResultado(){
+		if(opcao.equals("1")) aceitaCarona();
+		else if(opcao.equals("2")) rejeitaCarona();
+	}
+	
 	/**
 	 * aceita uma solicitação de carona
 	 */
@@ -340,6 +347,7 @@ public class PerfilBean {
 		int idCarona = this.selectedCaronaSolicitada.getId();
 		
 		motorista.aceitaRequest(idCarona);
+		System.out.println("aceitou");
 	}
 
 	/***
@@ -350,7 +358,9 @@ public class PerfilBean {
 		int idCarona = this.selectedCaronaSolicitada.getId();
 		
 		motorista.rejeitarRequest(idCarona);
+		
 	}
+	
 	
 	/**
 	 * @return the opcao
@@ -364,5 +374,33 @@ public class PerfilBean {
 	 */
 	public void setOpcao(String opcao) {
 		this.opcao = opcao;
+	}
+
+
+	/**
+	 * @return the requestsPontosEncontro
+	 */
+	public List<RequestMeetingPoint> getRequestsPontosEncontro() {
+		return requestsPontosEncontro;
+	}
+
+	/**
+	 * @param requestsPontosEncontro the requestsPontosEncontro to set
+	 */
+	public void setRequestsPontosEncontro(List<RequestMeetingPoint> requestsPontosEncontro) {
+		this.requestsPontosEncontro = requestsPontosEncontro;
+	}
+	
+	/**
+	 * Sugere ponto de encontro
+	 */
+	public void sugerirPonto(){
+		Controller cont = Controller.getInstance();
+		int idSessao = cont.getSessoes().searchSessionByLogin(this.usuario.getLogin());
+
+		cont.sugerirPontoEncontro(String.valueOf(idSessao), 
+				this.selectedCarona.getId(), this.pontoDeEncontro);
+		update();
+		msg("Ponto sugeiro com sucesso");
 	}
 }
