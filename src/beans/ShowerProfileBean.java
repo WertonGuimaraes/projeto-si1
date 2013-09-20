@@ -20,6 +20,9 @@ public class ShowerProfileBean {
 	public static String ID;
 	
 
+	/**
+	 * Abre o perfil do usuario a partir do seu Id
+	 */
 	public ShowerProfileBean() {
 		if (ID != null) {
 			this.perfil=Controller.getInstance().searchPerfilById(Integer.parseInt(ID));
@@ -49,6 +52,9 @@ public class ShowerProfileBean {
 		return getPerfil().getCaronasSolicitadas();
 	}
 
+	/**Redireciona usuario para a pagina inicial
+	 * @return pagina inicial
+	 */
 	public String redirectIndex() {
 		return "index?faces-redirect=true";
 	}

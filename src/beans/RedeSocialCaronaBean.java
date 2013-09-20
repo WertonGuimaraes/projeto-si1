@@ -36,12 +36,18 @@ public class RedeSocialCaronaBean{
 										"Gomes", "Martins", "Rocha", "Ribeiro", "Alves", "Monteiro", "Mendes", "Barros",
 										"Freitas", "Barbosa", "Pinto", "Moura", "Cavalcanti", "Dias", "Castro", "Campos",
 										"Cardoso", "Horto", "Smaneoto", "Rodrigues", "Rego"};
+	/**
+	 * Cria usuários e caronas default do sistema quando o sistema é iniciado.
+	 */
 	public RedeSocialCaronaBean(){
 		criaUsuarios();
 		criaCaronas();
 	}
 	
 	
+	/**
+	 * @return Nome aleatório, a partir das listas de nomes da classe.
+	 */
 	public String geraNome(){
 		int i = (int) (Math.random()*nomesComuns.length);
 		int j = (int) (Math.random()*sobreNomesComuns.length);
@@ -49,6 +55,10 @@ public class RedeSocialCaronaBean{
 		return nomesComuns[i] + " " + sobreNomesComuns[j];
 	}
 	
+	
+	/**
+	 * @return Endereço aleatório, a partir da lista de endereços da classe.
+	 */
 	public String geraEndereco(){
 		int i = (int) (Math.random()*enderecosRecorrentes.length);
 		return enderecosRecorrentes[i];
@@ -56,6 +66,9 @@ public class RedeSocialCaronaBean{
 	
 	
 	
+	/**
+	 * Cria 500 usuarios aleatórios
+	 */
 	private void criaUsuarios(){
 		Controller.getInstance().criaConta("r", "r", "r", "r", "r");
 		Controller.getInstance().criaConta("si1", "si1si1", "Sistemas de Informação I", "si1@si1-ufcg.tk", "Aprígio Veloso....");
@@ -68,6 +81,10 @@ public class RedeSocialCaronaBean{
 		
 	}
 	
+	
+	/**
+	 * Cria 500 caronas aleatórias
+	 */
 	private void criaCaronas(){
 		for (int i = 0; i < 1000; i++) {
 			Usuario usr = Controller.getInstance().searchPerfilUsuariobyLogin("usuario"+ (int)( Math.random()*500) );
