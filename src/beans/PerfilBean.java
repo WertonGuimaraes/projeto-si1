@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -25,10 +26,7 @@ import model.Usuario;
 import controller.Controller;
 import controller.SessionController;
 
-/**
- * @author Rafael
- *
- */
+
 /**
  * @author Rafael
  *
@@ -49,6 +47,7 @@ public class PerfilBean {
 	private String LoginDoUsuarioProcurado;
 	private String opcao;
 	private String pontosMotorista;
+	private String nomeAmigo;
 	int size;
 
 	private Usuario usuario;
@@ -57,6 +56,7 @@ public class PerfilBean {
 	private RequestMeetingPoint requestPoint;
 	private ResponseMeetingPoint responsePoint;
 	
+	private List<Usuario> friends;
 	private List<Carona> caronasDisponiveis;
 	private List<CaronaSolicitada> caronasSolicitadas;
 	private List<CaronaSolicitada> caronasSolicitadasPorMim;
@@ -131,6 +131,28 @@ public class PerfilBean {
 		throw new RuntimeException("perfil invalido");
 	}
 	
+	/**
+	 * Localiza o perfil do Próprio usuario a partir do seu login
+	 * @return pagina de perfil
+	 */
+	public String redirectShowePerfil(){
+		Usuario user = null;
+		Set<Usuario> usuarios = Controller.getInstance().getUsuarios();
+		
+		for(Usuario u: usuarios){
+			if(u.getNome().equals(this.nomeAmigo)) {
+				user = u;
+				break;
+			}
+		}
+		
+		if(user != null){
+			ShowerProfileBean.ID=String.valueOf(Controller.getInstance().visualizaPerfil(user));
+			return "perfilViewer?faces-redirect=true";
+		}
+		
+		throw new RuntimeException("perfil invalido");
+	}
 	
 	public void setLoginDoUsuarioProcurado(String login) {
 		this.LoginDoUsuarioProcurado = login;
@@ -608,5 +630,33 @@ public class PerfilBean {
 	 */
 	public void setResponsesPontosEncontro(List<ResponseMeetingPoint> responsesPontosEncontro) {
 		this.responsesPontosEncontro = responsesPontosEncontro;
+	}
+
+	/**
+	 * @return the friends
+	 */
+	public List<Usuario> getFriends() {
+		return friends;
+	}
+
+	/**
+	 * @param friends the friends to set
+	 */
+	public void setFriends(List<Usuario> friends) {
+		this.friends = friends;
+	}
+
+	/**
+	 * @return the nomeAmigo
+	 */
+	public String getNomeAmigo() {
+		return nomeAmigo;
+	}
+
+	/**
+	 * @param nomeAmigo the nomeAmigo to set
+	 */
+	public void setNomeAmigo(String nomeAmigo) {
+		this.nomeAmigo = nomeAmigo;
 	}
 }

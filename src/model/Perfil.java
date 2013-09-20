@@ -81,4 +81,14 @@ public class Perfil implements Serializable {
 		resultado += "]";
 		return resultado;
 	}
+	
+	public String getAmigos(){
+		String resultado = "";
+		
+		for (Usuario u: this.user.getFriends()){
+			resultado += u.getNome() + ", ";
+		}
+		
+		return resultado;
+	}
 }
