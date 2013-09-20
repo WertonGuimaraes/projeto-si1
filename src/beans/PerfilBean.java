@@ -90,6 +90,16 @@ public class PerfilBean {
 		throw new RuntimeException("perfil invalido");
 	}
 	
+	public String meuPerfil(){
+		Usuario user = Controller.getInstance().searchUsuariobyLogin(usuario.getLogin());
+		if(user != null){
+			ShowerProfileBean.ID=String.valueOf(Controller.getInstance().visualizaPerfil(user));
+			return "perfilViewer?faces-redirect=true";
+		}
+		throw new RuntimeException("perfil invalido");
+	}
+	
+	
 	public void setLoginDoUsuarioProcurado(String login) {
 		this.LoginDoUsuarioProcurado = login;
 	}
