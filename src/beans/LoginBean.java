@@ -22,19 +22,31 @@ public class LoginBean {
 		
 	}
 	
+	/**Redireciona o usuario para a pagina de login
+	 * @return pagina do perfil
+	 */
 	public String login(){
 		PerfilBean.ID = String.valueOf(SessionController.getInstance().abrirSessao(login, password));	
 		return "perfil?faces-redirect=true";
 	}
 	
+	/** Redireciona o usuario para criar uma nova conta
+	 * @return pagina em que é possivel criar uma nova conta 
+	 */
 	public String redirectCreateNewAccount(){
 		return "nova_conta?faces-redirect=true";
 	}
 	
+	/** Redireciona o usuario para o index
+	 * @return pagina inicial
+	 */
 	public String redirectIndex(){
 		return "index?faces-redirect=true";
 	}
 
+	/**
+	 * Cria uma nova conta baseado nos parâmetros de LoginBean.
+	 */
 	public void createNewAccount(){
 		try {
 			Controller.getInstance().criaConta(this.login, this.password, this.nome, this.email, this.endereco);
@@ -48,6 +60,9 @@ public class LoginBean {
 		
 	}
 
+	/**
+	 *  Reseta todos os parâmetros de LoginBean
+	 */
 	public void reset(){
 		this.setNome("");
 		this.setLogin("");
@@ -57,6 +72,9 @@ public class LoginBean {
 		this.setTelefone("");
 	}
 	
+	/** Lança mensagem para o usuario utilizando o contexto JSF
+	 * @param text
+	 */
 	public void msg(String text){
 		FacesContext context = FacesContext.getCurrentInstance();  
 		
