@@ -5,7 +5,7 @@
      Jessika Renally - SI 1 - 2013.1    
                                                 
      ====================================================================== -->
-<project name="lab4JessikaRenally" default="" basedir=".">
+<project name="projetoSI1" default="" basedir=".">
 	
 	<!-- ================================= 
 	          propriedades do projeto              
@@ -21,7 +21,7 @@
 	<property name="sysLibs" value="lib"/>
 	<property name="classTeste" value="easyaccept"/>
 	<property name="webContent" value="WebContent" />
-	<property name="CATALINA_HOME" value="C:\tomcat\bin" /> 
+	<property name="CATALINA_HOME" value="C:\tomcat" /> 
 
 	<!-- - - - - - - - - - - - - - - - - - 
           target: init                      
