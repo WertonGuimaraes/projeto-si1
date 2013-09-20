@@ -84,7 +84,7 @@ public class PerfilBean {
 		Usuario user = Controller.getInstance().searchUsuariobyLogin(LoginDoUsuarioProcurado);
 		if(user != null){
 			ShowerProfileBean.ID=String.valueOf(Controller.getInstance().visualizaPerfil(user));
-			return "perfilViewer.xhtml?faces-redirect=true";
+			return "perfilViewer?faces-redirect=true";
 		}
 		
 		throw new RuntimeException("perfil invalido");
