@@ -210,22 +210,22 @@
 						
 					</h:form>
 					<br /> 
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
 					<p:separator id="separator23"/>
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
-					<br />
 					
 					<h:form id="formPontosSugeridos" style="font-size: 12px">
 						<!-- Requisicoes de pontos de encontro que fiz -->
 						<p:carousel id="carouselPontosSugeridos"
 							value="#{perfilBean.requestsPontosEncontro}" var="ponto" numVisible="1"
-							headerText="Pontos de encontro" style="width:50%; height: 30px">
+							headerText="Requisicoes de pontos de encontro" style="width:50%; height: 30px">
 
 							<h:panelGrid columns="1"  cellpadding="15">
 								<h:outputText value="Trajeto: #{ponto.caminho}"
@@ -251,7 +251,7 @@
 						<!-- Respostas a pontos de encontro que me fizeram -->
 						<p:carousel id="carouselRequestPontosSugeridos"
 							value="#{perfilBean.responsesPontosEncontro}" var="ponto" numVisible="1"
-							headerText="Pontos de encontro" style="width:50%; height: 30px">
+							headerText="Respostas a pontos de encontro" style="width:50%; height: 30px">
 
 							<h:panelGrid columns="1"  cellpadding="15">
 								<h:outputText value="Trajeto: #{ponto.caminho}"
