@@ -102,10 +102,17 @@ public class RedeSocialCaronaBean{
 	 * Cria amizades entre os usuarios dado que já existem 500 usuarios no sistema
 	 */
 	private void criaAmizades(){
+		Usuario si1 = Controller.getInstance().searchUsuariobyLogin("si1");
+		Usuario usr1 = Controller.getInstance().searchUsuariobyLogin("usuario"+(int)(Math.random()*500));
+		Usuario usr2 = Controller.getInstance().searchUsuariobyLogin("usuario"+(int)(Math.random()*500));
+		Usuario usr3 = Controller.getInstance().searchUsuariobyLogin("usuario"+(int)(Math.random()*500));
+		Usuario usr4 = Controller.getInstance().searchUsuariobyLogin("usuario"+(int)(Math.random()*500));
+		si1.addFriend(usr1);si1.addFriend(usr2);si1.addFriend(usr3);si1.addFriend(usr4);
+		
 		for (int i = 0; i < 2000; i++) {
-			Usuario usr1 = Controller.getInstance().searchUsuariobyLogin("usuario"+(int)(Math.random()*500));
-			Usuario usr2 = Controller.getInstance().searchUsuariobyLogin("usuario"+(int)(Math.random()*500));
-			usr1.addFriend(usr2);
+			Usuario usr5 = Controller.getInstance().searchUsuariobyLogin("usuario"+(int)(Math.random()*500));
+			Usuario usr6 = Controller.getInstance().searchUsuariobyLogin("usuario"+(int)(Math.random()*500));
+			usr5.addFriend(usr6);
 		}
 	}
 	
