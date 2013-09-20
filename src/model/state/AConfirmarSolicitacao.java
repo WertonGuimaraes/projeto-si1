@@ -13,6 +13,11 @@ public class AConfirmarSolicitacao implements StateChangeRequest,  Serializable 
 	private List<String> pontosDoMotorista;
 	
 	
+	/**
+	 * Separa os pontos dados na solicitação de vaga na Carona para futura aceitação do motorista.
+	 * @param aguardandoAceitacao
+	 * @param pontos
+	 */
 	public AConfirmarSolicitacao(AguardandoAceitacao aguardandoAceitacao,
 			String pontos) {
 		this.pontosDoMotorista = Util.extractListPoints(pontos);
