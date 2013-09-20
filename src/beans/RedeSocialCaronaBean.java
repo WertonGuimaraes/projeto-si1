@@ -42,6 +42,7 @@ public class RedeSocialCaronaBean{
 	public RedeSocialCaronaBean(){
 		criaUsuarios();
 		criaCaronas();
+		criaAmizades();
 	}
 	
 	
@@ -95,6 +96,17 @@ public class RedeSocialCaronaBean{
 			usr.adicionaCarona(geraEndereco(), geraEndereco(), data, hora, vagas);
 		}
 		
+	}
+	
+	/**
+	 * Cria amizades entre os usuarios dado que existem 500 usuarios no sistema
+	 */
+	private void criaAmizades(){
+		for (int i = 0; i < 2000; i++) {
+			Usuario usr1 = Controller.getInstance().searchUsuariobyLogin("usuario"+(int)(Math.random()*500));
+			Usuario usr2 = Controller.getInstance().searchUsuariobyLogin("usuario"+(int)(Math.random()*500));
+			usr1.addFriend(usr2);
+		}
 	}
 	
 }
