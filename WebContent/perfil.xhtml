@@ -165,7 +165,7 @@
 							value="#{perfilBean.caronasSolicitadas}" var="car" numVisible="1"
 							headerText="Requisicões de caronas" style="width:50%">
 
-							<h:panelGrid columns="1" style="width:100%" cellpadding="15">
+							<h:panelGrid columns="1" style="width:100%" cellpadding="7">
 								<h:outputText value="Origem: #{car.origem}"
 									style="font-size: 12px" />
 								<h:outputText value="Destino: #{car.destino}"
@@ -185,22 +185,22 @@
 						
 						<!-- Caronas que eu solicitei -->
 						<p:carousel id="carouselCaronasQueEuSolicitei"
-							value="#{perfilBean.caronasSolicitadasPorMim}" var="car" numVisible="1"
-							headerText="Requisicões de caronas" style="width:50%">
+							value="#{perfilBean.caronasSolicitadasPorMim}" var="carona" numVisible="1"
+							headerText="Caronas que solicitei" style="width:50%">
 
-							<h:panelGrid columns="1" style="width:100%" cellpadding="15">
-								<h:outputText value="Origem: #{car.origem}"
+							<h:panelGrid columns="1" style="width:100%" cellpadding="7">
+								<h:outputText value="Origem: #{carona.origem}"
 									style="font-size: 12px" />
-								<h:outputText value="Destino: #{car.destino}"
+								<h:outputText value="Destino: #{carona.destino}"
 									style=" font-size: 12px" />
-								<h:outputText value="Data: #{car.data}" style="font-size: 12px" />
-								<h:outputText value="Hora: #{car.hora}" style="font-size: 12px" />
-								<h:outputText value="Caroneiro: #{car.nomeCaroneiro}" style="font-size: 12px" />
+								<h:outputText value="Data: #{carona.data}" style="font-size: 12px" />
+								<h:outputText value="Hora: #{carona.hora}" style="font-size: 12px" />
+								<h:outputText value="Caroneiro: #{carona.nomeMotorista}" style="font-size: 12px" />
 							</h:panelGrid>
 							
-							<p:commandLink id="view" oncomplete="caronaOpcoesDialog.show()" title="View Detail">  
+							<p:commandLink id="view" oncomplete="dlgCaronaSolicitadasPorMim.show()" title="View Detail">  
 					            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />   
-					            <f:setPropertyActionListener value="#{car}"   
+					            <f:setPropertyActionListener value="#{carona}"   
 					                    target="#{perfilBean.selectedCaronaSolicitada}"> </f:setPropertyActionListener>  
 					        </p:commandLink>
 
@@ -307,6 +307,23 @@
    		 </p:dialog> 
    		 
    		 <p:dialog header="Opções" showEffect="fade" hideEffect="fade" modal="true"  
+	        widgetVar="dlgCaronaSolicitadasPorMim" closable="true" >  
+	        <h:form> 
+		        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+	  
+			        <h:outputText value="O que você deseja fazer? " />  
+			        <p:selectOneRadio id="options" value="#{perfilBean.opcao}">  
+			            <f:selectItem itemLabel="Desistir da carona" itemValue="1" />   
+			        </p:selectOneRadio>  
+			        <p:commandButton id="btOkAcc" value="Ok" action="#{perfilBean.escolheResultadoMinhasSolicitacoes}"
+					 style="font-size: 12px; height: 30px; width: 60px"  />
+				
+			  
+			    </h:panelGrid>    
+		    </h:form>     
+   		 </p:dialog> 
+   		 
+   		 <p:dialog header="Opções" showEffect="fade" hideEffect="fade" modal="true"  
 	        widgetVar="requestOpcoesDialog" closable="true" >  
 	        <h:form> 
 		        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
@@ -324,6 +341,9 @@
 			    </h:panelGrid>    
 		    </h:form>     
    		 </p:dialog> 
+   		 
+   		 
+   		 
 		
 		
 	</div>

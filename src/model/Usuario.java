@@ -458,4 +458,17 @@ public class Usuario implements Serializable {
 		this.caronasSolicitadas = caronasSolicitadas;
 	}
 
+	/**
+	 * Remove uma solicitacao de carona feita
+	 * @param idSugestao id da carona solictada ao qual se deseja remover
+	 */
+	public void removeSolicitacaoCaronaFeita(int idSugestao) {
+		for(int i = 0; i < this.caronasSolicitadas.size(); i++){
+			if(this.caronasSolicitadas.get(i).getId() == idSugestao){
+				this.caronasSolicitadas.remove(i);
+				break;
+			}				
+		}		
+	}
+
 }

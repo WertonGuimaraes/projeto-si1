@@ -340,6 +340,8 @@ public class PerfilBean {
 	public void escolheResultado(){
 		if(opcao.equals("1")) aceitaCarona();
 		else if(opcao.equals("2")) rejeitaCarona();
+		
+		update();
 	}
 	
 	/**
@@ -430,15 +432,36 @@ public class PerfilBean {
 		if(opcao.equals("1")) desistirCarona();
 		else if(opcao.equals("2")) 	solicitarCarona();
 		
+		update();
 	}
 	
-	/**
-	 * idCaronaSolicitada
-	 */
+	
 	public void desistirCarona() {
 		//CaronaSolicitada c
 		//aqui eu preciso da CaronaSolicatda mas em RequestPoint eu so tenho o id da Carona normal
 		//Controller.getInstance().desitirCarona(idSessao, idCarona, idSugestao);
+	}
+	
+	public void escolheResultadoMinhasSolicitacoes(){
+		int idSessao = Controller.getInstance().getSessoes()
+				.searchSessionByLogin(this.usuario.getLogin());
+		System.out.println("verificando");
+		System.out.println(idSessao);
+		System.out.println(this.selectedCaronaSolicitada);
+		if(opcao.equals("1")) desistirCarona(idSessao, 0,
+				this.selectedCaronaSolicitada.getId()); //idCarona inutil por isso 0 default
+		
+		update();
+	}
+	
+	/***
+	 * 
+	 * @param idSessao
+	 * @param idCarona
+	 * @param idSugestao e o id da carona solicitada 
+	 */
+	public void desistirCarona(int idSessao, int idCarona, int idSugestao){
+		Controller.getInstance().desitirCarona(idSessao, idCarona, idSugestao);
 	}
 
 	/**

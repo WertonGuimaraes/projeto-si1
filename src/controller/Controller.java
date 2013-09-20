@@ -359,6 +359,7 @@ public class Controller implements Serializable {
 				Usuario motorista = caroneiro.getRequests().get(i)
 						.getMotorista();
 				caroneiro.getRequests().remove(i);
+				caroneiro.removeSolicitacaoCaronaFeita(idSugestao);
 				motorista.getRequests().remove(i);
 				return;
 			}
