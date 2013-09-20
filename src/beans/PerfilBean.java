@@ -79,24 +79,24 @@ public class PerfilBean {
 	public String getLoginDoUsuarioProcurado() {
 		return LoginDoUsuarioProcurado;
 	}
-
+	
 	public String localizaPerfil() {
 		Usuario user = Controller.getInstance().searchUsuariobyLogin(LoginDoUsuarioProcurado);
 		if(user != null){
 			ShowerProfileBean.ID=String.valueOf(Controller.getInstance().visualizaPerfil(user));
-			return "perfilViewer?faces-redirect=true";
+			return "perfilViewer.xhtml?faces-redirect=true";
 		}
 		
 		throw new RuntimeException("perfil invalido");
 	}
 	
 	public String meuPerfil(){
-		Usuario user = Controller.getInstance().searchUsuariobyLogin(usuario.getLogin());
-		if(user != null){
-			ShowerProfileBean.ID=String.valueOf(Controller.getInstance().visualizaPerfil(user));
-			return "perfilViewer?faces-redirect=true";
-		}
-		throw new RuntimeException("perfil invalido");
+//		Usuario user = Controller.getInstance().searchUsuariobyLogin(usuario.getLogin());
+//		if(user != null){
+//			ShowerProfileBean.ID=String.valueOf(Controller.getInstance().visualizaPerfil(user));
+			return "nova_conta?faces-redirect=true";
+//		}
+//		throw new RuntimeException("perfil invalido");
 	}
 	
 	
