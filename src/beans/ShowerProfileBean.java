@@ -11,6 +11,7 @@ import model.CaronaSolicitada;
 import model.Perfil;
 import model.Usuario;
 import controller.Controller;
+import controller.SessionController;
 
 @ViewScoped
 @ManagedBean(name = "showerProfileBean")
@@ -18,6 +19,7 @@ public class ShowerProfileBean {
 
 	private Perfil perfil;
 	public static String ID;
+	private int id;
 	
 
 	/**
@@ -26,9 +28,15 @@ public class ShowerProfileBean {
 	public ShowerProfileBean() {
 		if (ID != null) {
 			this.perfil=Controller.getInstance().searchPerfilById(Integer.parseInt(ID));
+			this.id = Integer.parseInt(ID);
 		}else {
 			throw new RuntimeException("Erro no id do perfil");
 		}	
+	}
+	
+	public String logoffButton() {
+		SessionController.getInstance().desconectarSessao(id); 
+		return "index.xhtml";
 	}
 	
 	
@@ -57,5 +65,21 @@ public class ShowerProfileBean {
 	 */
 	public String redirectIndex() {
 		return "index?faces-redirect=true";
+	}
+	
+	public String getEmail(){
+		return this.perfil.getEmail();
+	}
+	
+	public String getEndereco(){
+		return this.perfil.getEndereco();
+	}
+	
+	public String getHistoricoDeCaronas(){
+		return this.perfil.getHistoricoDeCaronas();
+	}
+	
+	public String  getHistoricoDeVagasEmCaronas(){
+		return this.perfil.getHistoricoDeVagasEmCaronas();
 	}
 }
