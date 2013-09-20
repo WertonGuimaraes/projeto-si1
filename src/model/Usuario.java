@@ -11,7 +11,7 @@ import java.util.Set;
 import controller.Controller;
 /**
  * 
- * @author tiaraju
+ * @author tiaraju, jessika, rafael e werton
  *
  */
 public class Usuario implements Serializable {

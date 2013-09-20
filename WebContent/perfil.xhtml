@@ -164,7 +164,7 @@
 							value="#{perfilBean.caronasSolicitadas}" var="car" numVisible="1"
 							headerText="Requisicões de caronas">
 
-							<h:panelGrid columns="1" style="width:33%" cellpadding="15">
+							<h:panelGrid columns="1" style="width:50%" cellpadding="15">
 								<h:outputText value="Origem: #{car.origem}"
 									style="font-size: 12px" />
 								<h:outputText value="Destino: #{car.destino}"
@@ -182,37 +182,44 @@
 
 						</p:carousel>
 						
+						
+						
 					</h:form>
 					
 					<h:form id="formPontosSugeridos" style="font-size: 12px">
 						<p:carousel id="carouselPontosSugeridos"
 							value="#{perfilBean.requestsPontosEncontro}" var="ponto" numVisible="1"
-							headerText="Pontos de encontro" style="width:33%">
+							headerText="Pontos de encontro" style="width:50%">
 
 							<h:panelGrid columns="1" style="width:100%" cellpadding="15">
 								<h:outputText value="Trajeto: #{ponto.caminho}"
 									style="font-size: 12px" />
 								<h:outputText value="Status: #{ponto.status}"
 									style="font-size: 12px" />
+								<h:outputText value="Pontos caroneiro: #{ponto.pointCaroneiro}"
+									style="font-size: 12px" />
+								<h:outputText value="Pontos motorista: #{ponto.pointMotorista}"
+									style="font-size: 12px" />
 							</h:panelGrid>
 							
-							<!-- p:commandLink id="view" oncomplete="caronaOpcoesDialog.show()" title="View Detail">  
+							<p:commandLink id="view" oncomplete="requestOpcoesDialog.show()" title="View Detail">  
+					       
 					            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />   
-					            <f:setPropertyActionListener value="#{car}"   
-					                    target="#{perfilBean.selectedCaronaSolicitada}"> </f:setPropertyActionListener>  
-					        </p:commandLink-->
-
+					            <f:setPropertyActionListener value="#{ponto}"   
+					                    target="#{perfilBean.requestPoint}"> 
+					            </f:setPropertyActionListener>  
+					       
+					        </p:commandLink>
 						</p:carousel>
-						
 					</h:form>
-					
 				</div>
-
-
-
 			</p:layoutUnit>
 		</p:layout>
-
+	
+		
+							<!-- Todos os dialogs estão aqui em baixo -->
+		
+		
 		<p:dialog id="cadastrarCaronaDialog" header="Cadastrar Carona"
 			closable="true" widgetVar="dlg2" modal="true" height="550"
 			width="700">
@@ -268,6 +275,25 @@
 			            <f:selectItem itemLabel="Recusar solicitação" itemValue="2" />  
 			        </p:selectOneRadio>  
 			        <p:commandButton id="btOkAcc" value="Ok" action="#{perfilBean.escolheResultado}"
+					 style="font-size: 12px; height: 30px; width: 60px"  />
+				
+			  
+			    </h:panelGrid>    
+		    </h:form>     
+   		 </p:dialog> 
+   		 
+   		 <p:dialog header="Opções" showEffect="fade" hideEffect="fade" modal="true"  
+	        widgetVar="requestOpcoesDialog" closable="true" >  
+	        <h:form> 
+		        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+	  
+			        <h:outputText value="O que você deseja fazer? " />  
+			        <p:selectOneRadio id="options" value="#{perfilBean.opcao}">  
+			            <f:selectItem itemLabel="Ponto de encontro ruim, desisti!" itemValue="1" />  
+			            <br />
+			            <f:selectItem itemLabel="Solicitar carona" itemValue="2" />  
+			        </p:selectOneRadio>  
+			        <p:commandButton id="btOkRequestActions" value="Ok" action="#{perfilBean.escolheResultadoRequest}"
 					 style="font-size: 12px; height: 30px; width: 60px"  />
 				
 			  

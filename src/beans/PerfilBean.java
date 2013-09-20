@@ -37,15 +37,17 @@ public class PerfilBean {
 	private String vagas;
 	private String pontoDeEncontro;
 	private Carona carona;
-	int size;
-	private Usuario usuario;
 	private String LoginDoUsuarioProcurado;
 	private String opcao;
+	int size;
 
-	private List<Carona> caronasDisponiveis;
-	private List<CaronaSolicitada> caronasSolicitadas;
+	private Usuario usuario;
 	private CaronaSolicitada selectedCaronaSolicitada;
 	private Carona selectedCarona;
+	private RequestMeetingPoint requestPoint;
+	
+	private List<Carona> caronasDisponiveis;
+	private List<CaronaSolicitada> caronasSolicitadas;
 	private List<RequestMeetingPoint> requestMeetingPoint;
 	private List<RequestMeetingPoint> requestsPontosEncontro;
 	
@@ -146,7 +148,6 @@ public class PerfilBean {
 	public void solicitarCarona() {
 
 		this.usuario.solicitaVaga(this.selectedCarona);
-		System.out.println(this.usuario.getRequests().size());
 		update();
 	}
 
@@ -402,5 +403,39 @@ public class PerfilBean {
 				this.selectedCarona.getId(), this.pontoDeEncontro);
 		update();
 		msg("Ponto sugeiro com sucesso");
+	}
+
+	/**
+	 * @return the requestPoint
+	 */
+	public RequestMeetingPoint getRequestPoint() {
+		return requestPoint;
+	}
+
+	/**
+	 * @param requestPoint the requestPoint to set
+	 */
+	public void setRequestPoint(RequestMeetingPoint requestPoint) {
+		this.requestPoint = requestPoint;
+	}
+	
+	
+	public void escolheResultadoRequest(){
+		int idCarona = this.requestPoint.getIdCarona(); //id da carona mesmo
+		this.selectedCarona = Controller.getInstance().buscaCarona(idCarona);
+		//this.selectedCaronaSolicitada = Controller.getInstance().buscaCaronaSolicitada(idCaronaSolicitada)
+		
+		if(opcao.equals("1")) desistirCarona();
+		else if(opcao.equals("2")) 	solicitarCarona();
+		
+	}
+	
+	/**
+	 * idCaronaSolicitada
+	 */
+	public void desistirCarona() {
+		//CaronaSolicitada c
+		//aqui eu preciso da CaronaSolicatda mas em RequestPoint eu so tenho o id da Carona normal
+		//Controller.getInstance().desitirCarona(idSessao, idCarona, idSugestao);
 	}
 }
