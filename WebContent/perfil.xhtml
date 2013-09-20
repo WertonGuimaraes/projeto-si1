@@ -158,12 +158,13 @@
 				</h:form>
 				<br />
 				<div id="divCaronaSolicitada" align="left">
+				
 					<h:form id="formCaronasSolicitadas" style="font-size: 12px">
 						<p:carousel id="carouselCaronasSolicitadas"
 							value="#{perfilBean.caronasSolicitadas}" var="car" numVisible="1"
 							headerText="Requisicões de caronas">
 
-							<h:panelGrid columns="1" style="width:100%" cellpadding="15">
+							<h:panelGrid columns="1" style="width:33%" cellpadding="15">
 								<h:outputText value="Origem: #{car.origem}"
 									style="font-size: 12px" />
 								<h:outputText value="Destino: #{car.destino}"
@@ -186,10 +187,12 @@
 					<h:form id="formPontosSugeridos" style="font-size: 12px">
 						<p:carousel id="carouselPontosSugeridos"
 							value="#{perfilBean.requestsPontosEncontro}" var="ponto" numVisible="1"
-							headerText="Pontos de encontro" style="width:100%">
+							headerText="Pontos de encontro" style="width:33%">
 
 							<h:panelGrid columns="1" style="width:100%" cellpadding="15">
-								<h:outputText value="Origem: #{ponto.idCarona}"
+								<h:outputText value="Trajeto: #{ponto.caminho}"
+									style="font-size: 12px" />
+								<h:outputText value="Status: #{ponto.status}"
 									style="font-size: 12px" />
 							</h:panelGrid>
 							

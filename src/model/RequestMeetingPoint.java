@@ -163,4 +163,13 @@ public class RequestMeetingPoint implements Serializable {
 		Carona carona = Controller.getInstance().buscaCarona(idCarona);
 		return carona.getTrajeto();
 	}
+	
+	/**
+	 * Método para acessar o toString do StateChangeRequest da 
+	 * sugestao de ponto de encontro
+	 * @return toString do estado da carona
+	 */
+	public String status(){
+		return state.toString();
+	}
 }
