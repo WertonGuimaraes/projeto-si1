@@ -31,6 +31,12 @@ public class RedeSocialCaronaBean{
 										"Gomes", "Martins", "Rocha", "Ribeiro", "Alves", "Monteiro", "Mendes", "Barros",
 										"Freitas", "Barbosa", "Pinto", "Moura", "Cavalcanti", "Dias", "Castro", "Campos",
 										"Cardoso", "Horto", "Smaneoto", "Rodrigues", "Rego"};
+	public RedeSocialCaronaBean(){
+		criaUsuarios();
+		criaCaronas();
+	}
+	
+	
 	public String geraNome(){
 		int i = (int) (Math.random()*nomesComuns.length);
 		int j = (int) (Math.random()*sobreNomesComuns.length);
@@ -43,10 +49,7 @@ public class RedeSocialCaronaBean{
 		return enderecosRecorrentes[i];
 	}
 	
-	public RedeSocialCaronaBean(){
-		criaUsuarios();
-		criaCaronas();
-	}
+	
 	
 	private void criaUsuarios(){
 		Controller.getInstance().criaConta("r", "r", "r", "r", "r");
@@ -57,7 +60,6 @@ public class RedeSocialCaronaBean{
 			String email = "usuario"+i+"@si1-ufcg.tk", endereco = geraEndereco();
 			Controller.getInstance().criaConta(login, senha, nome, email, endereco);
 		}
-		
 		
 	}
 	
