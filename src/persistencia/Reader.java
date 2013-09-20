@@ -16,6 +16,12 @@ public class Reader {
 
 
 
+	/**
+	 * Recebe o controlador e le o arquivo onde o controlador esta salvo no sistema
+	 * @param controller controlador do sistema
+	 * @return retorna o controlador
+	 * @throws IOException
+	 */
 	public  Controller read(Controller controller) throws IOException {
 		FileInputStream fis = null;
 		ObjectInputStream in = null;

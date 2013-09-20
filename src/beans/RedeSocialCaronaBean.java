@@ -99,7 +99,7 @@ public class RedeSocialCaronaBean{
 	}
 	
 	/**
-	 * Cria amizades entre os usuarios dado que existem 500 usuarios no sistema
+	 * Cria amizades entre os usuarios dado que já existem 500 usuarios no sistema
 	 */
 	private void criaAmizades(){
 		for (int i = 0; i < 2000; i++) {

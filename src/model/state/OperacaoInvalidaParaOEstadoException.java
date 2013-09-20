@@ -6,6 +6,7 @@ public class OperacaoInvalidaParaOEstadoException extends RuntimeException imple
 
 	private static final long serialVersionUID = 1L;
 	
+	
 	public OperacaoInvalidaParaOEstadoException(String message){
 		super(message);
 	}

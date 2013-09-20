@@ -10,6 +10,11 @@ public class AguardandoAceitacao implements StateChangeRequest, Serializable {
 	private static final long serialVersionUID = 1L;
 	RequestMeetingPoint request;
 	
+	/**
+	 * Estado em que a Carona aguarda aceitação.
+	 * Seta o atributo request. Utilizada para armazenar uma requisição de carona.
+	 * @param request
+	 */
 	public AguardandoAceitacao(RequestMeetingPoint request) {
 		this.request = request;
 	}

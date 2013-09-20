@@ -12,6 +12,11 @@ public class Perfil implements Serializable {
 	
 	private Usuario user;
 
+	/**
+	 * Constroi um perfil a partir das informações do usuario.
+	 * Utiliza os metodos get de Usuario para setar as informações de Perfil.
+	 * @param user
+	 */
 	public Perfil(Usuario user) {
 		this.user=user;
 	}
@@ -44,8 +49,12 @@ public class Perfil implements Serializable {
 		return getUser().getEmail();
 	}
 
+	/**
+	 * Retorna uma linha contendo o historico de caronas do Usuario
+	 * @return historico de caronas do usuario
+	 */
 	public String getHistoricoDeCaronas() {
-		List list = new ArrayList<Carona>();
+		List<Carona> list = new ArrayList<Carona>();
 		for (int i : getUser().getCaronas().keySet()) {
 			list.add(getUser().getCaronas().get(i));
 		}

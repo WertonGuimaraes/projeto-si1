@@ -9,6 +9,12 @@ public class HistoricoCarona implements Serializable {
 	private String review;
 	private final String[] reviews= {"faltou", "não faltou", "não funcionou"};
 
+	/**
+	 * Gera o historico da carona, considerando se o caroneiro presenciou ou não.
+	 * E qual a avaliação dos usuarios.
+	 * @param carona
+	 * @param review
+	 */
 	public HistoricoCarona(Carona carona, String review) {
 		if(!reviewIsValid(review)) throw new RuntimeException("Opção inválida.");
 		
@@ -16,11 +22,16 @@ public class HistoricoCarona implements Serializable {
 		this.review = review;
 	}
 
-	public HistoricoCarona(Carona carona) {
+	public HistoricoCarona(Carona carona){
 		this.carona = carona;
 		this.review = "";
 	}
 
+	/**
+	 * Aceita a mensagem de revisão da carona.
+	 * @param review
+	 * @return
+	 */
 	private boolean reviewIsValid(String review) {
 		for (String rev : this.reviews) {
 			if(rev.equals(review)) return true;

@@ -5,11 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.joda.time.DateTime;
-/**
- * 
- * @author tiaraju
- *
- */
+
+
 public class Carona implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -24,6 +21,17 @@ public class Carona implements Serializable {
 	private Set<Request> requisicoes;
 	private int id;
 
+	
+	/**
+	 * Constroi uma carona com os parâmetros passados no construtor.
+	 * Nenhum parâmetor pode ser null ou vazio, 
+	 * pois isso lançará uma exceção em tempo de execução.
+	 * @param origem Local de origem da Carona
+	 * @param destino Local de destino da Carona
+	 * @param data Data de saída da Carona
+	 * @param horaSaida hora de Saída da Carona
+	 * @param vagas Numero de vagas disponibilizadas pelo Motorista
+	 */
 	public Carona(String origem, String destino, String data, String horaSaida, int vagas){
 		if (origem == null || Util.isEmpty(origem))
 			throw new RuntimeException("Origem inválida");
@@ -79,7 +87,7 @@ public class Carona implements Serializable {
 				.getVagas());
 	}
 	/**
-	 * 
+	 * Adiciona um usuario na Carona
 	 * @param user
 	 */
 	public void addCaroneiro(Usuario user) {
@@ -89,17 +97,9 @@ public class Carona implements Serializable {
 		}
 
 	}
-	/**
-	 * 
-	 * @return
-	 */
 	public String getTrajeto() {
 		return origem + " - " + destino;
 	}
-	/**
-	 * 
-	 * @return
-	 */
 	public String getOrigem() {
 		return origem;
 	}
@@ -107,32 +107,19 @@ public class Carona implements Serializable {
 	public void setOrigem(String origem) {
 		this.origem = origem;
 	}
-	/**
-	 * 
-	 * @return
-	 */
 	public String getDestino() {
 		return destino;
 	}
-	/**
-	 * 
-	 * @param destino
-	 */
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
-	/**
-	 * 
-	 * @return
-	 */
 	public String getDate() {
 		return dateTime.toString("dd/MM/yyyy");
 	}
 
 	/***
 	 * Método acessador para a hora
-	 * 
-	 * @return hora
+	 * @return hora em formato HH:mm
 	 */
 	public String getHour() {
 		return dateTime.toString("HH:mm");
@@ -140,8 +127,7 @@ public class Carona implements Serializable {
 
 	/**
 	 * Método modificador da data
-	 * 
-	 * @param data
+	 * @param data no formato da biblioteca Joda (DateTime)
 	 */
 	public void setDate(String data) {
 		this.year = Integer.parseInt(data.split("/")[2]);
@@ -150,8 +136,7 @@ public class Carona implements Serializable {
 		this.dateTime = new DateTime(year, month, day, hour, minute);
 	}
 	/**
-	 * 
-	 * @param hora
+	 * @param hora no formato da biblioteca Joda (DateTime)
 	 */
 	public void setHour(String hora) {
 		this.hour = Integer.parseInt(hora.split(":")[0]);

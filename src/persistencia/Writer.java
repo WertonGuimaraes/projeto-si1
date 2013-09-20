@@ -16,6 +16,11 @@ public class Writer {
 	}
 
 
+	/**
+	 * Recebe um Controller e escreve o objeto em um arquivo
+	 * @param controller
+	 * @throws IOException
+	 */
 	public void write(Controller controller) throws IOException {
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;

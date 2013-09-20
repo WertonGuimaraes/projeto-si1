@@ -15,6 +15,13 @@ public class SolicitacaoPontoEncontro implements Serializable {
 	int idCarona;
 	int idSugestao;
 	
+	/**
+	 * Cria uma solicitação de ponto de encontro a ser utilizada no processo de requisição de vagas.
+	 * @param caroneiro
+	 * @param motorista
+	 * @param idCarona
+	 * @param idSugestao
+	 */
 	public SolicitacaoPontoEncontro(Usuario caroneiro, Usuario motorista, int idCarona, int idSugestao){
 		this.caroneiro = caroneiro;
 		this.motorista = motorista;

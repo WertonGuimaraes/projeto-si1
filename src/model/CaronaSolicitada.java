@@ -15,6 +15,12 @@ public class CaronaSolicitada implements Serializable {
 	private String destino;
 	private String pontoEncontro;
 	
+	
+	/**
+	 * Cria uma solicitação de Carona com um objeto Carona e Usuario
+	 * @param carona
+	 * @param caroneiro
+	 */
 	public CaronaSolicitada(Carona carona, Usuario caroneiro){
 		this.carona=carona;
 		this.caroneiro=caroneiro;

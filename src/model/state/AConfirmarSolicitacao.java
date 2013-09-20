@@ -14,7 +14,8 @@ public class AConfirmarSolicitacao implements StateChangeRequest,  Serializable 
 	
 	
 	/**
-	 * Separa os pontos dados na solicitação de vaga na Carona para futura aceitação do motorista.
+	 * Estado em que está a se confirmar uma solicitação.
+	 * Separa os pontos de encontro dados na solicitação de vaga na Carona para futura aceitação do motorista.
 	 * @param aguardandoAceitacao
 	 * @param pontos
 	 */
