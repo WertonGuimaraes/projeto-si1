@@ -31,7 +31,6 @@ public class SessionController implements Serializable {
 
 	/**
 	 * O método retorna o id correspondente à sessão do usuário(login).
-	 * 
 	 * @param login
 	 * @param senha
 	 * @return
@@ -53,6 +52,11 @@ public class SessionController implements Serializable {
 		throw new RuntimeException("Login inválido");
 	}
 
+	/**
+	 * Procura uma sessão baseado no Id
+	 * @param id
+	 * @return usuario procurado
+	 */
 	public Usuario searchSessionById(String id) {
 		int idUsuario;
 		try {
@@ -63,6 +67,11 @@ public class SessionController implements Serializable {
 		return sessoesAbertas.get(idUsuario);
 	}
 
+	/**
+	 * Procura uma sessão baseado no login
+	 * @param login
+	 * @return int id da Sessão procurada
+	 */
 	public int searchSessionByLogin(String login) {
 		for (Integer i : sessoesAbertas.keySet()) {
 			if (sessoesAbertas.get(i).getLogin().equals(login)) {
@@ -73,23 +82,13 @@ public class SessionController implements Serializable {
 
 	}
 
+	/**
+	 * Incrementa o contador de Id das sessões e retorna um Id
+	 * @return id da sessão
+	 */
 	public int newSessionId() {
 		contadorSessoes++;
-		for (int index = 0; index <= contadorSessoes; index++) { // acho q aqui
-																	// da set of
-																	// bounds pq
-																	// vc add +
-																	// 1 ao
-																	// contador
-																	// e tenta
-																	// procurar
-																	// elementos,
-																	// como e
-																	// set num
-																	// tem q
-																	// usar
-																	// iterator
-																	// nao?
+		for (int index = 0; index <= contadorSessoes; index++) {
 			if (!(sessoesAbertas.containsKey(index))) {
 				return index;
 			}
@@ -103,12 +102,19 @@ public class SessionController implements Serializable {
 		return contadorSessoes;
 	}
 
+	/**
+	 * Zera as variáveis na classe, encerrando todas as sessões.
+	 */
 	public void zeraSessoes() {
 		contadorSessoes = 0;
 		sessoesAbertas = new HashMap<Integer, Usuario>();
 
 	}
 
+	/**
+	 * Remove uma sessão em específico.
+	 * @param key
+	 */
 	public void desconectarSessao(int key) {
 		sessoesAbertas.remove(key);
 	}

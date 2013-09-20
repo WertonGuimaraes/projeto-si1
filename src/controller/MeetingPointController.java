@@ -32,20 +32,13 @@ public class MeetingPointController implements Serializable {
 
 	/***
 	 * Faz a solicitacão de ponto de encontro para uma determinada carona.
-	 * 
-	 * @param idSessao
-	 *            Id da sessao do caroneiro interessado na solicitacao
-	 * @param idCarona
-	 *            Id da carona de interesse
-	 * @param pontos
-	 *            Pontos de encontro sugeridos
-	 * @param motorista
-	 *            Objeto Usuario do motorista dono da carona
-	 * @param caroneiro
-	 *            Objeto Usuario do caroneiro que fez a solicitacao de ponto de
-	 *            encontro
-	 * @return um valor inteiro que e o identificador da solicitacao de ponto de
-	 *         encontro
+	 * @param idSessao Id da sessao do caroneiro interessado na solicitacao
+	 * @param idCarona Id da carona de interesse
+	 * @param pontos Pontos de encontro sugeridos
+	 * @param motorista Objeto Usuario do motorista dono da carona
+	 * @param caroneiro Objeto Usuario do caroneiro que 
+	 * fez a solicitacao de ponto de encontro
+	 * @return um valor inteiro que e o identificador da solicitacao de ponto de encontro
 	 */
 	public int sugerirPontoEncontro(String idSessao, int idCarona,
 			String pontos, Usuario motorista, Usuario caroneiro) {
@@ -71,6 +64,13 @@ public class MeetingPointController implements Serializable {
 
 	}
 
+	/**
+	 * Responde a uma solicitação de ponto de encontro de uma determinada carona.
+	 * @param idSessao Id da sessao do caroneiro interessado na solicitacao
+	 * @param idCarona Id da carona de interesse
+	 * @param idSugestao Id da solicitação de ponto de encontro
+	 * @param pontos possíveis pontos de encontro para a carona
+	 */
 	public void respondeSolicitacaoMeetingPoint(int idSessao, int idCarona,
 			int idSugestao, String pontos) {
 		if (pontos.equals(""))
@@ -94,7 +94,6 @@ public class MeetingPointController implements Serializable {
 			if (solicitacao.getIdSugestao() == idSugestao)
 				return solicitacao;
 		}
-
 		throw new RuntimeException(
 				"Nao existe nenhuma solicitacao com esse id de sugestao");
 	}
