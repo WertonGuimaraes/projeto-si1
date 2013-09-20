@@ -13,7 +13,7 @@ import model.Usuario;
 import controller.Controller;
 
 @ViewScoped
-@ManagedBean(name = "ShowerProfileBean")
+@ManagedBean(name = "showerProfileBean")
 public class ShowerProfileBean {
 
 	private Perfil perfil;
