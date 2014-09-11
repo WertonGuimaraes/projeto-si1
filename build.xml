@@ -23,8 +23,7 @@
 	<property name="webContent" value="WebContent" />
 	<property name="CATALINA_HOME" value="C:\tomcat" />
 
-	<property name="junit-xml-dir" value="${basedir}/test-output/junitreports" />
-	<property name="report-dir" value="${basedir}/html-report" />
+	<property name="report-dir" value="${basedir}/xml-report" />
 
 
 	<!-- - - - - - - - - - - - - - - - - - 
@@ -35,8 +34,8 @@
 		<mkdir dir="${build}" />
 		<mkdir dir="${dist}" />
 		<mkdir dir="${doc}" />
-		<mkdir dir="${junit-xml-dir}" />
-		
+		<mkdir dir="${report-dir}" />
+
 	</target>
 
 	<!-- ================================= 
@@ -130,33 +129,20 @@
 				<pathelement location="${build}" />
 				<pathelement location="${test}" />
 			</classpath>
+			<formatter type="xml" />
+			<formatter type="brief" usefile="false" />
 			<batchtest fork="yes" todir="${lib.dir}">
 				<fileset dir="${build}" includes="**/*Test*.class" />
 			</batchtest>
+			<test unless="env.testname" name="bin/test/*Test.class" />
 		</junit>
-	</target>
-
-
-
-	<!-- Ant target to generate html report -->
-	<target name="report" depends="testa">
-		<!-- Delete and recreate the html report directories -->
-		<delete dir="${report-dir}" failonerror="false" />
-		<mkdir dir="${report-dir}" />
-		<mkdir dir="${report-dir}/Junit" />
-		<!-- Ant task to generate the html report.
-	    todir - Directory to generate the output reports
-
-	    fileset - Directory to look for the junit xml reports.
-
-	    report - defines the type of format to be generated.
-	      Here we are using "noframes" which generates a single html report.
-	     -->
-		<junitreport todir="${report-dir}/Junit">
-			<fileset dir="${junit-xml-dir}">
-				<include name="**/*.xml" />
-			</fileset>
-			<report format="noframes" todir="${report-dir}/Junit" />
+		<junitreport todir="${report-dir}">
+			<fileset dir="${report-dir}" includes="*.xml" />
+			<report todir="${report-dir}" />
 		</junitreport>
 	</target>
+
+
+
+
 </project>
