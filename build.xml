@@ -35,6 +35,8 @@
 		<mkdir dir="${build}" />
 		<mkdir dir="${dist}" />
 		<mkdir dir="${doc}" />
+		<mkdir dir="${junit-xml-dir}" />
+		
 	</target>
 
 	<!-- ================================= 
@@ -137,7 +139,7 @@
 
 
 	<!-- Ant target to generate html report -->
-	<target name="junit-report" depends="testa">
+	<target name="report" depends="testa">
 		<!-- Delete and recreate the html report directories -->
 		<delete dir="${report-dir}" failonerror="false" />
 		<mkdir dir="${report-dir}" />
