@@ -123,18 +123,21 @@
 	     ================================= -->
 	<target name="testa" depends="compila">
 		<junit printsummary="yes" haltonfailure="no">
+
 			<formatter type="xml" />
+			<formatter type="plain" />
+
 			<classpath>
 				<fileset dir="${sysLibs}" includes="*.jar" />
 				<pathelement location="${build}" />
 				<pathelement location="${test}" />
 			</classpath>
-			<formatter type="xml" />
-			<formatter type="brief" usefile="false" />
-			<batchtest fork="yes" todir="${lib.dir}">
-				<fileset dir="${build}" includes="**/*Test*.class" />
+
+			<batchtest fork="yes" todir="${report-dir}">
+				<fileset dir="${src}/tests" >
+					<include name="**/*Test*.java"/>
+				</fileset>
 			</batchtest>
-			<test unless="env.testname" name="bin/test/*Test.class" />
 		</junit>
 		<junitreport todir="${report-dir}">
 			<fileset dir="${report-dir}" includes="*.xml" />
