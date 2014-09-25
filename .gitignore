@@ -8,3 +8,7 @@
 /%CATALINA_HOME%
 /CATALINA_HOME
 build.xml
+/classes
+cobertura.ser
+/instrumented
+/reports/*
